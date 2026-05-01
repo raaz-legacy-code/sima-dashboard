@@ -1039,16 +1039,36 @@
         
         function getFilteredData() {
             return weeklyData.map(w => {
+                let inflow, outflow, inflowItems, outflowItems;
+                
                 if (currentEntity === 'all') {
-                    return { ...w, inflow: w.totalInflow, outflow: w.totalOutflow, inflowItems: [...w.mint.inflowItems, ...w.jsl.inflowItems, ...w.household.inflowItems], outflowItems: [...w.mint.outflowItems, ...w.jsl.outflowItems, ...w.household.outflowItems] };
+                    inflow = (w.mint.inflow || 0) + (w.jsl.inflow || 0) + (w.household.inflow || 0);
+                    outflow = (w.mint.outflow || 0) + (w.jsl.outflow || 0) + (w.household.outflow || 0);
+                    inflowItems = [...(w.mint.inflowItems || []), ...(w.jsl.inflowItems || []), ...(w.household.inflowItems || [])];
+                    outflowItems = [...(w.mint.outflowItems || []), ...(w.jsl.outflowItems || []), ...(w.household.outflowItems || [])];
                 } else if (currentEntity === 'mint') {
-                    return { ...w, inflow: w.mint.inflow, outflow: w.mint.outflow, inflowItems: w.mint.inflowItems, outflowItems: w.mint.outflowItems };
+                    inflow = w.mint.inflow || 0;
+                    outflow = w.mint.outflow || 0;
+                    inflowItems = w.mint.inflowItems || [];
+                    outflowItems = w.mint.outflowItems || [];
                 } else if (currentEntity === 'jsl') {
-                    return { ...w, inflow: w.jsl.inflow, outflow: w.jsl.outflow, inflowItems: w.jsl.inflowItems, outflowItems: w.jsl.outflowItems };
+                    inflow = w.jsl.inflow || 0;
+                    outflow = w.jsl.outflow || 0;
+                    inflowItems = w.jsl.inflowItems || [];
+                    outflowItems = w.jsl.outflowItems || [];
                 } else if (currentEntity === 'household') {
-                    return { ...w, inflow: w.household.inflow, outflow: w.household.outflow, inflowItems: w.household.inflowItems, outflowItems: w.household.outflowItems };
+                    inflow = w.household.inflow || 0;
+                    outflow = w.household.outflow || 0;
+                    inflowItems = w.household.inflowItems || [];
+                    outflowItems = w.household.outflowItems || [];
+                } else {
+                    inflow = 0;
+                    outflow = 0;
+                    inflowItems = [];
+                    outflowItems = [];
                 }
-                return w;
+                
+                return { ...w, inflow: inflow, outflow: outflow, inflowItems: inflowItems, outflowItems: outflowItems };
             });
         }
 
