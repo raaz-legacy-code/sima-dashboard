@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sima Empire - Unified Financial Dashboard</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f0f; 
+            color: #e0e0e0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 20px;
+        }
+        .header h1 { color: #fff; font-size: 24px; }
+        .header .subtitle { color: #888; font-size: 14px; margin-top: 5px; }
+        .header .mode { 
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+        .card h2 { 
+            font-size: 14px; 
+            color: #888; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #222;
+        }
+        .metric:last-child { border-bottom: none; }
+        .metric .label { color: #aaa; }
+        .metric .value { font-weight: 600; }
+        .metric .value.positive { color: #28a745; }
+        .metric .value.negative { color: #dc3545; }
+        .metric .value.warning { color: #ffc107; }
+        .metric .value.neutral { color: #888; }
+        
+        .big-number {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        .big-number.positive { color: #28a745; }
+        .big-number.negative { color: #dc3545; }
+        .big-number.warning { color: #ffc107; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { 
+            text-align: left; 
+            padding: 8px; 
+            border-bottom: 1px solid #333;
+            font-size: 13px;
+        }
+        th { color: #888; font-weight: 500; }
+        
+        .risk-high { color: #dc3545; }
+        .risk-medium { color: #ffc107; }
+        .risk-low { color: #28a745; }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .status-critical { background: #dc3545; color: white; }
+        .status-warning { background: #ffc107; color: black; }
+        .status-ok { background: #28a745; color: white; }
+        .status-suspended { background: #6c757d; color: white; }
+        
+        .unreconciled {
+            background: #2a1f00;
+            border: 1px solid #ffc107;
+        }
+        .unreconciled h2 { color: #ffc107; border-bottom-color: #ffc107; }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 18px;
+            color: #fff;
+            padding: 10px 0;
+            border-bottom: 2px solid #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SIMA EMPIRE</h1>
+        <div class="subtitle">Unified Financial Dashboard</div>
+        <div class="mode">🚨 SURVIVAL MODE</div>
+        <div class="subtitle" style="margin-top:10px">Last Updated: 1 May 2026 5:20 PM SGT</div>
+    </div>
+
+    <div class="grid">
+        <!-- CASH POSITION -->
+        <div class="card">
+            <h2>💰 Total Cash Position</h2>
+            <div class="big-number warning">$29,300</div>
+            <div class="metric">
+                <span class="label">Target Buffer</span>
+                <span class="value">$50,000</span>
+            </div>
+            <div class="metric">
+                <span class="label">Gap to Target</span>
+                <span class="value negative">-$20,700</span>
+            </div>
+        </div>
+
+        <!-- CASH BY ENTITY -->
+        <div class="card">
+            <h2>🏢 Cash by Entity</h2>
+            <div class="metric">
+                <span class="label">Mint Invest</span>
+                <span class="value warning">$16,000</span>
+            </div>
+            <div class="metric">
+                <span class="label">JS Law Group (actual)</span>
+                <span class="value negative">$1,300</span>
+            </div>
+            <div class="metric">
+                <span class="label">JSL Lumi Facility</span>
+                <span class="value neutral">$12,000 available</span>
+            </div>
+            <div class="metric">
+                <span class="label">Household</span>
+                <span class="value negative">$0</span>
+            </div>
+        </div>
+
+        <!-- AR/AP SUMMARY -->
+        <div class="card">
+            <h2>📊 AR / AP Summary</h2>
+            <div class="metric">
+                <span class="label">Total AR (Mint + JSL)</span>
+                <span class="value positive">$594,312</span>
+            </div>
+            <div class="metric">
+                <span class="label">Total AP (Actual)</span>
+                <span class="value negative">-$105,000</span>
+            </div>
+            <div class="metric">
+                <span class="label">Total Debts (Verified)</span>
+                <span class="value negative">-$165K to $172K</span>
+            </div>
+            <div class="metric">
+                <span class="label" style="font-weight:600">Net Position</span>
+                <span class="value positive" style="font-weight:600">~$331,000</span>
+            </div>
+        </div>
+
+        <!-- CREDIT STATUS -->
+        <div class="card">
+            <h2>💳 Credit Status</h2>
+            <div class="metric">
+                <span class="label">Amex Platinum</span>
+                <span class="value"><span class="status-badge status-suspended">SUSPENDED</span> -$7,333</span>
+            </div>
+            <div class="metric">
+                <span class="label">Amex Explorer</span>
+                <span class="value"><span class="status-badge status-suspended">SUSPENDED</span> -$11,478</span>
+            </div>
+            <div class="metric">
+                <span class="label">Credit Score</span>
+                <span class="value negative">⚠️ DAMAGED</span>
+            </div>
+        </div>
+
+        <!-- HIGH RISK DEBTS -->
+        <div class="section-title">🔴 HIGH RISK DEBTS</div>
+        <div class="card" style="grid-column: 1 / -1;">
+            <table>
+                <tr>
+                    <th>Creditor</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td class="risk-high">Zac Rowley</td>
+                    <td>TBD</td>
+                    <td><span class="status-badge status-critical">LITIGATION</span></td>
+                    <td>Lisa Jemmeson handling</td>
+                </tr>
+                <tr>
+                    <td class="risk-high">Prospa</td>
+                    <td>$10,500</td>
+                    <td><span class="status-badge status-warning">Business Loan</span></td>
+                    <td>Check if current, prevent default</td>
+                </tr>
+                <tr>
+                    <td class="risk-high">Keivan Shams</td>
+                    <td>$8,000</td>
+                    <td><span class="status-badge status-warning">Demanding</span></td>
+                    <td>Settlement target: May 15</td>
+                </tr>
+                <tr>
+                    <td class="risk-high">Max Stephens</td>
+                    <td>$14,000</td>
+                    <td><span class="status-badge status-warning">Coach Fees</span></td>
+                    <td>Needs payment</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- MEDIUM RISK DEBTS -->
+        <div class="section-title">🟡 MEDIUM RISK DEBTS</div>
+        <div class="card" style="grid-column: 1 / -1;">
+            <table>
+                <tr>
+                    <th>Creditor</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Chris Jones</td>
+                    <td>$15,000</td>
+                    <td>$10K paid Mar 31, $15K remaining</td>
+                </tr>
+                <tr>
+                    <td>Xavier Advertising</td>
+                    <td>$12,892</td>
+                    <td>Slow-paying agreed</td>
+                </tr>
+                <tr>
+                    <td>Bao Nguyen</td>
+                    <td>$2,500 + $9.8K super</td>
+                    <td>Super is ATO risk</td>
+                </tr>
+                <tr>
+                    <td>MessageMedia</td>
+                    <td>$3,500</td>
+                    <td><span class="status-badge status-warning">IN COLLECTIONS</span></td>
+                </tr>
+                <tr>
+                    <td>Bilal</td>
+                    <td>$7,000</td>
+                    <td>Unknown status</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- IMMEDIATE ACTIONS -->
+        <div class="section-title">⚡ IMMEDIATE ACTIONS</div>
+        <div class="card">
+            <h2>Pay This Week</h2>
+            <div class="metric">
+                <span class="label">Reggio Emilia (daycare)</span>
+                <span class="value negative">$641 <span class="status-badge status-critical">FINAL NOTICE</span></span>
+            </div>
+            <div class="metric">
+                <span class="label">Momentum Energy</span>
+                <span class="value warning">$553 (by 12 May)</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Pay by May 15</h2>
+            <div class="metric">
+                <span class="label">Keivan Shams</span>
+                <span class="value">$8,000</span>
+            </div>
+            <div class="metric">
+                <span class="label">ATO/Super</span>
+                <span class="value">$19,300</span>
+            </div>
+        </div>
+
+        <!-- UNRECONCILED SECTION -->
+        <div class="section-title" style="color:#ffc107">⚠️ NEEDS CLARIFICATION</div>
+        <div class="card unreconciled" style="grid-column: 1 / -1;">
+            <h2>Unreconciled / Needs Verification</h2>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Source</th>
+                    <th>Issue</th>
+                    <th>Question</th>
+                </tr>
+                <tr>
+                    <td>JSL Business Account</td>
+                    <td>Xero shows $16,428</td>
+                    <td>Actual is $1,300</td>
+                    <td>Xero not reconciled - 176 transactions pending</td>
+                </tr>
+                <tr>
+                    <td>Frank Toner $8,700</td>
+                    <td>Xero AP</td>
+                    <td>Settled at $4,500</td>
+                    <td>Write off duplicate in Xero?</td>
+                </tr>
+                <tr>
+                    <td>✅ AZKYTECH</td>
+                    <td>~$4K USD (~$6K AUD)</td>
+                    <td>CLARIFIED</td>
+                    <td>Former Lighthaus devs - owed</td>
+                </tr>
+                <tr>
+                    <td>✅ Phil</td>
+                    <td>$18K-$25K</td>
+                    <td>CLARIFIED</td>
+                    <td>Past sales contractor: Tanya Comfort ($7-10K) + personal loan ($5.5K) + Mint commissions ($5-10K)</td>
+                </tr>
+                <tr>
+                    <td>✅ Bilal</td>
+                    <td>$7,000</td>
+                    <td>CLARIFIED</td>
+                    <td>Past client rebate - owed</td>
+                </tr>
+                <tr>
+                    <td>✅ Zubair</td>
+                    <td>$1,200</td>
+                    <td>CLARIFIED</td>
+                    <td>Owed</td>
+                </tr>
+                <tr>
+                    <td>Council Rates</td>
+                    <td>Email search</td>
+                    <td>Not found</td>
+                    <td>Where are recent rates notices?</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ACTIVE MONITORS -->
+        <div class="section-title">📡 Active Monitors</div>
+        <div class="card">
+            <h2>Watching For</h2>
+            <div class="metric">
+                <span class="label">Valuations (Dee Why + Collaroy)</span>
+                <span class="value">Hourly check</span>
+            </div>
+            <div class="metric">
+                <span class="label">LinkedIn Account Recovery</span>
+                <span class="value">2x daily</span>
+            </div>
+            <div class="metric">
+                <span class="label">Superbike School L2 Spot</span>
+                <span class="value">2x daily</span>
+            </div>
+            <div class="metric">
+                <span class="label">Collaroy Strata (Beth)</span>
+                <span class="value">3x weekly</span>
+            </div>
+            <div class="metric">
+                <span class="label">Creditor Emails</span>
+                <span class="value">Daily</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Pending Big Items</h2>
+            <div class="metric">
+                <span class="label">$512K Refinance</span>
+                <span class="value warning">Awaiting valuation</span>
+            </div>
+            <div class="metric">
+                <span class="label">Collaroy Special Levy</span>
+                <span class="value warning">Awaiting quote</span>
+            </div>
+            <div class="metric">
+                <span class="label">17 Arthur St DA</span>
+                <span class="value">Target: Aug 2026</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Built by Rey (RAAZ) | Sima Empire CFO Function<br>
+        Data sources: Xero (Mint + JSL), Gmail ×4, Outlook, Slack, Granola<br>
+        ⚠️ Some figures need reconciliation - see yellow section above
+    </div>
+</body>
+</html>
