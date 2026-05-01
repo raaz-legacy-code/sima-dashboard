@@ -258,6 +258,7 @@
             <button class="nav-tab" onclick="showPage('unreconciled')">⚠️ Unreconciled</button>
             <button class="nav-tab" onclick="showPage('compliance')">📋 Compliance</button>
             <button class="nav-tab" onclick="showPage('alerts')">🔔 Accountant Alerts</button>
+            <button class="nav-tab" onclick="showPage('ai')">🤖 AI Costs</button>
         </div>
     </nav>
 
@@ -559,6 +560,147 @@
     </main>
 
     <div class="footer">
+
+        <!-- AI COSTS PAGE -->
+        <div id="ai" class="page">
+            <div class="alert">
+                <h4>🤖 AI Infrastructure Costs</h4>
+                <p>Monthly tracking of all AI services powering the Sima Empire tech stack</p>
+            </div>
+            
+            <div class="summary-grid" style="margin-bottom:25px">
+                <div class="summary-card">
+                    <div class="label">This Month</div>
+                    <div class="value warning">$1,200</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Last Month</div>
+                    <div class="value">$1,485</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Trend</div>
+                    <div class="value positive">-19%</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Target</div>
+                    <div class="value" style="color:#888">< $1,000</div>
+                </div>
+            </div>
+            
+            <div class="table-section">
+                <h3>Monthly Breakdown by Service</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Purpose</th>
+                            <th class="amount">Mar 2026</th>
+                            <th class="amount">Apr 2026</th>
+                            <th class="amount">May MTD</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Anthropic (Claude)</td>
+                            <td>Claude API - Powers Rey</td>
+                            <td class="amount">$280</td>
+                            <td class="amount">$350</td>
+                            <td class="amount">$33</td>
+                            <td style="color:#ffc107">📈 +25%</td>
+                        </tr>
+                        <tr>
+                            <td>ChatGPT / OpenAI</td>
+                            <td>GPT API & Subscription</td>
+                            <td class="amount">$115</td>
+                            <td class="amount">$115</td>
+                            <td class="amount">$29</td>
+                            <td style="color:#888">➡️ Flat</td>
+                        </tr>
+                        <tr>
+                            <td>Manus AI</td>
+                            <td>Agent Platform</td>
+                            <td class="amount">$380</td>
+                            <td class="amount">$413</td>
+                            <td class="amount">$85</td>
+                            <td style="color:#ffc107">📈 +9%</td>
+                        </tr>
+                        <tr>
+                            <td>Google Cloud</td>
+                            <td>Cloud/Workspace/APIs</td>
+                            <td class="amount">$180</td>
+                            <td class="amount">$572</td>
+                            <td class="amount">$30</td>
+                            <td style="color:#dc3545">📈 +218%</td>
+                        </tr>
+                        <tr>
+                            <td>Hostinger</td>
+                            <td>VPS Hosting (OpenClaw)</td>
+                            <td class="amount">$35</td>
+                            <td class="amount">$35</td>
+                            <td class="amount">$35</td>
+                            <td style="color:#888">➡️ Flat</td>
+                        </tr>
+                        <tr>
+                            <td>Nexos</td>
+                            <td>AI Model Router</td>
+                            <td class="amount">$0</td>
+                            <td class="amount">$0</td>
+                            <td class="amount">$0</td>
+                            <td style="color:#28a745">🟢 Free</td>
+                        </tr>
+                        <tr>
+                            <td>Maton</td>
+                            <td>API Gateway</td>
+                            <td class="amount">$0</td>
+                            <td class="amount">$0</td>
+                            <td class="amount">$0</td>
+                            <td style="color:#28a745">🟢 Free</td>
+                        </tr>
+                        <tr style="font-weight:bold;background:#1f1f1f">
+                            <td>TOTAL</td>
+                            <td></td>
+                            <td class="amount">$990</td>
+                            <td class="amount">$1,485</td>
+                            <td class="amount">$212</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-section">
+                <h3>Recent Transactions</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Vendor</th>
+                            <th class="amount">Amount</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>May 1</td><td>Anthropic</td><td class="amount negative">$16.50</td><td>API Usage</td></tr>
+                        <tr><td>May 1</td><td>Anthropic</td><td class="amount negative">$16.50</td><td>API Usage</td></tr>
+                        <tr><td>Apr 30</td><td>Hostinger</td><td class="amount negative">$35.00</td><td>VPS Monthly</td></tr>
+                        <tr><td>Apr 28</td><td>Manus AI</td><td class="amount negative">$24.87</td><td>Agent Usage</td></tr>
+                        <tr><td>Apr 28</td><td>Manus AI</td><td class="amount negative">$21.74</td><td>Agent Usage</td></tr>
+                        <tr><td>Apr 27</td><td>Manus AI</td><td class="amount negative">$53.67</td><td>Agent Usage</td></tr>
+                        <tr><td>Apr 25</td><td>Google</td><td class="amount negative">$542.00</td><td>Cloud/API</td></tr>
+                        <tr><td>Apr 18</td><td>ChatGPT</td><td class="amount negative">$28.51</td><td>Subscription</td></tr>
+                        <tr><td>Apr 15</td><td>Claude.AI</td><td class="amount negative">$30.91</td><td>Subscription</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="alert" style="background:linear-gradient(135deg,#1a2e1a,#16301a);border-color:#28a745">
+                <h4 style="color:#28a745">💡 Optimization Suggestions</h4>
+                <p>• <strong>Google Cloud spike</strong> — $542 in Apr vs $180 in Mar. Investigate usage.</p>
+                <p>• <strong>Consolidate subscriptions</strong> — Both Claude.AI ($31) and Anthropic API ($350). Pick one.</p>
+                <p>• <strong>Manus usage growing</strong> — Monitor if value matches cost.</p>
+            </div>
+        </div>
         Built by Rey (RAAZ) | Sima Empire AI CFO<br>
         Data: Xero (Mint + JSL) + Gmail + Maton | Last sync: <span id="lastUpdate"></span>
     </div>
