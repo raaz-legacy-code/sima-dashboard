@@ -2330,7 +2330,291 @@
 
 
         
-                // PIPELINE & REVENUE MANAGEMENT
+                
+        
+        // Enhanced forecast calculation with all data sources
+        function getWeekInflow(weekNum, entity) {
+            let total = 0;
+            
+            // 1. Base forecast data
+            const baseData = weeklyForecast.find(w => w.week === weekNum);
+            if (baseData) {
+                if (entity === 'all') total += (baseData.mintInflow || 0) + (baseData.jslInflow || 0) + (baseData.householdInflow || 0);
+                else if (entity === 'mint') total += (baseData.mintInflow || 0);
+                else if (entity === 'jsl') total += (baseData.jslInflow || 0);
+                else if (entity === 'household') total += (baseData.householdInflow || 0);
+            }
+            
+            // 2. Pipeline tranches (deals)
+            const deals = getDeals ? getDeals() : [];
+            deals.forEach(deal => {
+                if (entity !== 'all' && deal.entity !== entity) return;
+                deal.tranches.forEach(tranche => {
+                    if (tranche.paid) return;
+                    const tWeek = getWeekNumber(new Date(tranche.date));
+                    if (tWeek === weekNum) {
+                        total += tranche.amount;
+                    }
+                });
+            });
+            
+            // 3. Other revenue
+            const revenue = getOtherRevenue ? getOtherRevenue() : [];
+            revenue.forEach(rev => {
+                if (entity !== 'all' && rev.entity !== entity) return;
+                if (rev.cadence === 'once' && rev.date) {
+                    const rWeek = getWeekNumber(new Date(rev.date));
+                    if (rWeek === weekNum) total += rev.amountIncGST;
+                } else if (rev.cadence === 'weekly') {
+                    total += rev.amountIncGST;
+                } else if (rev.cadence === 'monthly') {
+                    // Add if first week of month
+                    const weekStart = getWeekStartDate(weekNum);
+                    if (weekStart.getDate() <= 7) total += rev.amountIncGST;
+                }
+            });
+            
+            // 4. Manual line items
+            const manualInflow = getManualWeekTotal(weekNum, 'inflow', entity);
+            total += manualInflow;
+            
+            return total;
+        }
+        
+        function getWeekOutflow(weekNum, entity) {
+            let total = 0;
+            
+            // 1. Base forecast data
+            const baseData = weeklyForecast.find(w => w.week === weekNum);
+            if (baseData) {
+                if (entity === 'all') total += (baseData.mintOutflow || 0) + (baseData.jslOutflow || 0) + (baseData.householdOutflow || 0);
+                else if (entity === 'mint') total += (baseData.mintOutflow || 0);
+                else if (entity === 'jsl') total += (baseData.jslOutflow || 0);
+                else if (entity === 'household') total += (baseData.householdOutflow || 0);
+            }
+            
+            // 2. Manual expenses from the expense form
+            const expenses = JSON.parse(localStorage.getItem('manualExpenses') || '[]');
+            expenses.forEach(exp => {
+                if (entity !== 'all' && exp.entity !== entity) return;
+                // Check if expense falls in this week based on cadence
+                const expWeek = getWeekNumber(new Date(exp.firstDate));
+                if (exp.cadence === 'one-time' && expWeek === weekNum) {
+                    total += exp.amount;
+                } else if (exp.cadence === 'weekly') {
+                    total += exp.amount;
+                } else if (exp.cadence === 'fortnightly' && (weekNum - expWeek) % 2 === 0) {
+                    total += exp.amount;
+                } else if (exp.cadence === 'monthly') {
+                    const weekStart = getWeekStartDate(weekNum);
+                    if (weekStart.getDate() <= 7) total += exp.amount;
+                }
+            });
+            
+            // 3. Manual line items for outflow
+            const manualOutflow = getManualWeekTotal(weekNum, 'outflow', entity);
+            total += manualOutflow;
+            
+            return total;
+        }
+        
+        function getWeekNumber(date) {
+            const start = new Date(date.getFullYear(), 0, 1);
+            const diff = date - start;
+            return Math.ceil((diff / (7 * 24 * 60 * 60 * 1000)) + 1);
+        }
+        
+        function getWeekStartDate(weekNum) {
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 1);
+            return new Date(start.getTime() + (weekNum - 1) * 7 * 24 * 60 * 60 * 1000);
+        }
+
+
+        // LINE ITEM MANAGEMENT FOR WEEKLY BREAKDOWN
+        let currentBreakdownWeek = null;
+        let currentBreakdownType = null;
+        
+        function getWeeklyLineItems() {
+            return JSON.parse(localStorage.getItem('weeklyLineItems') || '{}');
+        }
+        
+        function saveWeeklyLineItems(items) {
+            localStorage.setItem('weeklyLineItems', JSON.stringify(items));
+        }
+        
+        function showDetailedBreakdown(week, type, entity) {
+            currentBreakdownWeek = week;
+            currentBreakdownType = type;
+            
+            const modal = document.getElementById('breakdownModal');
+            const contentDiv = document.getElementById('breakdownContent');
+            const lineItemsDiv = document.getElementById('breakdownLineItems');
+            
+            // Get stored line items for this week
+            const allItems = getWeeklyLineItems();
+            const weekKey = week + '_' + type;
+            const weekItems = allItems[weekKey] || [];
+            
+            // Also get pipeline tranches for this week
+            const pipelineItems = getPipelineItemsForWeek(week, type);
+            
+            // Build header
+            const typeLabel = type === 'inflow' ? 'Inflow' : 'Outflow';
+            const color = type === 'inflow' ? '#28a745' : '#dc3545';
+            
+            contentDiv.innerHTML = '<h2 style="color:' + color + '">' + typeLabel + ' Breakdown - Week ' + week + '</h2>' +
+                '<p style="color:#888;margin-bottom:15px">All line items contributing to this week\'s ' + typeLabel.toLowerCase() + '</p>';
+            
+            // Build line items table
+            let tableHTML = '<table style="width:100%"><thead><tr><th>Description</th><th>Entity</th><th class="amount">Amount</th><th>Source</th><th>Actions</th></tr></thead><tbody>';
+            
+            let totalAmount = 0;
+            
+            // Add pipeline-derived items (tranches)
+            pipelineItems.forEach(item => {
+                totalAmount += item.amount;
+                tableHTML += '<tr style="background:#1a2e1a">' +
+                    '<td>' + item.description + '</td>' +
+                    '<td>' + item.entity.toUpperCase() + '</td>' +
+                    '<td class="amount positive">$' + item.amount.toLocaleString() + '</td>' +
+                    '<td><span style="color:#28a745;font-size:11px">📊 Pipeline</span></td>' +
+                    '<td><span style="color:#666;font-size:11px">Auto</span></td>' +
+                    '</tr>';
+            });
+            
+            // Add manual line items
+            weekItems.forEach((item, idx) => {
+                totalAmount += item.amount;
+                const amountClass = type === 'inflow' ? 'positive' : 'negative';
+                tableHTML += '<tr>' +
+                    '<td>' + item.description + '</td>' +
+                    '<td>' + item.entity.toUpperCase() + '</td>' +
+                    '<td class="amount ' + amountClass + '">$' + Math.abs(item.amount).toLocaleString() + '</td>' +
+                    '<td><span style="color:#888;font-size:11px">✏️ Manual</span></td>' +
+                    '<td><button onclick="deleteLineItem(\''+weekKey+'\', '+idx+')" style="background:#dc3545;color:white;border:none;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:11px">×</button></td>' +
+                    '</tr>';
+            });
+            
+            if (pipelineItems.length === 0 && weekItems.length === 0) {
+                tableHTML += '<tr><td colspan="5" style="text-align:center;color:#666;padding:20px">No line items yet. Add items below or use Pipeline tab to add deals.</td></tr>';
+            }
+            
+            tableHTML += '</tbody><tfoot><tr style="font-weight:bold;border-top:2px solid #333"><td colspan="2">TOTAL</td><td class="amount" style="color:' + color + '">$' + totalAmount.toLocaleString() + '</td><td></td><td></td></tr></tfoot></table>';
+            
+            lineItemsDiv.innerHTML = tableHTML;
+            
+            // Set default type in form
+            document.getElementById('lineItemType').value = type;
+            
+            modal.style.display = 'flex';
+        }
+        
+        function getPipelineItemsForWeek(weekNum, type) {
+            const items = [];
+            if (type !== 'inflow') return items;
+            
+            const deals = getDeals();
+            const revenue = getOtherRevenue();
+            
+            // Calculate week date range
+            const now = new Date();
+            const startOfYear = new Date(now.getFullYear(), 0, 1);
+            const weekStart = new Date(startOfYear.getTime() + (weekNum - 1) * 7 * 24 * 60 * 60 * 1000);
+            const weekEnd = new Date(weekStart.getTime() + 7 * 24 * 60 * 60 * 1000);
+            
+            // Check deal tranches
+            deals.forEach(deal => {
+                deal.tranches.forEach(tranche => {
+                    if (tranche.paid) return;
+                    const tDate = new Date(tranche.date);
+                    if (tDate >= weekStart && tDate < weekEnd) {
+                        items.push({
+                            description: deal.client + ' - ' + deal.property + ' (T' + tranche.number + ')',
+                            entity: deal.entity,
+                            amount: tranche.amount
+                        });
+                    }
+                });
+            });
+            
+            // Check other revenue
+            revenue.forEach(rev => {
+                if (rev.date) {
+                    const rDate = new Date(rev.date);
+                    if (rDate >= weekStart && rDate < weekEnd) {
+                        items.push({
+                            description: rev.description,
+                            entity: rev.entity,
+                            amount: rev.amountIncGST
+                        });
+                    }
+                }
+            });
+            
+            return items;
+        }
+        
+        function addLineItem() {
+            if (!currentBreakdownWeek) return;
+            
+            const desc = document.getElementById('lineItemDesc').value;
+            const amount = parseFloat(document.getElementById('lineItemAmount').value);
+            const type = document.getElementById('lineItemType').value;
+            const entity = document.getElementById('lineItemEntity').value;
+            
+            if (!desc || !amount) {
+                alert('Please enter description and amount');
+                return;
+            }
+            
+            const allItems = getWeeklyLineItems();
+            const weekKey = currentBreakdownWeek + '_' + type;
+            
+            if (!allItems[weekKey]) allItems[weekKey] = [];
+            
+            allItems[weekKey].push({
+                description: desc,
+                amount: amount,
+                entity: entity,
+                type: type,
+                addedAt: new Date().toISOString()
+            });
+            
+            saveWeeklyLineItems(allItems);
+            
+            // Clear form
+            document.getElementById('lineItemDesc').value = '';
+            document.getElementById('lineItemAmount').value = '';
+            
+            // Refresh the modal
+            showDetailedBreakdown(currentBreakdownWeek, currentBreakdownType, entity);
+            
+            // Recalculate forecasts
+            calculateForecast();
+        }
+        
+        function deleteLineItem(weekKey, index) {
+            if (!confirm('Delete this line item?')) return;
+            
+            const allItems = getWeeklyLineItems();
+            if (allItems[weekKey]) {
+                allItems[weekKey].splice(index, 1);
+                saveWeeklyLineItems(allItems);
+            }
+            
+            const parts = weekKey.split('_');
+            showDetailedBreakdown(parseInt(parts[0]), parts[1], 'all');
+            calculateForecast();
+        }
+        
+        // Override the simple showBreakdown function to use detailed one
+        function showBreakdown(week, type, entity) {
+            showDetailedBreakdown(week, type, entity);
+        }
+
+
+        // PIPELINE & REVENUE MANAGEMENT
         function getDeals() {
             return JSON.parse(localStorage.getItem('dealPipeline') || '[]');
         }
