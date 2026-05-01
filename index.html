@@ -2956,6 +2956,28 @@
             localStorage.setItem('paymentHistory', JSON.stringify(history));
         }
         
+        
+        function editDebtAmount(debtId, cell) {
+            const currentText = cell.innerText.replace(/[$,]/g, '');
+            const newValue = prompt('Enter new outstanding amount for this debt:', currentText);
+            
+            if (newValue !== null && newValue !== '') {
+                const amount = parseFloat(newValue);
+                if (!isNaN(amount) && amount >= 0) {
+                    const debts = getDebts();
+                    const debt = debts.find(d => d.id === debtId);
+                    if (debt) {
+                        debt.outstanding = amount;
+                        saveDebts(debts);
+                        renderDebts();
+                    }
+                } else {
+                    alert('Please enter a valid number');
+                }
+            }
+        }
+
+
         function renderDebts() {
             const tbody = document.getElementById('debtBody');
             if (!tbody) return;
@@ -2980,10 +3002,15 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML = '<td><strong>' + debt.creditor + '</strong></td>' +
                     '<td class="amount">$' + debt.original.toLocaleString() + '</td>' +
-                    '<td class="amount ' + (debt.outstanding > 0 ? 'negative' : 'positive') + '" contenteditable="true" onblur="updateDebtAmount(' + debt.id + ', this.innerText)">$' + debt.outstanding.toLocaleString() + '</td>' +
+                    '<td class="amount ' + (debt.outstanding > 0 ? 'negative' : 'positive') + '" style="cursor:pointer;border:1px dashed #444" data-debt-id="' + debt.id + '">$' + debt.outstanding.toLocaleString() + '</td>' +
                     '<td>' + priorityBadge + '</td>' +
                     '<td style="color:#888;font-size:12px">' + (debt.notes || '') + '</td>' +
                     '<td><button onclick="deleteDebt(' + debt.id + ')" style="background:#dc3545;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:11px">Delete</button></td>';
+                
+                // Add click handler for editing
+                const amountCell = tr.querySelector('[data-debt-id]');
+                amountCell.onclick = function() { editDebtAmount(debt.id, this); };
+                
                 tbody.appendChild(tr);
             });
             
