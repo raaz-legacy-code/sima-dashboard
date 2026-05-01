@@ -3391,8 +3391,39 @@
             });
         }
         
-        // Send feedback to Rey (via localStorage + Telegram webhook simulation)
-        function sendFeedback() {
+        // Send feedback to Rey via Telegram
+        const TG_BOT = '8307973637:AAHOZR3GMl-P3VGnkrRWFQfg3lOo1b7CoUk';
+        const TG_CHAT = '6877282178';
+        
+        async function sendToTelegram(text, type) {
+            const emoji = type === 'feedback' ? '📸' : '💬';
+            const label = type === 'feedback' ? 'Dashboard Feedback' : 'Dashboard Chat';
+            const page = window.location.hash.replace('#', '') || 'forecast';
+            const time = new Date().toLocaleString('en-AU', {timeZone: 'Australia/Sydney'});
+            
+            const message = `${emoji} *${label}*\n\n` +
+                `*Page:* ${page}\n` +
+                `*Time:* ${time}\n\n` +
+                `${text}`;
+            
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${TG_BOT}/sendMessage`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        chat_id: TG_CHAT,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                return res.ok;
+            } catch (e) {
+                console.error('Telegram error:', e);
+                return false;
+            }
+        }
+        
+        async function sendFeedback() {
             const text = document.getElementById('feedbackText').value;
             const status = document.getElementById('feedbackStatus');
             
@@ -3401,25 +3432,18 @@
                 return;
             }
             
-            // Save to localStorage for persistence
-            const feedbackLog = JSON.parse(localStorage.getItem('dashboardFeedback') || '[]');
-            feedbackLog.push({
-                timestamp: new Date().toISOString(),
-                message: text,
-                page: window.location.hash || 'forecast',
-                hasScreenshot: !!window.currentScreenshot
-            });
-            localStorage.setItem('dashboardFeedback', JSON.stringify(feedbackLog));
+            status.textContent = '📤 Sending to Rey...';
             
-            // Show confirmation
-            status.innerHTML = '✅ <strong>Feedback saved!</strong> Rey will see this in next sync.';
-            document.getElementById('feedbackText').value = '';
+            const sent = await sendToTelegram(text, 'feedback');
             
-            // Add to chat as confirmation
-            addChatMessage('📸 Feedback sent: "' + text.substring(0, 50) + (text.length > 50 ? '...' : '') + '"', 'user');
-            addChatMessage('Got it! I\'ll review this feedback and make improvements. 👍', 'rey');
-            
-            setTimeout(() => toggleFeedback(), 2000);
+            if (sent) {
+                status.innerHTML = '✅ <strong>Sent to Rey!</strong> She\'ll see this instantly.';
+                document.getElementById('feedbackText').value = '';
+                addChatMessage('📸 Feedback sent: "' + text.substring(0, 50) + (text.length > 50 ? '...' : '') + '"', 'user');
+                setTimeout(() => toggleFeedback(), 2000);
+            } else {
+                status.innerHTML = '❌ Failed to send. Try again or message Rey directly.';
+            }
         }
         
         // Chat functions
@@ -3446,7 +3470,7 @@
             saveChatHistory(history);
         }
         
-        function sendChatMessage() {
+        async function sendChatMessage() {
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             
@@ -3455,16 +3479,14 @@
             addChatMessage(text, 'user');
             input.value = '';
             
-            // Simulate response (in reality, this would ping Rey via webhook)
-            setTimeout(() => {
-                const responses = [
-                    "Got it! I've logged this request. I'll work on it in my next session. 🔧",
-                    "Thanks for the feedback! This is now in my queue. 📋",
-                    "Noted! I'll address this when I'm next active. 👍",
-                    "Good idea! I've saved this for implementation. ✨"
-                ];
-                addChatMessage(responses[Math.floor(Math.random() * responses.length)], 'rey');
-            }, 500);
+            // Actually send to Telegram
+            const sent = await sendToTelegram(text, 'chat');
+            
+            if (sent) {
+                addChatMessage("Got it! Message sent to Rey via Telegram. She\'ll respond in the main chat. 📱", 'rey');
+            } else {
+                addChatMessage("Couldn\'t send via Telegram. Try messaging Rey directly. ❌", 'rey');
+            }
         }
         
         // Load chat history on page load
