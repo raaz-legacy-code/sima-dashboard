@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sima Empire - Unified Financial Dashboard</title>
+    <title>Sima Empire - Cash Flow Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f0f0f; 
+            background: #0a0a0a; 
             color: #e0e0e0;
             padding: 20px;
             line-height: 1.5;
@@ -19,395 +20,515 @@
             border-bottom: 1px solid #333;
             margin-bottom: 20px;
         }
-        .header h1 { color: #fff; font-size: 24px; }
+        .header h1 { color: #fff; font-size: 28px; }
         .header .subtitle { color: #888; font-size: 14px; margin-top: 5px; }
-        .header .mode { 
+        .mode-badge { 
             display: inline-block;
             background: #dc3545;
             color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
+            padding: 6px 16px;
+            border-radius: 20px;
             font-weight: bold;
             margin-top: 10px;
             animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
         }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card {
+        .summary-card {
             background: #1a1a1a;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 20px;
+            text-align: center;
             border: 1px solid #333;
         }
-        .card h2 { 
-            font-size: 14px; 
-            color: #888; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .summary-card .label { color: #888; font-size: 12px; text-transform: uppercase; }
+        .summary-card .value { font-size: 28px; font-weight: 700; margin-top: 8px; }
+        .summary-card .value.positive { color: #28a745; }
+        .summary-card .value.negative { color: #dc3545; }
+        .summary-card .value.warning { color: #ffc107; }
+        
+        /* Chart Container */
+        .chart-container {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+        .chart-container h2 {
+            color: #fff;
             margin-bottom: 15px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
+            font-size: 18px;
         }
-        .metric {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #222;
-        }
-        .metric:last-child { border-bottom: none; }
-        .metric .label { color: #aaa; }
-        .metric .value { font-weight: 600; }
-        .metric .value.positive { color: #28a745; }
-        .metric .value.negative { color: #dc3545; }
-        .metric .value.warning { color: #ffc107; }
-        .metric .value.neutral { color: #888; }
+        #cashflowChart { max-height: 400px; }
         
-        .big-number {
-            font-size: 32px;
-            font-weight: 700;
-            margin: 10px 0;
+        /* Weekly Table */
+        .weekly-section {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
         }
-        .big-number.positive { color: #28a745; }
-        .big-number.negative { color: #dc3545; }
-        .big-number.warning { color: #ffc107; }
+        .weekly-section h2 { color: #fff; margin-bottom: 15px; }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        table { width: 100%; border-collapse: collapse; }
         th, td { 
-            text-align: left; 
-            padding: 8px; 
-            border-bottom: 1px solid #333;
+            padding: 12px 8px; 
+            text-align: right;
+            border-bottom: 1px solid #2a2a2a;
             font-size: 13px;
         }
-        th { color: #888; font-weight: 500; }
+        th { 
+            color: #888; 
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 11px;
+            position: sticky;
+            top: 0;
+            background: #1a1a1a;
+        }
+        td:first-child, th:first-child { text-align: left; }
         
-        .risk-high { color: #dc3545; }
-        .risk-medium { color: #ffc107; }
-        .risk-low { color: #28a745; }
+        .week-row { cursor: pointer; transition: background 0.2s; }
+        .week-row:hover { background: #252525; }
+        .week-row.current { background: #1e3a1e; }
+        .week-row.negative td { color: #ff6b6b; }
+        .week-row.positive td { color: #69db7c; }
         
-        .status-badge {
+        .expand-icon { 
             display: inline-block;
+            width: 20px;
+            transition: transform 0.2s;
+        }
+        .week-row.expanded .expand-icon { transform: rotate(90deg); }
+        
+        .detail-row { display: none; background: #141414; }
+        .detail-row.show { display: table-row; }
+        .detail-row td { padding: 15px 20px; }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .detail-section h4 {
+            color: #888;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 12px;
+        }
+        .detail-item .name { color: #aaa; }
+        .detail-item .amount { font-weight: 500; }
+        .detail-item .amount.in { color: #69db7c; }
+        .detail-item .amount.out { color: #ff6b6b; }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #2a2a2a;
+            border: none;
+            color: #888;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .tab.active { background: #3b82f6; color: #fff; }
+        .tab:hover { background: #333; }
+        .tab.active:hover { background: #2563eb; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Pipeline */
+        .pipeline-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            background: #141414;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .pipeline-item .client { font-weight: 500; }
+        .pipeline-item .amount { color: #69db7c; }
+        .pipeline-item .status {
+            font-size: 11px;
             padding: 2px 8px;
             border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
         }
-        .status-critical { background: #dc3545; color: white; }
-        .status-warning { background: #ffc107; color: black; }
-        .status-ok { background: #28a745; color: white; }
-        .status-suspended { background: #6c757d; color: white; }
-        
-        .unreconciled {
-            background: #2a1f00;
-            border: 1px solid #ffc107;
-        }
-        .unreconciled h2 { color: #ffc107; border-bottom-color: #ffc107; }
+        .status-paid { background: #28a745; color: white; }
+        .status-invoiced { background: #ffc107; color: black; }
+        .status-pending { background: #6c757d; color: white; }
         
         .footer {
             text-align: center;
             padding: 20px;
-            color: #666;
+            color: #555;
             font-size: 12px;
-            margin-top: 20px;
-        }
-        
-        .section-title {
-            grid-column: 1 / -1;
-            font-size: 18px;
-            color: #fff;
-            padding: 10px 0;
-            border-bottom: 2px solid #333;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>SIMA EMPIRE</h1>
-        <div class="subtitle">Unified Financial Dashboard</div>
-        <div class="mode">🚨 SURVIVAL MODE</div>
-        <div class="subtitle" style="margin-top:10px">Last Updated: 1 May 2026 5:20 PM SGT</div>
+        <h1>💎 SIMA EMPIRE</h1>
+        <div class="subtitle">Unified Cash Flow Dashboard</div>
+        <div class="mode-badge">🚨 SURVIVAL MODE</div>
+        <div class="subtitle" style="margin-top:10px">Last Updated: <span id="lastUpdate"></span></div>
     </div>
 
-    <div class="grid">
-        <!-- CASH POSITION -->
-        <div class="card">
-            <h2>💰 Total Cash Position</h2>
-            <div class="big-number warning">$29,300</div>
-            <div class="metric">
-                <span class="label">Target Buffer</span>
-                <span class="value">$50,000</span>
-            </div>
-            <div class="metric">
-                <span class="label">Gap to Target</span>
-                <span class="value negative">-$20,700</span>
-            </div>
+    <!-- Summary Cards -->
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="label">Available Cash</div>
+            <div class="value warning" id="totalCash">$29,300</div>
         </div>
-
-        <!-- CASH BY ENTITY -->
-        <div class="card">
-            <h2>🏢 Cash by Entity</h2>
-            <div class="metric">
-                <span class="label">Mint Invest</span>
-                <span class="value warning">$16,000</span>
-            </div>
-            <div class="metric">
-                <span class="label">JS Law Group (actual)</span>
-                <span class="value negative">$1,300</span>
-            </div>
-            <div class="metric">
-                <span class="label">JSL Lumi Facility</span>
-                <span class="value neutral">$12,000 available</span>
-            </div>
-            <div class="metric">
-                <span class="label">Household</span>
-                <span class="value negative">$0</span>
-            </div>
+        <div class="summary-card">
+            <div class="label">This Week Inflow</div>
+            <div class="value positive" id="weekInflow">$0</div>
         </div>
-
-        <!-- AR/AP SUMMARY -->
-        <div class="card">
-            <h2>📊 AR / AP Summary</h2>
-            <div class="metric">
-                <span class="label">Total AR (Mint + JSL)</span>
-                <span class="value positive">$594,312</span>
-            </div>
-            <div class="metric">
-                <span class="label">Total AP (Actual)</span>
-                <span class="value negative">-$105,000</span>
-            </div>
-            <div class="metric">
-                <span class="label">Total Debts (Verified)</span>
-                <span class="value negative">-$165K to $172K</span>
-            </div>
-            <div class="metric">
-                <span class="label" style="font-weight:600">Net Position</span>
-                <span class="value positive" style="font-weight:600">~$331,000</span>
-            </div>
+        <div class="summary-card">
+            <div class="label">This Week Outflow</div>
+            <div class="value negative" id="weekOutflow">$0</div>
         </div>
-
-        <!-- CREDIT STATUS -->
-        <div class="card">
-            <h2>💳 Credit Status</h2>
-            <div class="metric">
-                <span class="label">Amex Platinum</span>
-                <span class="value"><span class="status-badge status-suspended">SUSPENDED</span> -$7,333</span>
-            </div>
-            <div class="metric">
-                <span class="label">Amex Explorer</span>
-                <span class="value"><span class="status-badge status-suspended">SUSPENDED</span> -$11,478</span>
-            </div>
-            <div class="metric">
-                <span class="label">Credit Score</span>
-                <span class="value negative">⚠️ DAMAGED</span>
-            </div>
+        <div class="summary-card">
+            <div class="label">AR Outstanding</div>
+            <div class="value" id="arTotal">$594,312</div>
         </div>
+        <div class="summary-card">
+            <div class="label">Total Debts</div>
+            <div class="value negative" id="debtsTotal">$165K</div>
+        </div>
+        <div class="summary-card">
+            <div class="label">Target Buffer</div>
+            <div class="value" style="color:#888">$50,000</div>
+        </div>
+    </div>
 
-        <!-- HIGH RISK DEBTS -->
-        <div class="section-title">🔴 HIGH RISK DEBTS</div>
-        <div class="card" style="grid-column: 1 / -1;">
+    <!-- Chart -->
+    <div class="chart-container">
+        <h2>📈 Cash Flow Over Time</h2>
+        <canvas id="cashflowChart"></canvas>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('weekly')">Weekly Breakdown</button>
+        <button class="tab" onclick="showTab('pipeline')">Deal Pipeline</button>
+        <button class="tab" onclick="showTab('debts')">Debts & AP</button>
+    </div>
+
+    <!-- Weekly Tab -->
+    <div id="weekly" class="tab-content active">
+        <div class="weekly-section">
+            <h2>📅 16-Week Forecast</h2>
             <table>
-                <tr>
-                    <th>Creditor</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                <tr>
-                    <td class="risk-high">Zac Rowley</td>
-                    <td>TBD</td>
-                    <td><span class="status-badge status-critical">LITIGATION</span></td>
-                    <td>Lisa Jemmeson handling</td>
-                </tr>
-                <tr>
-                    <td class="risk-high">Prospa</td>
-                    <td>$10,500</td>
-                    <td><span class="status-badge status-warning">Business Loan</span></td>
-                    <td>Check if current, prevent default</td>
-                </tr>
-                <tr>
-                    <td class="risk-high">Keivan Shams</td>
-                    <td>$8,000</td>
-                    <td><span class="status-badge status-warning">Demanding</span></td>
-                    <td>Settlement target: May 15</td>
-                </tr>
-                <tr>
-                    <td class="risk-high">Max Stephens</td>
-                    <td>$14,000</td>
-                    <td><span class="status-badge status-warning">Coach Fees</span></td>
-                    <td>Needs payment</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Week</th>
+                        <th>Period</th>
+                        <th>Inflow</th>
+                        <th>Outflow</th>
+                        <th>Net</th>
+                        <th>Closing</th>
+                    </tr>
+                </thead>
+                <tbody id="weeklyBody"></tbody>
             </table>
         </div>
+    </div>
 
-        <!-- MEDIUM RISK DEBTS -->
-        <div class="section-title">🟡 MEDIUM RISK DEBTS</div>
-        <div class="card" style="grid-column: 1 / -1;">
-            <table>
-                <tr>
-                    <th>Creditor</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>Chris Jones</td>
-                    <td>$15,000</td>
-                    <td>$10K paid Mar 31, $15K remaining</td>
-                </tr>
-                <tr>
-                    <td>Xavier Advertising</td>
-                    <td>$12,892</td>
-                    <td>Slow-paying agreed</td>
-                </tr>
-                <tr>
-                    <td>Bao Nguyen</td>
-                    <td>$2,500 + $9.8K super</td>
-                    <td>Super is ATO risk</td>
-                </tr>
-                <tr>
-                    <td>MessageMedia</td>
-                    <td>$3,500</td>
-                    <td><span class="status-badge status-warning">IN COLLECTIONS</span></td>
-                </tr>
-                <tr>
-                    <td>Bilal</td>
-                    <td>$7,000</td>
-                    <td>Unknown status</td>
-                </tr>
-            </table>
+    <!-- Pipeline Tab -->
+    <div id="pipeline" class="tab-content">
+        <div class="weekly-section">
+            <h2>💰 Deal Pipeline</h2>
+            <div id="pipelineList"></div>
         </div>
+    </div>
 
-        <!-- IMMEDIATE ACTIONS -->
-        <div class="section-title">⚡ IMMEDIATE ACTIONS</div>
-        <div class="card">
-            <h2>Pay This Week</h2>
-            <div class="metric">
-                <span class="label">Reggio Emilia (daycare)</span>
-                <span class="value negative">$641 <span class="status-badge status-critical">FINAL NOTICE</span></span>
-            </div>
-            <div class="metric">
-                <span class="label">Momentum Energy</span>
-                <span class="value warning">$553 (by 12 May)</span>
-            </div>
-        </div>
-        
-        <div class="card">
-            <h2>Pay by May 15</h2>
-            <div class="metric">
-                <span class="label">Keivan Shams</span>
-                <span class="value">$8,000</span>
-            </div>
-            <div class="metric">
-                <span class="label">ATO/Super</span>
-                <span class="value">$19,300</span>
-            </div>
-        </div>
-
-        <!-- UNRECONCILED SECTION -->
-        <div class="section-title" style="color:#ffc107">⚠️ NEEDS CLARIFICATION</div>
-        <div class="card unreconciled" style="grid-column: 1 / -1;">
-            <h2>Unreconciled / Needs Verification</h2>
-            <table>
-                <tr>
-                    <th>Item</th>
-                    <th>Source</th>
-                    <th>Issue</th>
-                    <th>Question</th>
-                </tr>
-                <tr>
-                    <td>JSL Business Account</td>
-                    <td>Xero shows $16,428</td>
-                    <td>Actual is $1,300</td>
-                    <td>Xero not reconciled - 176 transactions pending</td>
-                </tr>
-                <tr>
-                    <td>Frank Toner $8,700</td>
-                    <td>Xero AP</td>
-                    <td>Settled at $4,500</td>
-                    <td>Write off duplicate in Xero?</td>
-                </tr>
-                <tr>
-                    <td>✅ AZKYTECH</td>
-                    <td>~$4K USD (~$6K AUD)</td>
-                    <td>CLARIFIED</td>
-                    <td>Former Lighthaus devs - owed</td>
-                </tr>
-                <tr>
-                    <td>✅ Phil</td>
-                    <td>$18K-$25K</td>
-                    <td>CLARIFIED</td>
-                    <td>Past sales contractor: Tanya Comfort ($7-10K) + personal loan ($5.5K) + Mint commissions ($5-10K)</td>
-                </tr>
-                <tr>
-                    <td>✅ Bilal</td>
-                    <td>$7,000</td>
-                    <td>CLARIFIED</td>
-                    <td>Past client rebate - owed</td>
-                </tr>
-                <tr>
-                    <td>✅ Zubair</td>
-                    <td>$1,200</td>
-                    <td>CLARIFIED</td>
-                    <td>Owed</td>
-                </tr>
-                <tr>
-                    <td>Council Rates</td>
-                    <td>Email search</td>
-                    <td>Not found</td>
-                    <td>Where are recent rates notices?</td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- ACTIVE MONITORS -->
-        <div class="section-title">📡 Active Monitors</div>
-        <div class="card">
-            <h2>Watching For</h2>
-            <div class="metric">
-                <span class="label">Valuations (Dee Why + Collaroy)</span>
-                <span class="value">Hourly check</span>
-            </div>
-            <div class="metric">
-                <span class="label">LinkedIn Account Recovery</span>
-                <span class="value">2x daily</span>
-            </div>
-            <div class="metric">
-                <span class="label">Superbike School L2 Spot</span>
-                <span class="value">2x daily</span>
-            </div>
-            <div class="metric">
-                <span class="label">Collaroy Strata (Beth)</span>
-                <span class="value">3x weekly</span>
-            </div>
-            <div class="metric">
-                <span class="label">Creditor Emails</span>
-                <span class="value">Daily</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Pending Big Items</h2>
-            <div class="metric">
-                <span class="label">$512K Refinance</span>
-                <span class="value warning">Awaiting valuation</span>
-            </div>
-            <div class="metric">
-                <span class="label">Collaroy Special Levy</span>
-                <span class="value warning">Awaiting quote</span>
-            </div>
-            <div class="metric">
-                <span class="label">17 Arthur St DA</span>
-                <span class="value">Target: Aug 2026</span>
-            </div>
+    <!-- Debts Tab -->
+    <div id="debts" class="tab-content">
+        <div class="weekly-section">
+            <h2>💳 Debts & Accounts Payable</h2>
+            <div id="debtsList"></div>
         </div>
     </div>
 
     <div class="footer">
         Built by Rey (RAAZ) | Sima Empire CFO Function<br>
-        Data sources: Xero (Mint + JSL), Gmail ×4, Outlook, Slack, Granola<br>
-        ⚠️ Some figures need reconciliation - see yellow section above
+        Data: Xero + Mint Cashflow Model | Auto-updates daily
     </div>
+
+    <script>
+        // Cash flow data from spreadsheet
+        const weeklyData = [
+            { week: 14, from: '2026-03-30', to: '2026-04-05', inflow: 90750, outflow: 51811, expenses: { 'Staff': 12000, 'Office': 1650, 'Marketing': 3000, 'Loans': 8500, 'Other': 26661 } },
+            { week: 15, from: '2026-04-06', to: '2026-04-12', inflow: 0, outflow: 33575, expenses: { 'Staff': 15000, 'Office': 1650, 'ATO': 5000, 'Loans': 8500, 'Other': 3425 } },
+            { week: 16, from: '2026-04-13', to: '2026-04-19', inflow: 0, outflow: 10288, expenses: { 'Staff': 4000, 'Utilities': 500, 'Subscriptions': 788, 'Other': 5000 } },
+            { week: 17, from: '2026-04-20', to: '2026-04-26', inflow: 60500, outflow: 69848, income: { 'T1 George': 33000, 'T2 Wayne': 27500 }, expenses: { 'Staff': 20000, 'Office': 1650, 'Marketing': 5000, 'Loans': 8500, 'Debts': 14698, 'Other': 20000 } },
+            { week: 18, from: '2026-04-27', to: '2026-05-03', inflow: 53625, outflow: 90209, income: { 'T1 Various': 53625 }, expenses: { 'Staff': 25000, 'Debts': 30000, 'ATO': 19300, 'Other': 15909 }, current: true },
+            { week: 19, from: '2026-05-04', to: '2026-05-10', inflow: 72780, outflow: 68374, income: { 'T1 Nicole': 38500, 'T2 Curtis': 19250, 'Membership': 5030, 'Trail': 10000 }, expenses: { 'Staff': 20000, 'Office': 1650, 'Loans': 8500, 'Other': 38224 } },
+            { week: 20, from: '2026-05-11', to: '2026-05-17', inflow: 0, outflow: 39105, expenses: { 'Staff': 15000, 'Office': 1650, 'Loans': 8500, 'Keivan': 8000, 'Other': 5955 } },
+            { week: 21, from: '2026-05-18', to: '2026-05-24', inflow: 0, outflow: 43341, expenses: { 'Staff': 15000, 'Office': 1650, 'Loans': 8500, 'Other': 18191 } },
+            { week: 22, from: '2026-05-25', to: '2026-05-31', inflow: 11000, outflow: 40784, income: { 'Referral': 11000 }, expenses: { 'Staff': 15000, 'Office': 1650, 'Loans': 8500, 'Other': 15634 } },
+            { week: 23, from: '2026-06-01', to: '2026-06-07', inflow: 0, outflow: 23104, expenses: { 'Staff': 10000, 'Office': 1650, 'Loans': 8500, 'Other': 2954 } },
+            { week: 24, from: '2026-06-08', to: '2026-06-14', inflow: 27500, outflow: 3330, income: { 'T1 Will/Crystal': 27500 }, expenses: { 'Subscriptions': 330, 'Other': 3000 } },
+            { week: 25, from: '2026-06-15', to: '2026-06-21', inflow: 30000, outflow: 8841, income: { 'T2 Expected': 30000 }, expenses: { 'Staff': 5000, 'Other': 3841 } },
+            { week: 26, from: '2026-06-22', to: '2026-06-28', inflow: 26700, outflow: 42784, income: { 'T1 Tim/Rosie': 26700 }, expenses: { 'Staff': 15000, 'Loans': 8500, 'Other': 19284 } },
+            { week: 27, from: '2026-06-29', to: '2026-07-05', inflow: 2000, outflow: 36004, expenses: { 'Staff': 15000, 'Loans': 8500, 'Other': 12504 } },
+            { week: 28, from: '2026-07-06', to: '2026-07-12', inflow: 0, outflow: 4330, expenses: { 'Subscriptions': 330, 'Other': 4000 } },
+            { week: 29, from: '2026-07-13', to: '2026-07-19', inflow: 38500, outflow: 11841, income: { 'T2 Expected': 38500 }, expenses: { 'Staff': 5000, 'Other': 6841 } },
+        ];
+
+        // Pipeline deals
+        const pipelineDeals = [
+            { client: 'Nicole and Joshua', amount: 38500, t1: 19250, t2: 19250, status: 'invoiced', eta: 'May 8' },
+            { client: 'Curtis and Madison', amount: 38500, t1: 19250, t2: 19250, status: 'invoiced', eta: 'May 8' },
+            { client: 'George and Haroula', amount: 55000, t1: 22000, t2: 22000, t3: 11000, status: 'paid', eta: 'Apr 24' },
+            { client: 'Isabella Kim', amount: 44000, t1: 22000, t2: 22000, status: 'invoiced', eta: 'Need follow up' },
+            { client: 'Wayne', amount: 44000, t1: 17300, t2: 26700, status: 'invoiced', eta: 'Jun 26' },
+            { client: 'Tim & Rosie', amount: 44000, t1: 6900, t2: 22000, status: 'pending', eta: 'Jan 2026' },
+            { client: 'Will and Crystal', amount: 27500, t1: 27500, status: 'pending', eta: 'Week 24' },
+            { client: 'Mark Miguire', amount: 95000, t1: 27500, t2: 27500, t3: 27500, status: 'pending', eta: 'TBC' },
+            { client: 'James & Christine Armstrong', amount: 27500, t1: 13750, t2: 13750, status: 'pending', eta: 'Apr 17' },
+        ];
+
+        // Debts
+        const debts = [
+            { name: 'Prospa Loan', amount: 10500, risk: 'high', status: 'Active' },
+            { name: 'Keivan Shams', amount: 8000, risk: 'high', status: 'Due May 15' },
+            { name: 'Max Stephens (Coach)', amount: 14000, risk: 'high', status: 'Owed' },
+            { name: 'AZKYTECH (Lighthaus)', amount: 6000, risk: 'medium', status: '~$4K USD' },
+            { name: 'Chris Jones', amount: 15000, risk: 'medium', status: '$10K paid Mar 31' },
+            { name: 'Xavier Advertising', amount: 12892, risk: 'medium', status: 'Slow pay agreed' },
+            { name: 'Phil (Contractor)', amount: 22000, risk: 'medium', status: 'Tanya+Loan+Comms' },
+            { name: 'Bilal (Client Rebate)', amount: 7000, risk: 'medium', status: 'Owed' },
+            { name: 'Staff Backpay', amount: 15348, risk: 'medium', status: 'Nats/May/Madelaine' },
+            { name: 'ATO/Super', amount: 19300, risk: 'high', status: 'Due' },
+            { name: 'Amex Platinum', amount: 7333, risk: 'credit', status: 'SUSPENDED' },
+            { name: 'Amex Explorer', amount: 11478, risk: 'credit', status: 'SUSPENDED' },
+        ];
+
+        // Initialize
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleString('en-AU', { 
+            timeZone: 'Australia/Sydney',
+            dateStyle: 'medium',
+            timeStyle: 'short'
+        });
+
+        // Calculate running balance
+        let runningBalance = 29300; // Current cash
+        weeklyData.forEach(w => {
+            w.net = w.inflow - w.outflow;
+            runningBalance += w.net;
+            w.closing = runningBalance;
+        });
+
+        // Find current week
+        const currentWeek = weeklyData.find(w => w.current);
+        if (currentWeek) {
+            document.getElementById('weekInflow').textContent = '$' + currentWeek.inflow.toLocaleString();
+            document.getElementById('weekOutflow').textContent = '$' + currentWeek.outflow.toLocaleString();
+        }
+
+        // Chart
+        const ctx = document.getElementById('cashflowChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: weeklyData.map(w => `Wk ${w.week}`),
+                datasets: [
+                    {
+                        label: 'Inflow',
+                        data: weeklyData.map(w => w.inflow),
+                        backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                        borderColor: '#28a745',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Outflow',
+                        data: weeklyData.map(w => -w.outflow),
+                        backgroundColor: 'rgba(220, 53, 69, 0.7)',
+                        borderColor: '#dc3545',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Closing Balance',
+                        data: weeklyData.map(w => w.closing),
+                        type: 'line',
+                        borderColor: '#ffc107',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { labels: { color: '#888' } },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => {
+                                let val = ctx.raw;
+                                return ctx.dataset.label + ': $' + Math.abs(val).toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { 
+                        grid: { color: '#333' },
+                        ticks: { color: '#888' }
+                    },
+                    y: { 
+                        grid: { color: '#333' },
+                        ticks: { 
+                            color: '#888',
+                            callback: v => '$' + (v/1000) + 'K'
+                        }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        ticks: { 
+                            color: '#ffc107',
+                            callback: v => '$' + (v/1000) + 'K'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Weekly table
+        const tbody = document.getElementById('weeklyBody');
+        weeklyData.forEach((w, i) => {
+            const isNegative = w.closing < 20000;
+            const isCurrent = w.current;
+            
+            // Main row
+            const tr = document.createElement('tr');
+            tr.className = `week-row ${isNegative ? 'negative' : 'positive'} ${isCurrent ? 'current' : ''}`;
+            tr.innerHTML = `
+                <td><span class="expand-icon">▶</span></td>
+                <td>Wk ${w.week}</td>
+                <td>${w.from}</td>
+                <td style="color:#69db7c">$${w.inflow.toLocaleString()}</td>
+                <td style="color:#ff6b6b">$${w.outflow.toLocaleString()}</td>
+                <td style="color:${w.net >= 0 ? '#69db7c' : '#ff6b6b'}">$${w.net.toLocaleString()}</td>
+                <td style="color:${w.closing >= 20000 ? '#69db7c' : '#ff6b6b'}">$${w.closing.toLocaleString()}</td>
+            `;
+            tr.onclick = () => toggleDetail(i);
+            tbody.appendChild(tr);
+
+            // Detail row
+            const detailTr = document.createElement('tr');
+            detailTr.className = 'detail-row';
+            detailTr.id = `detail-${i}`;
+            
+            let incomeHtml = '';
+            if (w.income) {
+                Object.entries(w.income).forEach(([k, v]) => {
+                    incomeHtml += `<div class="detail-item"><span class="name">${k}</span><span class="amount in">+$${v.toLocaleString()}</span></div>`;
+                });
+            }
+            
+            let expenseHtml = '';
+            if (w.expenses) {
+                Object.entries(w.expenses).forEach(([k, v]) => {
+                    expenseHtml += `<div class="detail-item"><span class="name">${k}</span><span class="amount out">-$${v.toLocaleString()}</span></div>`;
+                });
+            }
+
+            detailTr.innerHTML = `
+                <td colspan="7">
+                    <div class="detail-grid">
+                        <div class="detail-section">
+                            <h4>💰 Income Sources</h4>
+                            ${incomeHtml || '<div class="detail-item"><span class="name">No income this week</span></div>'}
+                        </div>
+                        <div class="detail-section">
+                            <h4>💸 Expenses</h4>
+                            ${expenseHtml || '<div class="detail-item"><span class="name">No detail available</span></div>'}
+                        </div>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(detailTr);
+        });
+
+        // Pipeline list
+        const pipelineList = document.getElementById('pipelineList');
+        pipelineDeals.forEach(d => {
+            const statusClass = d.status === 'paid' ? 'status-paid' : d.status === 'invoiced' ? 'status-invoiced' : 'status-pending';
+            pipelineList.innerHTML += `
+                <div class="pipeline-item">
+                    <div>
+                        <div class="client">${d.client}</div>
+                        <div style="font-size:12px;color:#888">ETA: ${d.eta}</div>
+                    </div>
+                    <div style="text-align:right">
+                        <div class="amount">$${d.amount.toLocaleString()}</div>
+                        <span class="status ${statusClass}">${d.status.toUpperCase()}</span>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Debts list
+        const debtsList = document.getElementById('debtsList');
+        debts.forEach(d => {
+            const riskColor = d.risk === 'high' ? '#dc3545' : d.risk === 'credit' ? '#6c757d' : '#ffc107';
+            debtsList.innerHTML += `
+                <div class="pipeline-item">
+                    <div>
+                        <div class="client" style="color:${riskColor}">${d.name}</div>
+                        <div style="font-size:12px;color:#888">${d.status}</div>
+                    </div>
+                    <div style="text-align:right">
+                        <div class="amount" style="color:${riskColor}">$${d.amount.toLocaleString()}</div>
+                    </div>
+                </div>
+            `;
+        });
+
+        function toggleDetail(i) {
+            const row = document.querySelectorAll('.week-row')[i];
+            const detail = document.getElementById(`detail-${i}`);
+            row.classList.toggle('expanded');
+            detail.classList.toggle('show');
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
