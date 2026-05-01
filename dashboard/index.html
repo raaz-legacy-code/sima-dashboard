@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sima Family Cashflow Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .card { @apply bg-white rounded-lg shadow-md p-4 mb-4; }
+        .danger { @apply bg-red-100 border-l-4 border-red-500; }
+        .warning { @apply bg-yellow-100 border-l-4 border-yellow-500; }
+        .success { @apply bg-green-100 border-l-4 border-green-500; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">💰 Sima Family Cashflow</h1>
+            <div class="text-sm text-gray-500">Last updated: <span id="lastUpdated"></span></div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="card">
+                <div class="text-sm text-gray-500">Current Cash</div>
+                <div class="text-2xl font-bold text-gray-800" id="currentCash">$16,400</div>
+                <div class="text-xs text-red-500">⚠️ Below $20K minimum</div>
+            </div>
+            <div class="card">
+                <div class="text-sm text-gray-500">AR (Owed to Us)</div>
+                <div class="text-2xl font-bold text-green-600" id="totalAR">$588,879</div>
+            </div>
+            <div class="card">
+                <div class="text-sm text-gray-500">AP (We Owe)</div>
+                <div class="text-2xl font-bold text-red-600" id="totalAP">$128,822</div>
+            </div>
+            <div class="card">
+                <div class="text-sm text-gray-500">Refinance Incoming</div>
+                <div class="text-2xl font-bold text-blue-600">$512,000</div>
+                <div class="text-xs text-gray-500">Target: Week 6</div>
+            </div>
+        </div>
+
+        <!-- Danger Zone Alert -->
+        <div class="card danger mb-8">
+            <h2 class="font-bold text-red-700 mb-2">🚨 DANGER ZONE: Weeks 1-2</h2>
+            <p class="text-sm text-red-600">Balance projected below $20K minimum. Delay creditor payments and accelerate AR collection.</p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left: 16 Week Forecast -->
+            <div class="card">
+                <h2 class="font-bold text-gray-800 mb-4">📈 16-Week Forecast</h2>
+                <canvas id="forecastChart" height="200"></canvas>
+            </div>
+
+            <!-- Right: Payment Priority -->
+            <div class="card">
+                <h2 class="font-bold text-gray-800 mb-4">💳 Payment Priority</h2>
+                <div class="space-y-2" id="paymentList">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- AR to Chase -->
+        <div class="card mt-6">
+            <h2 class="font-bold text-gray-800 mb-4">📥 AR to Chase (Top 10)</h2>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b">
+                        <th class="text-left py-2">Contact</th>
+                        <th class="text-right py-2">Amount</th>
+                        <th class="text-left py-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="arTable">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- AP Schedule -->
+        <div class="card mt-6">
+            <h2 class="font-bold text-gray-800 mb-4">📤 AP Payment Schedule</h2>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b">
+                        <th class="text-left py-2">Who</th>
+                        <th class="text-right py-2">Amount</th>
+                        <th class="text-left py-2">Priority</th>
+                        <th class="text-left py-2">Pay By</th>
+                    </tr>
+                </thead>
+                <tbody id="apTable">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const data = {
+            currentCash: 16400,
+            minBalance: 20000,
+            totalAR: 588879,
+            totalAP: 128822,
+            forecast: [
+                { week: 1, date: '2026-05-01', balance: 8150 },
+                { week: 2, date: '2026-05-08', balance: 13900 },
+                { week: 3, date: '2026-05-15', balance: 21650 },
+                { week: 4, date: '2026-05-22', balance: 42400 },
+                { week: 5, date: '2026-05-29', balance: 55150 },
+                { week: 6, date: '2026-06-05', balance: 80900 },
+                { week: 7, date: '2026-06-12', balance: 96650 },
+                { week: 8, date: '2026-06-19', balance: 112400 },
+                { week: 9, date: '2026-06-26', balance: 115150 },
+                { week: 10, date: '2026-07-03', balance: 125900 },
+                { week: 11, date: '2026-07-10', balance: 131650 },
+                { week: 12, date: '2026-07-17', balance: 137400 },
+                { week: 13, date: '2026-07-24', balance: 148150 },
+                { week: 14, date: '2026-07-31', balance: 158900 },
+                { week: 15, date: '2026-08-07', balance: 174650 },
+                { week: 16, date: '2026-08-14', balance: 190400 }
+            ],
+            ar: [
+                { name: 'Eternal Homes', amount: 122974, action: 'Chase T2 invoices' },
+                { name: 'ARG', amount: 115500, action: 'Chase partial' },
+                { name: 'Crownix', amount: 70700, action: 'Follow up' },
+                { name: 'Avanti', amount: 60500, action: 'Slow payer - escalate' },
+                { name: 'HUNTERSCAP', amount: 55000, action: 'Single invoice' },
+                { name: 'Forma Homes', amount: 48125, action: 'Check trigger' },
+                { name: 'Strike', amount: 39125, action: 'Net off $4K AP' },
+                { name: 'Bramwell', amount: 24750, action: 'Follow up' },
+                { name: 'Oliver Hume', amount: 7529, action: '✅ DY237 PAID' }
+            ],
+            ap: [
+                { name: 'Nats (Nathalie)', amount: 9464, priority: '🔴 Staff', payBy: 'ASAP' },
+                { name: 'May (Alche)', amount: 4206, priority: '🔴 Staff', payBy: 'ASAP' },
+                { name: 'Madelaine', amount: 4168, priority: '🔴 Staff', payBy: 'Week 3' },
+                { name: 'Chris Jones', amount: 25000, priority: '🔴 Staff', payBy: 'Week 4-6-8' },
+                { name: 'CoreLogic', amount: 7425, priority: '🟠 Essential', payBy: 'Week 3' },
+                { name: 'Xavier', amount: 15892, priority: '🟡 Disputed', payBy: 'Negotiate' },
+                { name: 'Frank Toner', amount: 8700, priority: '🟡 Audit', payBy: 'Week 4' },
+                { name: 'Client refunds', amount: 17900, priority: '🟡 Hold', payBy: 'June' },
+                { name: 'Top NoCoders', amount: 8500, priority: '🟢 Review', payBy: 'TBD' },
+                { name: 'Peninsula', amount: 6500, priority: '🟠 Hardship', payBy: 'Week 4-6' }
+            ]
+        };
+
+        // Update timestamp
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleString('en-AU', {
+            timeZone: 'Australia/Sydney',
+            dateStyle: 'medium',
+            timeStyle: 'short'
+        });
+
+        // Forecast Chart
+        const ctx = document.getElementById('forecastChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.forecast.map(f => `W${f.week}`),
+                datasets: [{
+                    label: 'Projected Balance',
+                    data: data.forecast.map(f => f.balance),
+                    borderColor: data.forecast.map(f => f.balance < 20000 ? 'rgb(239, 68, 68)' : 'rgb(34, 197, 94)'),
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: '$20K Minimum',
+                    data: Array(16).fill(20000),
+                    borderColor: 'rgb(239, 68, 68)',
+                    borderDash: [5, 5],
+                    fill: false,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: v => '$' + (v/1000).toFixed(0) + 'K'
+                        }
+                    }
+                }
+            }
+        });
+
+        // AR Table
+        const arTable = document.getElementById('arTable');
+        data.ar.forEach(item => {
+            arTable.innerHTML += `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="py-2">${item.name}</td>
+                    <td class="py-2 text-right font-mono">$${item.amount.toLocaleString()}</td>
+                    <td class="py-2 text-xs text-gray-600">${item.action}</td>
+                </tr>
+            `;
+        });
+
+        // AP Table
+        const apTable = document.getElementById('apTable');
+        data.ap.forEach(item => {
+            apTable.innerHTML += `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="py-2">${item.name}</td>
+                    <td class="py-2 text-right font-mono">$${item.amount.toLocaleString()}</td>
+                    <td class="py-2">${item.priority}</td>
+                    <td class="py-2 text-xs">${item.payBy}</td>
+                </tr>
+            `;
+        });
+
+        // Payment Priority Cards
+        const paymentList = document.getElementById('paymentList');
+        const priorities = [
+            { label: '🔴 Staff (Pay First)', amount: 42838, items: 'Nats, May, Madelaine, Chris' },
+            { label: '🟠 Essential Services', amount: 7425, items: 'CoreLogic' },
+            { label: '🟡 Negotiate/Dispute', amount: 24592, items: 'Xavier, Frank' },
+            { label: '🟢 Defer to June', amount: 17900, items: 'Client refunds' }
+        ];
+        priorities.forEach(p => {
+            paymentList.innerHTML += `
+                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                    <div>
+                        <div class="font-medium">${p.label}</div>
+                        <div class="text-xs text-gray-500">${p.items}</div>
+                    </div>
+                    <div class="font-mono font-bold">$${p.amount.toLocaleString()}</div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

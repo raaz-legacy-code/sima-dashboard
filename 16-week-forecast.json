@@ -1,0 +1,136 @@
+{
+  "generated": "2026-05-01T01:11:00.054Z",
+  "startingCash": 16400,
+  "minBalance": 20000,
+  "weeklyFixedOut": 14250,
+  "weeks": [
+    {
+      "week": 1,
+      "date": "2026-05-01",
+      "inflow": 15000,
+      "outflow": 23250,
+      "balance": 8150,
+      "belowMin": true
+    },
+    {
+      "week": 2,
+      "date": "2026-05-08",
+      "inflow": 25000,
+      "outflow": 19250,
+      "balance": 13900,
+      "belowMin": true
+    },
+    {
+      "week": 3,
+      "date": "2026-05-15",
+      "inflow": 30000,
+      "outflow": 22250,
+      "balance": 21650,
+      "belowMin": false
+    },
+    {
+      "week": 4,
+      "date": "2026-05-22",
+      "inflow": 40000,
+      "outflow": 19250,
+      "balance": 42400,
+      "belowMin": false
+    },
+    {
+      "week": 5,
+      "date": "2026-05-29",
+      "inflow": 35000,
+      "outflow": 22250,
+      "balance": 55150,
+      "belowMin": false
+    },
+    {
+      "week": 6,
+      "date": "2026-06-05",
+      "inflow": 50000,
+      "outflow": 24250,
+      "balance": 80900,
+      "belowMin": false
+    },
+    {
+      "week": 7,
+      "date": "2026-06-12",
+      "inflow": 30000,
+      "outflow": 14250,
+      "balance": 96650,
+      "belowMin": false
+    },
+    {
+      "week": 8,
+      "date": "2026-06-19",
+      "inflow": 30000,
+      "outflow": 14250,
+      "balance": 112400,
+      "belowMin": false
+    },
+    {
+      "week": 9,
+      "date": "2026-06-26",
+      "inflow": 25000,
+      "outflow": 22250,
+      "balance": 115150,
+      "belowMin": false
+    },
+    {
+      "week": 10,
+      "date": "2026-07-03",
+      "inflow": 25000,
+      "outflow": 14250,
+      "balance": 125900,
+      "belowMin": false
+    },
+    {
+      "week": 11,
+      "date": "2026-07-10",
+      "inflow": 20000,
+      "outflow": 14250,
+      "balance": 131650,
+      "belowMin": false
+    },
+    {
+      "week": 12,
+      "date": "2026-07-17",
+      "inflow": 20000,
+      "outflow": 14250,
+      "balance": 137400,
+      "belowMin": false
+    },
+    {
+      "week": 13,
+      "date": "2026-07-24",
+      "inflow": 25000,
+      "outflow": 14250,
+      "balance": 148150,
+      "belowMin": false
+    },
+    {
+      "week": 14,
+      "date": "2026-07-31",
+      "inflow": 25000,
+      "outflow": 14250,
+      "balance": 158900,
+      "belowMin": false
+    },
+    {
+      "week": 15,
+      "date": "2026-08-07",
+      "inflow": 30000,
+      "outflow": 14250,
+      "balance": 174650,
+      "belowMin": false
+    },
+    {
+      "week": 16,
+      "date": "2026-08-14",
+      "inflow": 30000,
+      "outflow": 14250,
+      "balance": 190400,
+      "belowMin": false
+    }
+  ]
+}

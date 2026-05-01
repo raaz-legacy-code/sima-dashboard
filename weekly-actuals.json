@@ -1,0 +1,314 @@
+{
+  "Week 17 (Apr 21)": {
+    "inflows": 0,
+    "outflows": 10.0,
+    "items": [
+      {
+        "date": "2026-04-21",
+        "type": "SPEND",
+        "contact": "Paytron",
+        "amount": 10.0
+      }
+    ]
+  },
+  "Week 15 (Apr 09)": {
+    "inflows": 0,
+    "outflows": 99.39,
+    "items": [
+      {
+        "date": "2026-04-09",
+        "type": "SPEND",
+        "contact": "Myer Warringah",
+        "amount": 30.0
+      },
+      {
+        "date": "2026-04-09",
+        "type": "SPEND",
+        "contact": "Bearded Bear Co",
+        "amount": 5.07
+      },
+      {
+        "date": "2026-04-09",
+        "type": "SPEND",
+        "contact": "RW Trust CCCP",
+        "amount": 45.68
+      },
+      {
+        "date": "2026-04-09",
+        "type": "SPEND",
+        "contact": "Hide Out",
+        "amount": 18.64
+      }
+    ]
+  },
+  "Week 15 (Apr 08)": {
+    "inflows": 357.5,
+    "outflows": 1607.0700000000002,
+    "items": [
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "ClickUp",
+        "amount": 102.07
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "The Star Club",
+        "amount": 60.0
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Cafe",
+        "amount": 9.66
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Kmart",
+        "amount": 40.15
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Google",
+        "amount": 29.66
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Sonder Mens Groomi Card xx3280",
+        "amount": 30.57
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Canva",
+        "amount": 40.5
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Commonwealth Bank",
+        "amount": 1.02
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Transport for NSW",
+        "amount": 5.77
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "The Star Club",
+        "amount": 40.0
+      },
+      {
+        "date": "2026-04-08",
+        "type": "RECEIVE",
+        "contact": "Outback Accounting",
+        "amount": 357.5
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Outback Accounting",
+        "amount": 357.5
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Google",
+        "amount": 542.0
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "BASE44.COM",
+        "amount": 29.16
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Sacrebleu",
+        "amount": 18.41
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Bubble",
+        "amount": 202.68
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Commonwealth Bank",
+        "amount": 7.09
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Unpaid Payment Fee",
+        "amount": 5.0
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "International Transfer",
+        "amount": 3.57
+      },
+      {
+        "date": "2026-04-08",
+        "type": "SPEND",
+        "contact": "Uber",
+        "amount": 82.26
+      }
+    ]
+  },
+  "Week 15 (Apr 07)": {
+    "inflows": 1542.63,
+    "outflows": 1557.63,
+    "items": [
+      {
+        "date": "2026-04-07",
+        "type": "SPEND",
+        "contact": "Unpaid Payment Fee",
+        "amount": 5.0
+      },
+      {
+        "date": "2026-04-07",
+        "type": "SPEND",
+        "contact": "Paytron",
+        "amount": 10.0
+      },
+      {
+        "date": "2026-04-07",
+        "type": "RECEIVE",
+        "contact": "AFI Loan",
+        "amount": 1542.63
+      },
+      {
+        "date": "2026-04-07",
+        "type": "SPEND",
+        "contact": "AFI Loan",
+        "amount": 1542.63
+      }
+    ]
+  },
+  "Week 15 (Apr 06)": {
+    "inflows": 2500.0,
+    "outflows": 5149.0,
+    "items": [
+      {
+        "date": "2026-04-06",
+        "type": "SPEND-TRANSFER",
+        "contact": "Unknown",
+        "amount": 2500.0
+      },
+      {
+        "date": "2026-04-06",
+        "type": "RECEIVE",
+        "contact": "Zaver Sima",
+        "amount": 2500.0
+      },
+      {
+        "date": "2026-04-06",
+        "type": "SPEND",
+        "contact": "Shaver Shop",
+        "amount": 149.0
+      },
+      {
+        "date": "2026-04-06",
+        "type": "RECEIVE-TRANSFER",
+        "contact": "Unknown",
+        "amount": 2500.0
+      }
+    ]
+  },
+  "Week 14 (Apr 03)": {
+    "inflows": 0,
+    "outflows": 559.42,
+    "items": [
+      {
+        "date": "2026-04-03",
+        "type": "SPEND",
+        "contact": "International Transfer",
+        "amount": 7.69
+      },
+      {
+        "date": "2026-04-03",
+        "type": "SPEND",
+        "contact": "The Star Club",
+        "amount": 40.0
+      },
+      {
+        "date": "2026-04-03",
+        "type": "SPEND",
+        "contact": "FACEBOOK",
+        "amount": 292.14
+      },
+      {
+        "date": "2026-04-03",
+        "type": "SPEND",
+        "contact": "Fyxer",
+        "amount": 219.59
+      }
+    ]
+  },
+  "Week 14 (Apr 02)": {
+    "inflows": 16.5,
+    "outflows": 203.78,
+    "items": [
+      {
+        "date": "2026-04-02",
+        "type": "SPEND",
+        "contact": "Icare Workers Insurance",
+        "amount": 163.78
+      },
+      {
+        "date": "2026-04-02",
+        "type": "RECEIVE",
+        "contact": "Anthropic",
+        "amount": 16.5
+      },
+      {
+        "date": "2026-04-02",
+        "type": "SPEND",
+        "contact": "The Star Club",
+        "amount": 40.0
+      }
+    ]
+  },
+  "Week 14 (Apr 01)": {
+    "inflows": 2026.0,
+    "outflows": 2431.0,
+    "items": [
+      {
+        "date": "2026-04-01",
+        "type": "SPEND",
+        "contact": "Zaver Sima",
+        "amount": 400.0
+      },
+      {
+        "date": "2026-04-01",
+        "type": "RECEIVE",
+        "contact": "MAX STEPHEN",
+        "amount": 2026.0
+      },
+      {
+        "date": "2026-04-01",
+        "type": "SPEND",
+        "contact": "Unpaid Payment Fee",
+        "amount": 5.0
+      },
+      {
+        "date": "2026-04-01",
+        "type": "SPEND",
+        "contact": "MAX STEPHEN",
+        "amount": 2026.0
+      }
+    ]
+  }
+}

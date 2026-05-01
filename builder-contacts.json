@@ -1,0 +1,1133 @@
+[
+  {
+    "ContactID": "a6d80bb9-1847-44e3-854f-ce4d06a313a6",
+    "ContactStatus": "ACTIVE",
+    "Name": "Toro Homes",
+    "EmailAddress": "maddison@torohomes.com.au",
+    "BankAccountDetails": "",
+    "Addresses": [
+      {
+        "AddressType": "STREET",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": ""
+      },
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "3/28 Dunhill Crescent",
+        "City": "Morningside",
+        "Region": "Queensland",
+        "PostalCode": "4170",
+        "Country": "Australia"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1639371749217+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "f03707ec-e27d-4edb-81bd-65f2297f520c",
+    "ContactStatus": "ACTIVE",
+    "Name": "Direct Credit 248461 BANK OF QLD CHOICE HOMES",
+    "FirstName": "",
+    "LastName": "",
+    "EmailAddress": "gemma@choicehomes.com.au",
+    "BankAccountDetails": "",
+    "TaxNumber": "45 061 632 862",
+    "Addresses": [
+      {
+        "AddressType": "STREET",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": "",
+        "AttentionTo": ""
+      },
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "44 The Esplanade",
+        "City": "Paradise Point",
+        "Region": "QLD",
+        "PostalCode": "4216",
+        "Country": "Australia. ABN: 45 061 632 862",
+        "AttentionTo": ""
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1658823233413+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "ac3c6b36-edaa-4d12-8325-02dcdc11709a",
+    "CompanyNumber": "637089760",
+    "ContactStatus": "ACTIVE",
+    "Name": "Podium Project Marketing",
+    "EmailAddress": "belinda.o@podium.property",
+    "Addresses": [
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "1A 24 Macquarie Street",
+        "City": "New Farm",
+        "Region": "QLD",
+        "PostalCode": "4005",
+        "Country": "Australia"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1661476025763+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "56e03ab5-2604-4abd-9c43-760b1959cb1c",
+    "AccountNumber": "ABN: 59168898093",
+    "ContactStatus": "ACTIVE",
+    "Name": "Compass Property Investing",
+    "FirstName": "Tony",
+    "LastName": "Douglas",
+    "EmailAddress": "tony@compasspi.com.au",
+    "Addresses": [
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "17 Connor St",
+        "City": "Burleigh Heads",
+        "Region": "QLD",
+        "PostalCode": "4220",
+        "Country": "Australia"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "0404667855"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1662942473573+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "e393a796-99c8-4444-a313-65db17df4426",
+    "ContactStatus": "ACTIVE",
+    "Name": "Oliver Hume Asset Management (QLD) Pty. Ltd,",
+    "FirstName": "",
+    "LastName": "",
+    "EmailAddress": "b.douglas@oliverhume.com.au",
+    "BankAccountDetails": "",
+    "TaxNumber": "31606493976",
+    "Addresses": [
+      {
+        "AddressType": "STREET",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": "",
+        "AttentionTo": ""
+      },
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "Level 2, 4 Riverside Quay, Southbank",
+        "City": "Melbourne",
+        "Region": "VIC",
+        "PostalCode": "3006",
+        "Country": "Australia",
+        "AttentionTo": ""
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1665979135977+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "Balances": {
+      "AccountsReceivable": {
+        "Outstanding": 7528.95,
+        "Overdue": 7528.95
+      },
+      "AccountsPayable": {
+        "Outstanding": 0,
+        "Overdue": 0
+      }
+    },
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "aa7bb6ae-e1be-46b4-9b27-16c2ab63fdb2",
+    "ContactStatus": "ACTIVE",
+    "Name": "MPM Property",
+    "EmailAddress": "clientmanager@mpmproperty.com.au",
+    "BankAccountDetails": "",
+    "Addresses": [
+      {
+        "AddressType": "STREET",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": ""
+      },
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "1/3368 Pacific Hwy",
+        "City": "Springwood",
+        "Region": "QLD",
+        "PostalCode": "4127",
+        "Country": "Australia - ACN: 113 867 664"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1670465120220+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "47f7c13f-ff23-4b10-9541-6b67eb7050fb",
+    "ContactStatus": "ACTIVE",
+    "Name": "Creation Homes",
+    "FirstName": "Will",
+    "LastName": "Carnavas",
+    "EmailAddress": "wcarnavas@creationhomes.com.au",
+    "TaxNumber": "73 155 796 384 1",
+    "Addresses": [
+      {
+        "AddressType": "POBOX"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "+61 7 3250 8300"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "+61 417 008 576"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1670484146843+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "Website": "https://creationhomes.com.au/",
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "8ba97f5d-d085-4f3a-84de-6bc8c92c4761",
+    "ContactStatus": "ACTIVE",
+    "Name": "One Contract Property",
+    "FirstName": "Nitin",
+    "LastName": "Soni",
+    "EmailAddress": "accounts@onecontractproperty.com.au",
+    "TaxNumber": "18 634 062 123",
+    "Addresses": [
+      {
+        "AddressType": "POBOX"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1676620334833+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "30af85cb-64e3-4c74-b560-59b7f07053c1",
+    "ContactStatus": "ACTIVE",
+    "Name": "Oliver Hume Property Connect PTY LTD",
+    "FirstName": "Adam",
+    "LastName": "Duster",
+    "EmailAddress": "a.duster@oliverhume.com.au",
+    "TaxNumber": "31 606 493 976",
+    "Addresses": [
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "Oliver Hume",
+        "City": "Level 2, 4 Riverside Quay, Southbank",
+        "Region": "VIC",
+        "PostalCode": "3006",
+        "Country": "Australia"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1678947141763+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "3ff398bb-95b1-4880-b06e-3e044c94b1b5",
+    "ContactStatus": "ACTIVE",
+    "Name": "Choice Homes",
+    "EmailAddress": "glynn@choicehomes.com.au",
+    "BankAccountDetails": "",
+    "Addresses": [
+      {
+        "AddressType": "STREET",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": ""
+      },
+      {
+        "AddressType": "POBOX",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": ""
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1685677561900+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "566184c2-d6f9-4ef6-ad40-961982b9e54a",
+    "ContactStatus": "ACTIVE",
+    "Name": "Zoom Constructions PTY LTD",
+    "FirstName": "Glynn",
+    "LastName": "Catherall",
+    "EmailAddress": "glynn@choicehomes.com.au",
+    "Addresses": [
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "PO BOX 396",
+        "City": "PARADISE POINT",
+        "Region": "QLD",
+        "PostalCode": "4216",
+        "Country": "Australia"
+      },
+      {
+        "AddressType": "STREET",
+        "AddressLine1": "PO BOX 396",
+        "City": "PARADISE POINT",
+        "Region": "QLD",
+        "PostalCode": "4216",
+        "Country": "Australia"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1695008312693+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "3af3f1bb-3348-46de-bbad-dcafc5aeb76d",
+    "ContactStatus": "ACTIVE",
+    "Name": "Glenvill Constructions",
+    "EmailAddress": "bill.ristevski@glenvill.com.au",
+    "Addresses": [
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "480 Church Street",
+        "City": "Cremorne",
+        "Region": "VIC",
+        "PostalCode": "3121",
+        "Country": "Australia"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1716859365563+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "PaymentTerms": {
+      "Sales": {
+        "Day": 7,
+        "Type": "DAYSAFTERBILLDATE"
+      }
+    },
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "b779de85-2b49-43ee-abbd-083ae3c7a5fd",
+    "AccountNumber": "R and W Projects",
+    "ContactStatus": "ACTIVE",
+    "Name": "R and W Projects",
+    "EmailAddress": "jessica.edwards@rwrp.com.au",
+    "Addresses": [
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "Unit 6 19 Alicia St",
+        "City": "SOUTHPORT",
+        "Region": "QLD",
+        "PostalCode": "4215",
+        "Country": "Australia"
+      },
+      {
+        "AddressType": "STREET",
+        "AddressLine1": "Unit 6 19 Alicia St",
+        "City": "SOUTHPORT",
+        "Region": "QLD",
+        "PostalCode": "4215",
+        "Country": "Australia"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1723560229387+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "d1c339fd-0b1e-4a4b-bf76-d02bf878e0c8",
+    "ContactStatus": "ACTIVE",
+    "Name": "Eternal",
+    "EmailAddress": "",
+    "BankAccountDetails": "",
+    "Addresses": [
+      {
+        "AddressType": "STREET",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": ""
+      },
+      {
+        "AddressType": "POBOX",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": ""
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1729069848627+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "DefaultCurrency": "AUD",
+    "Balances": {
+      "AccountsReceivable": {
+        "Outstanding": 22000,
+        "Overdue": 22000
+      },
+      "AccountsPayable": {
+        "Outstanding": 0,
+        "Overdue": 0
+      }
+    },
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "dd800491-34be-40e6-9000-64f787315a32",
+    "ContactStatus": "ACTIVE",
+    "Name": "G Developments",
+    "EmailAddress": "Kym.Durling@gdevelopments.com.au",
+    "BankAccountDetails": "",
+    "Addresses": [
+      {
+        "AddressType": "STREET",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": ""
+      },
+      {
+        "AddressType": "POBOX",
+        "City": "",
+        "Region": "",
+        "PostalCode": "",
+        "Country": ""
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1730179666920+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "dbdd5092-8e49-4d8d-a0f4-e705d13fc8b8",
+    "CompanyNumber": "612 565 161",
+    "ContactStatus": "ACTIVE",
+    "Name": "Eternal Homes",
+    "FirstName": "Divyan",
+    "LastName": "Shankar",
+    "EmailAddress": "accounts@eternalhomes.com.au",
+    "Addresses": [
+      {
+        "AddressType": "POBOX"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "",
+        "PhoneAreaCode": "",
+        "PhoneCountryCode": ""
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1733991159937+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "Balances": {
+      "AccountsReceivable": {
+        "Outstanding": 122974,
+        "Overdue": 78974
+      },
+      "AccountsPayable": {
+        "Outstanding": 0,
+        "Overdue": 0
+      }
+    },
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "b3203410-4979-4446-9a17-7ecb573d79a3",
+    "ContactStatus": "ACTIVE",
+    "Name": "Locale Homes",
+    "EmailAddress": "sophiac@formahomes.com.au",
+    "Addresses": [
+      {
+        "AddressType": "POBOX"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1748225983503+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "19be32c6-c23a-4c8e-a90a-4a108c55cb35",
+    "ContactStatus": "ACTIVE",
+    "Name": "B1 Homes",
+    "EmailAddress": "jessm@b1homes.com.au",
+    "TaxNumber": "92 152 100 251",
+    "Addresses": [
+      {
+        "AddressType": "STREET",
+        "AddressLine1": "23 Frobisher St",
+        "AddressLine2": "OSBORNE PARK",
+        "Region": "WA",
+        "PostalCode": "6017",
+        "Country": "Australia"
+      },
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "23 Frobisher St",
+        "AddressLine3": "OSBORNE PARK",
+        "Region": "WA",
+        "PostalCode": "6017",
+        "Country": "Australia"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1750738765340+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "2858502c-e990-4403-8dd1-0091310af4d0",
+    "ContactStatus": "ACTIVE",
+    "Name": "Avanti Project Marketing",
+    "EmailAddress": "svanbaal@theavantigroup.com.au",
+    "TaxNumber": "61604431754",
+    "Addresses": [
+      {
+        "AddressType": "POBOX"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT",
+        "PhoneNumber": "+61 7 5539 0360"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE",
+        "PhoneNumber": "+61 420 420 499"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1757559844913+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "Website": "https://theavantigroup.com.au/",
+    "Balances": {
+      "AccountsReceivable": {
+        "Outstanding": 60500,
+        "Overdue": 60500
+      },
+      "AccountsPayable": {
+        "Outstanding": 0,
+        "Overdue": 0
+      }
+    },
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "85d15d67-ca94-4f29-8dbe-4e9f92262eb1",
+    "CompanyNumber": "008 865 585",
+    "ContactStatus": "ACTIVE",
+    "Name": "Forma Homes",
+    "EmailAddress": "forma-accounts@formahomes.com.au",
+    "TaxNumber": "62 579 898 646",
+    "Addresses": [
+      {
+        "AddressType": "POBOX",
+        "AddressLine1": "83 Mccoy St",
+        "City": "MYAREE",
+        "Region": "WA",
+        "PostalCode": "6154",
+        "Country": "Australia"
+      },
+      {
+        "AddressType": "STREET",
+        "AddressLine1": "83 Mccoy St",
+        "City": "MYAREE",
+        "Region": "WA",
+        "PostalCode": "6154",
+        "Country": "Australia"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1759207612967+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "Balances": {
+      "AccountsReceivable": {
+        "Outstanding": 48125,
+        "Overdue": 48125
+      },
+      "AccountsPayable": {
+        "Outstanding": 0,
+        "Overdue": 0
+      }
+    },
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "64842f8e-a591-49f8-abd6-de93f471ca43",
+    "CompanyNumber": "690636867",
+    "ContactStatus": "ACTIVE",
+    "Name": "DON PROPERTY MANAGEMENT PTY LTD",
+    "FirstName": "DON PROPERTY",
+    "LastName": "MANAGEMENT PTY LTD",
+    "Addresses": [
+      {
+        "AddressType": "POBOX"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1760065260970+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "3898d380-d50e-4cd6-acc1-f46e6ba06027",
+    "ContactStatus": "ACTIVE",
+    "Name": "Crownix",
+    "EmailAddress": "Info@crownix.com.au",
+    "Addresses": [
+      {
+        "AddressType": "POBOX"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1761542718910+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "Balances": {
+      "AccountsReceivable": {
+        "Outstanding": 70700,
+        "Overdue": 70700
+      },
+      "AccountsPayable": {
+        "Outstanding": 0,
+        "Overdue": 0
+      }
+    },
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  },
+  {
+    "ContactID": "32d7c2b3-0d90-4827-81f5-7de741e5c0a5",
+    "ContactStatus": "ACTIVE",
+    "Name": "FRD Homes",
+    "EmailAddress": "frdinvoices@frdhomes.com.au",
+    "Addresses": [
+      {
+        "AddressType": "POBOX"
+      },
+      {
+        "AddressType": "STREET"
+      }
+    ],
+    "Phones": [
+      {
+        "PhoneType": "DDI"
+      },
+      {
+        "PhoneType": "DEFAULT"
+      },
+      {
+        "PhoneType": "FAX"
+      },
+      {
+        "PhoneType": "MOBILE"
+      }
+    ],
+    "UpdatedDateUTC": "/Date(1768972753630+0000)/",
+    "ContactGroups": [],
+    "IsSupplier": false,
+    "IsCustomer": true,
+    "ContactPersons": [],
+    "HasAttachments": false,
+    "HasValidationErrors": false
+  }
+]

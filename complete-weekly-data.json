@@ -1,0 +1,872 @@
+[
+  {
+    "week_num": 44,
+    "from_date": "2024-11-03",
+    "to_date": "2024-11-09",
+    "year": 2024,
+    "cash_inflow": 0.0,
+    "cash_outflow": 27625.38462,
+    "net_cashflow": -27625.38462,
+    "closing_balance": 27625.38462
+  },
+  {
+    "week_num": 45,
+    "from_date": "2024-11-10",
+    "to_date": "2024-11-16",
+    "year": 2024,
+    "cash_inflow": 24750.0,
+    "cash_outflow": 0.0,
+    "net_cashflow": 24750.0,
+    "closing_balance": -24750.0
+  },
+  {
+    "week_num": 46,
+    "from_date": "2024-11-17",
+    "to_date": "2024-11-23",
+    "year": 2024,
+    "cash_inflow": 35750.0,
+    "cash_outflow": 0.0,
+    "net_cashflow": 35750.0,
+    "closing_balance": -35750.0
+  },
+  {
+    "week_num": 47,
+    "from_date": "2024-11-24",
+    "to_date": "2024-11-30",
+    "year": 2024,
+    "cash_inflow": 0.0,
+    "cash_outflow": 2750.0,
+    "net_cashflow": -2750.0,
+    "closing_balance": 2750.0
+  },
+  {
+    "week_num": 48,
+    "from_date": "2024-12-01",
+    "to_date": "2024-12-07",
+    "year": 2024,
+    "cash_inflow": 16500.0,
+    "cash_outflow": 0.0,
+    "net_cashflow": 16500.0,
+    "closing_balance": -16500.0
+  },
+  {
+    "week_num": 49,
+    "from_date": "2024-12-08",
+    "to_date": "2024-12-14",
+    "year": 2024,
+    "cash_inflow": 0.0,
+    "cash_outflow": 40491.38462,
+    "net_cashflow": -40491.38462,
+    "closing_balance": 40491.38462
+  },
+  {
+    "week_num": 50,
+    "from_date": "2024-12-15",
+    "to_date": "2024-12-21",
+    "year": 2024,
+    "cash_inflow": 8250.0,
+    "cash_outflow": 31147.38462,
+    "net_cashflow": -22897.38462,
+    "closing_balance": 22897.38462
+  },
+  {
+    "week_num": 51,
+    "from_date": "2024-12-22",
+    "to_date": "2024-12-28",
+    "year": 2024,
+    "cash_inflow": 0.0,
+    "cash_outflow": 16743.05128,
+    "net_cashflow": -16743.05128,
+    "closing_balance": 16743.05128
+  },
+  {
+    "week_num": 52,
+    "from_date": "2024-12-29",
+    "to_date": "2025-01-04",
+    "year": 2024,
+    "cash_inflow": 0.0,
+    "cash_outflow": 17279.38462,
+    "net_cashflow": -17279.38462,
+    "closing_balance": 17279.38462
+  },
+  {
+    "week_num": 1,
+    "from_date": "2025-01-05",
+    "to_date": "2025-01-11",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 26006.38462,
+    "net_cashflow": -26006.38462,
+    "closing_balance": 26006.38462
+  },
+  {
+    "week_num": 2,
+    "from_date": "2025-01-06",
+    "to_date": "2025-01-12",
+    "year": 2025,
+    "cash_inflow": 22000.0,
+    "cash_outflow": 42731.38462,
+    "net_cashflow": -20731.38462,
+    "closing_balance": 17506.5
+  },
+  {
+    "week_num": 3,
+    "from_date": "2025-01-13",
+    "to_date": "2025-01-19",
+    "year": 2025,
+    "cash_inflow": 12500.0,
+    "cash_outflow": 33842.46462,
+    "net_cashflow": -3835.964615,
+    "closing_balance": 14721.69
+  },
+  {
+    "week_num": 4,
+    "from_date": "2025-01-20",
+    "to_date": "2025-01-26",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 41322.38462,
+    "net_cashflow": -26600.69462,
+    "closing_balance": 5988.9
+  },
+  {
+    "week_num": 5,
+    "from_date": "2025-01-27",
+    "to_date": "2025-02-02",
+    "year": 2025,
+    "cash_inflow": 8250.0,
+    "cash_outflow": 49316.03462,
+    "net_cashflow": -35077.13462,
+    "closing_balance": 7189.05
+  },
+  {
+    "week_num": 6,
+    "from_date": "2025-02-03",
+    "to_date": "2025-02-09",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 52025.38462,
+    "net_cashflow": -44836.33462,
+    "closing_balance": 4420.03
+  },
+  {
+    "week_num": 7,
+    "from_date": "2025-02-10",
+    "to_date": "2025-02-16",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 19846.0,
+    "net_cashflow": -15425.97,
+    "closing_balance": 837.25
+  },
+  {
+    "week_num": 8,
+    "from_date": "2025-02-17",
+    "to_date": "2025-02-23",
+    "year": 2025,
+    "cash_inflow": 19250.0,
+    "cash_outflow": 25195.46154,
+    "net_cashflow": -5108.211538,
+    "closing_balance": 6614.2
+  },
+  {
+    "week_num": 9,
+    "from_date": "2025-02-24",
+    "to_date": "2025-03-02",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 13203.98348,
+    "net_cashflow": -6589.783478,
+    "closing_balance": 4953.47
+  },
+  {
+    "week_num": 10,
+    "from_date": "2025-03-03",
+    "to_date": "2025-03-09",
+    "year": 2025,
+    "cash_inflow": 35750.0,
+    "cash_outflow": 32271.64502,
+    "net_cashflow": 8431.824983,
+    "closing_balance": 5689.41
+  },
+  {
+    "week_num": 11,
+    "from_date": "2025-03-10",
+    "to_date": "2025-03-16",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 14057.94502,
+    "net_cashflow": -8368.535017,
+    "closing_balance": 127.8
+  },
+  {
+    "week_num": 12,
+    "from_date": "2025-03-17",
+    "to_date": "2025-03-23",
+    "year": 2025,
+    "cash_inflow": 38500.0,
+    "cash_outflow": 19403.44502,
+    "net_cashflow": 19224.35498,
+    "closing_balance": 7359.97
+  },
+  {
+    "week_num": 13,
+    "from_date": "2025-03-24",
+    "to_date": "2025-03-30",
+    "year": 2025,
+    "cash_inflow": 22000.0,
+    "cash_outflow": 14640.94502,
+    "net_cashflow": 14719.02498,
+    "closing_balance": 14978.0
+  },
+  {
+    "week_num": 14,
+    "from_date": "2025-03-31",
+    "to_date": "2025-04-06",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 6782.406555,
+    "net_cashflow": 8195.593445,
+    "closing_balance": 2500.0
+  },
+  {
+    "week_num": 15,
+    "from_date": "2025-04-07",
+    "to_date": "2025-04-13",
+    "year": 2025,
+    "cash_inflow": 17125.0,
+    "cash_outflow": 19039.78846,
+    "net_cashflow": 5000.0,
+    "closing_balance": 24177.0
+  },
+  {
+    "week_num": 16,
+    "from_date": "2025-04-14",
+    "to_date": "2025-04-20",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 13867.0,
+    "net_cashflow": 400.0,
+    "closing_balance": 256.21
+  },
+  {
+    "week_num": 17,
+    "from_date": "2025-04-21",
+    "to_date": "2025-04-27",
+    "year": 2025,
+    "cash_inflow": 24750.0,
+    "cash_outflow": 36122.72,
+    "net_cashflow": 0.0,
+    "closing_balance": 3260.0
+  },
+  {
+    "week_num": 18,
+    "from_date": "2025-04-28",
+    "to_date": "2025-05-04",
+    "year": 2025,
+    "cash_inflow": 58350.0,
+    "cash_outflow": 29607.14129,
+    "net_cashflow": 28742.85871,
+    "closing_balance": 25716.92
+  },
+  {
+    "week_num": 19,
+    "from_date": "2025-05-05",
+    "to_date": "2025-05-11",
+    "year": 2025,
+    "cash_inflow": 19250.0,
+    "cash_outflow": 30863.71667,
+    "net_cashflow": 14103.20333,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 20,
+    "from_date": "2025-05-12",
+    "to_date": "2025-05-18",
+    "year": 2025,
+    "cash_inflow": 19250.0,
+    "cash_outflow": 12823.62667,
+    "net_cashflow": 12426.37333,
+    "closing_balance": 1311.68
+  },
+  {
+    "week_num": 21,
+    "from_date": "2025-05-19",
+    "to_date": "2025-05-25",
+    "year": 2025,
+    "cash_inflow": 44000.0,
+    "cash_outflow": 32254.48,
+    "net_cashflow": 9864.0,
+    "closing_balance": 1311.68
+  },
+  {
+    "week_num": 22,
+    "from_date": "2025-05-26",
+    "to_date": "2025-06-01",
+    "year": 2025,
+    "cash_inflow": 83245.02,
+    "cash_outflow": 0,
+    "net_cashflow": 0,
+    "closing_balance": 0
+  },
+  {
+    "week_num": 23,
+    "from_date": "2025-06-02",
+    "to_date": "2025-06-08",
+    "year": 2025,
+    "cash_inflow": 41250.0,
+    "cash_outflow": 37680.76,
+    "net_cashflow": 0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 24,
+    "from_date": "2025-06-09",
+    "to_date": "2025-06-15",
+    "year": 2025,
+    "cash_inflow": 23000.0,
+    "cash_outflow": 20866.96,
+    "net_cashflow": 0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 25,
+    "from_date": "2025-06-16",
+    "to_date": "2025-06-22",
+    "year": 2025,
+    "cash_inflow": 44000.0,
+    "cash_outflow": 33329.61,
+    "net_cashflow": 6232.75,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 26,
+    "from_date": "2025-06-23",
+    "to_date": "2025-06-29",
+    "year": 2025,
+    "cash_inflow": 31747.33,
+    "cash_outflow": 15769.96,
+    "net_cashflow": 19810.12,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 27,
+    "from_date": "2025-06-30",
+    "to_date": "2025-07-06",
+    "year": 2025,
+    "cash_inflow": 23000.0,
+    "cash_outflow": 36083.26,
+    "net_cashflow": 6726.86,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 28,
+    "from_date": "2025-07-07",
+    "to_date": "2025-07-13",
+    "year": 2025,
+    "cash_inflow": 23000.0,
+    "cash_outflow": 12441.96,
+    "net_cashflow": 17284.9,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 29,
+    "from_date": "2025-07-14",
+    "to_date": "2025-07-20",
+    "year": 2025,
+    "cash_inflow": 74025.0,
+    "cash_outflow": 45758.76,
+    "net_cashflow": 45551.14,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 30,
+    "from_date": "2025-07-21",
+    "to_date": "2025-07-27",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 31144.46,
+    "net_cashflow": 8680.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 31,
+    "from_date": "2025-07-28",
+    "to_date": "2025-08-03",
+    "year": 2025,
+    "cash_inflow": 53366.03,
+    "cash_outflow": 43924.26,
+    "net_cashflow": 7780.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 32,
+    "from_date": "2025-08-04",
+    "to_date": "2025-08-10",
+    "year": 2025,
+    "cash_inflow": 22000.0,
+    "cash_outflow": 15580.24,
+    "net_cashflow": 11000.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 33,
+    "from_date": "2025-08-11",
+    "to_date": "2025-08-17",
+    "year": 2025,
+    "cash_inflow": 22000.0,
+    "cash_outflow": 47827.76,
+    "net_cashflow": -14827.76,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 34,
+    "from_date": "2025-08-18",
+    "to_date": "2025-08-24",
+    "year": 2025,
+    "cash_inflow": 9625.0,
+    "cash_outflow": 7094.96,
+    "net_cashflow": 5000.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 35,
+    "from_date": "2025-08-25",
+    "to_date": "2025-08-31",
+    "year": 2025,
+    "cash_inflow": 40370.35,
+    "cash_outflow": 31794.84,
+    "net_cashflow": 13575.51,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 36,
+    "from_date": "2025-09-01",
+    "to_date": "2025-09-07",
+    "year": 2025,
+    "cash_inflow": 82500.0,
+    "cash_outflow": 59889.52,
+    "net_cashflow": 36185.99,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 37,
+    "from_date": "2025-09-08",
+    "to_date": "2025-09-14",
+    "year": 2025,
+    "cash_inflow": 12100.0,
+    "cash_outflow": 50053.26,
+    "net_cashflow": -5000.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 38,
+    "from_date": "2025-09-15",
+    "to_date": "2025-09-21",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 15194.96,
+    "net_cashflow": 3700.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 39,
+    "from_date": "2025-09-22",
+    "to_date": "2025-09-28",
+    "year": 2025,
+    "cash_inflow": 9625.0,
+    "cash_outflow": 11061.76,
+    "net_cashflow": 2263.24,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 40,
+    "from_date": "2025-09-29",
+    "to_date": "2025-10-05",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 15327.99,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 41,
+    "from_date": "2025-10-06",
+    "to_date": "2025-10-12",
+    "year": 2025,
+    "cash_inflow": 41250.0,
+    "cash_outflow": 31823.18,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 42,
+    "from_date": "2025-10-13",
+    "to_date": "2025-10-19",
+    "year": 2025,
+    "cash_inflow": 11000.0,
+    "cash_outflow": 36248.9174,
+    "net_cashflow": 2000.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 43,
+    "from_date": "2025-10-20",
+    "to_date": "2025-10-26",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 12748.3,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 44,
+    "from_date": "2025-10-27",
+    "to_date": "2025-11-02",
+    "year": 2025,
+    "cash_inflow": 26125.0,
+    "cash_outflow": 12995.1326,
+    "net_cashflow": 10000.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 45,
+    "from_date": "2025-11-03",
+    "to_date": "2025-11-09",
+    "year": 2025,
+    "cash_inflow": 20525.0,
+    "cash_outflow": 19493.3,
+    "net_cashflow": 4831.7,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 46,
+    "from_date": "2025-11-10",
+    "to_date": "2025-11-16",
+    "year": 2025,
+    "cash_inflow": 34600.0,
+    "cash_outflow": 24879.0,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 47,
+    "from_date": "2025-11-17",
+    "to_date": "2025-11-23",
+    "year": 2025,
+    "cash_inflow": 97625.0,
+    "cash_outflow": 66338.05,
+    "net_cashflow": 15000.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 48,
+    "from_date": "2025-11-24",
+    "to_date": "2025-11-30",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 8530.5,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 49,
+    "from_date": "2025-12-01",
+    "to_date": "2025-12-07",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 8716.5,
+    "net_cashflow": 3753.5,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 50,
+    "from_date": "2025-12-08",
+    "to_date": "2025-12-14",
+    "year": 2025,
+    "cash_inflow": 26500.0,
+    "cash_outflow": 5672.5,
+    "net_cashflow": 10000.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 51,
+    "from_date": "2025-12-15",
+    "to_date": "2025-12-21",
+    "year": 2025,
+    "cash_inflow": 0.0,
+    "cash_outflow": 20076.8,
+    "net_cashflow": 236.2,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 52,
+    "from_date": "2025-12-22",
+    "to_date": "2025-12-28",
+    "year": 2025,
+    "cash_inflow": 9625.0,
+    "cash_outflow": 6357.5,
+    "net_cashflow": 3503.7,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 1,
+    "from_date": "2025-12-29",
+    "to_date": "2026-01-04",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 8790.55,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 2,
+    "from_date": "2026-01-05",
+    "to_date": "2026-01-11",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 4672.5,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 3,
+    "from_date": "2026-01-12",
+    "to_date": "2026-01-18",
+    "year": 2026,
+    "cash_inflow": 6900.0,
+    "cash_outflow": 5733.75,
+    "net_cashflow": 8366.25,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 4,
+    "from_date": "2026-01-19",
+    "to_date": "2026-01-25",
+    "year": 2026,
+    "cash_inflow": 68750.0,
+    "cash_outflow": 58519.5,
+    "net_cashflow": 18596.75,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 5,
+    "from_date": "2026-01-26",
+    "to_date": "2026-02-01",
+    "year": 2026,
+    "cash_inflow": 52250.0,
+    "cash_outflow": 74182.05,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 6,
+    "from_date": "2026-02-02",
+    "to_date": "2026-02-08",
+    "year": 2026,
+    "cash_inflow": 66000.0,
+    "cash_outflow": 18160.5,
+    "net_cashflow": 5200.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 7,
+    "from_date": "2026-02-09",
+    "to_date": "2026-02-15",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 17735.55,
+    "net_cashflow": -12535.55,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 8,
+    "from_date": "2026-02-16",
+    "to_date": "2026-02-22",
+    "year": 2026,
+    "cash_inflow": 41250.0,
+    "cash_outflow": 38357.5,
+    "net_cashflow": 0.0,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 9,
+    "from_date": "2026-02-23",
+    "to_date": "2026-03-01",
+    "year": 2026,
+    "cash_inflow": 37650.0,
+    "cash_outflow": 12367.3,
+    "net_cashflow": 25282.7,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 10,
+    "from_date": "2026-03-02",
+    "to_date": "2026-03-08",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 7860.5,
+    "net_cashflow": 12422.2,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 11,
+    "from_date": "2026-03-09",
+    "to_date": "2026-03-15",
+    "year": 2026,
+    "cash_inflow": 71500.0,
+    "cash_outflow": 31460.3,
+    "net_cashflow": 52461.9,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 12,
+    "from_date": "2026-03-16",
+    "to_date": "2026-03-22",
+    "year": 2026,
+    "cash_inflow": 26700.0,
+    "cash_outflow": 17172.5,
+    "net_cashflow": 61989.4,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 13,
+    "from_date": "2026-03-23",
+    "to_date": "2026-03-29",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 46325.3,
+    "net_cashflow": 15664.1,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 14,
+    "from_date": "2026-03-30",
+    "to_date": "2026-04-05",
+    "year": 2026,
+    "cash_inflow": 90750.0,
+    "cash_outflow": 51810.76,
+    "net_cashflow": 49103.34,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 15,
+    "from_date": "2026-04-06",
+    "to_date": "2026-04-12",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 33575.3,
+    "net_cashflow": 10028.04,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 16,
+    "from_date": "2026-04-13",
+    "to_date": "2026-04-19",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 10287.5,
+    "net_cashflow": -259.46,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 17,
+    "from_date": "2026-04-20",
+    "to_date": "2026-04-26",
+    "year": 2026,
+    "cash_inflow": 60500.0,
+    "cash_outflow": 69848.5,
+    "net_cashflow": -9607.96,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 18,
+    "from_date": "2026-04-27",
+    "to_date": "2026-05-03",
+    "year": 2026,
+    "cash_inflow": 53625.0,
+    "cash_outflow": 90209.0,
+    "net_cashflow": 43808.04,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 19,
+    "from_date": "2026-05-04",
+    "to_date": "2026-05-10",
+    "year": 2026,
+    "cash_inflow": 72780.0,
+    "cash_outflow": 68373.92,
+    "net_cashflow": 48214.12,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 20,
+    "from_date": "2026-05-11",
+    "to_date": "2026-05-17",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 39105.0,
+    "net_cashflow": 9109.12,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 21,
+    "from_date": "2026-05-18",
+    "to_date": "2026-05-24",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 43341.0,
+    "net_cashflow": 55768.12,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 22,
+    "from_date": "2026-05-25",
+    "to_date": "2026-05-31",
+    "year": 2026,
+    "cash_inflow": 11000.0,
+    "cash_outflow": 40784.0,
+    "net_cashflow": 25984.12,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 23,
+    "from_date": "2026-06-01",
+    "to_date": "2026-06-07",
+    "year": 2026,
+    "cash_inflow": 0.0,
+    "cash_outflow": 23104.0,
+    "net_cashflow": 2880.12,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 24,
+    "from_date": "2026-06-08",
+    "to_date": "2026-06-14",
+    "year": 2026,
+    "cash_inflow": 27500.0,
+    "cash_outflow": 3330.0,
+    "net_cashflow": 27050.12,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 25,
+    "from_date": "2026-06-15",
+    "to_date": "2026-06-21",
+    "year": 2026,
+    "cash_inflow": 30000.0,
+    "cash_outflow": 8841.0,
+    "net_cashflow": 48209.12,
+    "closing_balance": 0.0
+  },
+  {
+    "week_num": 26,
+    "from_date": "2026-06-22",
+    "to_date": "2026-06-28",
+    "year": 2026,
+    "cash_inflow": 26700.0,
+    "cash_outflow": 42784.0,
+    "net_cashflow": 32125.12,
+    "closing_balance": 0.0
+  }
+]
