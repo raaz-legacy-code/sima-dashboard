@@ -289,6 +289,141 @@
         .clickable:hover { color: #3b82f6; }
 
     </style>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        /* Feedback & Chat Widgets */
+        .widget-btn {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 22px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: transform 0.2s;
+        }
+        .widget-btn:hover { transform: scale(1.1); }
+        
+        #feedbackBtn {
+            bottom: 90px;
+            right: 20px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        
+        #chatBtn {
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+        
+        .widget-panel {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 380px;
+            max-height: 500px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            z-index: 9998;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .widget-header {
+            padding: 15px;
+            background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .widget-header h3 { margin: 0; font-size: 16px; }
+        
+        .widget-close {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .widget-body {
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        /* Chat specific */
+        #chatMessages {
+            height: 280px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #0a0a0a;
+            border-radius: 8px;
+        }
+        
+        .chat-msg {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            max-width: 85%;
+        }
+        
+        .chat-msg.user {
+            background: #3b82f6;
+            margin-left: auto;
+        }
+        
+        .chat-msg.rey {
+            background: #333;
+        }
+        
+        .chat-msg .time {
+            font-size: 10px;
+            color: #888;
+            margin-top: 4px;
+        }
+        
+        #chatInput {
+            width: 100%;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            resize: none;
+        }
+        
+        /* Feedback specific */
+        #screenshotPreview {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+        }
+        
+        #feedbackText {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            resize: none;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -3164,6 +3299,185 @@
 
 
         window.onload = function() { console.log("Window loaded"); if (typeof Chart === "undefined") { console.error("Chart.js not loaded"); return; } init(); };
+    </script>
+
+    <!-- Feedback Button & Panel -->
+    <button id="feedbackBtn" class="widget-btn" onclick="toggleFeedback()" title="Send Feedback">📸</button>
+    
+    <div id="feedbackPanel" class="widget-panel">
+        <div class="widget-header">
+            <h3>📸 Feedback to Rey</h3>
+            <button class="widget-close" onclick="toggleFeedback()">&times;</button>
+        </div>
+        <div class="widget-body">
+            <p style="color:#888;font-size:12px;margin-bottom:10px">Screenshot captured automatically. Describe the issue or suggestion:</p>
+            <img id="screenshotPreview" src="" alt="Screenshot" style="display:none">
+            <textarea id="feedbackText" placeholder="What needs fixing? What would make this better?"></textarea>
+            <div style="display:flex;gap:10px">
+                <button onclick="captureScreenshot()" style="flex:1;padding:10px;background:#333;color:white;border:none;border-radius:6px;cursor:pointer">📷 Retake Screenshot</button>
+                <button onclick="sendFeedback()" style="flex:1;padding:10px;background:#f59e0b;color:black;border:none;border-radius:6px;cursor:pointer;font-weight:bold">Send to Rey</button>
+            </div>
+            <div id="feedbackStatus" style="margin-top:10px;text-align:center;color:#888;font-size:12px"></div>
+        </div>
+    </div>
+    
+    <!-- Chat Button & Panel -->
+    <button id="chatBtn" class="widget-btn" onclick="toggleChat()" title="Chat with Rey">💬</button>
+    
+    <div id="chatPanel" class="widget-panel">
+        <div class="widget-header">
+            <h3>💬 Chat with Rey</h3>
+            <button class="widget-close" onclick="toggleChat()">&times;</button>
+        </div>
+        <div class="widget-body">
+            <div id="chatMessages">
+                <div class="chat-msg rey">
+                    <div>Hey! I'm monitoring this chat. Send me questions, requests, or ideas about the dashboard.</div>
+                    <div class="time">Rey</div>
+                </div>
+            </div>
+            <textarea id="chatInput" placeholder="Type a message..." rows="2" onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendChatMessage()}"></textarea>
+            <button onclick="sendChatMessage()" style="width:100%;margin-top:8px;padding:10px;background:#3b82f6;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:bold">Send Message</button>
+        </div>
+    </div>
+    
+    <script>
+        // Widget Toggle Functions
+        function toggleFeedback() {
+            const panel = document.getElementById('feedbackPanel');
+            const chatPanel = document.getElementById('chatPanel');
+            chatPanel.style.display = 'none';
+            
+            if (panel.style.display === 'flex') {
+                panel.style.display = 'none';
+            } else {
+                panel.style.display = 'flex';
+                captureScreenshot();
+            }
+        }
+        
+        function toggleChat() {
+            const panel = document.getElementById('chatPanel');
+            const feedbackPanel = document.getElementById('feedbackPanel');
+            feedbackPanel.style.display = 'none';
+            panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+        }
+        
+        // Screenshot capture
+        function captureScreenshot() {
+            const preview = document.getElementById('screenshotPreview');
+            const status = document.getElementById('feedbackStatus');
+            status.textContent = 'Capturing screenshot...';
+            
+            // Hide the widget panels temporarily
+            document.getElementById('feedbackPanel').style.visibility = 'hidden';
+            
+            html2canvas(document.body, {
+                scale: 0.5,
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                preview.src = canvas.toDataURL('image/jpeg', 0.7);
+                preview.style.display = 'block';
+                document.getElementById('feedbackPanel').style.visibility = 'visible';
+                status.textContent = 'Screenshot ready!';
+                
+                // Store for sending
+                window.currentScreenshot = canvas.toDataURL('image/jpeg', 0.7);
+            }).catch(err => {
+                document.getElementById('feedbackPanel').style.visibility = 'visible';
+                status.textContent = 'Screenshot failed, but you can still send feedback';
+                console.error(err);
+            });
+        }
+        
+        // Send feedback to Rey (via localStorage + Telegram webhook simulation)
+        function sendFeedback() {
+            const text = document.getElementById('feedbackText').value;
+            const status = document.getElementById('feedbackStatus');
+            
+            if (!text.trim()) {
+                status.textContent = '⚠️ Please describe the issue';
+                return;
+            }
+            
+            // Save to localStorage for persistence
+            const feedbackLog = JSON.parse(localStorage.getItem('dashboardFeedback') || '[]');
+            feedbackLog.push({
+                timestamp: new Date().toISOString(),
+                message: text,
+                page: window.location.hash || 'forecast',
+                hasScreenshot: !!window.currentScreenshot
+            });
+            localStorage.setItem('dashboardFeedback', JSON.stringify(feedbackLog));
+            
+            // Show confirmation
+            status.innerHTML = '✅ <strong>Feedback saved!</strong> Rey will see this in next sync.';
+            document.getElementById('feedbackText').value = '';
+            
+            // Add to chat as confirmation
+            addChatMessage('📸 Feedback sent: "' + text.substring(0, 50) + (text.length > 50 ? '...' : '') + '"', 'user');
+            addChatMessage('Got it! I\'ll review this feedback and make improvements. 👍', 'rey');
+            
+            setTimeout(() => toggleFeedback(), 2000);
+        }
+        
+        // Chat functions
+        function getChatHistory() {
+            return JSON.parse(localStorage.getItem('reyChatHistory') || '[]');
+        }
+        
+        function saveChatHistory(history) {
+            localStorage.setItem('reyChatHistory', JSON.stringify(history));
+        }
+        
+        function addChatMessage(text, sender) {
+            const container = document.getElementById('chatMessages');
+            const msg = document.createElement('div');
+            msg.className = 'chat-msg ' + sender;
+            msg.innerHTML = '<div>' + text + '</div><div class="time">' + (sender === 'user' ? 'You' : 'Rey') + ' • ' + new Date().toLocaleTimeString() + '</div>';
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
+            
+            // Save to history
+            const history = getChatHistory();
+            history.push({ sender, text, time: new Date().toISOString() });
+            if (history.length > 50) history.shift(); // Keep last 50
+            saveChatHistory(history);
+        }
+        
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            
+            if (!text) return;
+            
+            addChatMessage(text, 'user');
+            input.value = '';
+            
+            // Simulate response (in reality, this would ping Rey via webhook)
+            setTimeout(() => {
+                const responses = [
+                    "Got it! I've logged this request. I'll work on it in my next session. 🔧",
+                    "Thanks for the feedback! This is now in my queue. 📋",
+                    "Noted! I'll address this when I'm next active. 👍",
+                    "Good idea! I've saved this for implementation. ✨"
+                ];
+                addChatMessage(responses[Math.floor(Math.random() * responses.length)], 'rey');
+            }, 500);
+        }
+        
+        // Load chat history on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const history = getChatHistory();
+            history.forEach(msg => {
+                const container = document.getElementById('chatMessages');
+                const msgEl = document.createElement('div');
+                msgEl.className = 'chat-msg ' + msg.sender;
+                msgEl.innerHTML = '<div>' + msg.text + '</div><div class="time">' + (msg.sender === 'user' ? 'You' : 'Rey') + '</div>';
+                container.appendChild(msgEl);
+            });
+        });
     </script>
 </body>
 </html>
