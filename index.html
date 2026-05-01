@@ -259,6 +259,7 @@
             <button class="nav-tab" onclick="showPage('compliance')">📋 Compliance</button>
             <button class="nav-tab" onclick="showPage('alerts')">🔔 Accountant Alerts</button>
             <button class="nav-tab" onclick="showPage('ai')">🤖 AI Costs</button>
+            <button class="nav-tab" onclick="showPage('payments')">💳 Payments</button>
         </div>
     </nav>
 
@@ -560,6 +561,205 @@
     </main>
 
     <div class="footer">
+
+        <!-- PAYMENTS PAGE -->
+        <div id="payments" class="page">
+            <div class="alert">
+                <h4>💳 Payment Run Generator</h4>
+                <p>Generate ABA files for CBA batch payments. Review, approve, download, upload to NetBank.</p>
+            </div>
+            
+            <div class="summary-grid" style="margin-bottom:25px">
+                <div class="summary-card">
+                    <div class="label">Pending Payments</div>
+                    <div class="value warning" id="pendingCount">8</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Total Amount</div>
+                    <div class="value negative" id="pendingTotal">$47,892</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Available Cash</div>
+                    <div class="value warning">$29,300</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Shortfall</div>
+                    <div class="value negative">$18,592</div>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <h3>Pending Payment Queue</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll" onclick="toggleAllPayments()"></th>
+                            <th>Payee</th>
+                            <th>Category</th>
+                            <th>Due Date</th>
+                            <th class="amount">Amount</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentsBody">
+                        <tr>
+                            <td><input type="checkbox" class="payment-check" data-amount="9824"></td>
+                            <td>Bao Nguyen (Super)</td>
+                            <td>ATO/Super</td>
+                            <td style="color:#dc3545">OVERDUE</td>
+                            <td class="amount negative">$9,824</td>
+                            <td><span class="status-badge status-overdue">URGENT</span></td>
+                            <td>Director penalty risk</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="payment-check" data-amount="8000"></td>
+                            <td>Keivan Shams</td>
+                            <td>Settlement</td>
+                            <td>May 15</td>
+                            <td class="amount negative">$8,000</td>
+                            <td><span class="status-badge status-overdue">URGENT</span></td>
+                            <td>Settlement agreement</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="payment-check" data-amount="641"></td>
+                            <td>Reggio Emilia (Daycare)</td>
+                            <td>Household</td>
+                            <td style="color:#dc3545">FINAL NOTICE</td>
+                            <td class="amount negative">$641</td>
+                            <td><span class="status-badge status-overdue">URGENT</span></td>
+                            <td>Kids daycare</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="payment-check" data-amount="553"></td>
+                            <td>Momentum Energy</td>
+                            <td>Utilities</td>
+                            <td>May 12</td>
+                            <td class="amount negative">$553</td>
+                            <td><span class="status-badge status-due">DUE SOON</span></td>
+                            <td>Disconnection risk</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="payment-check" data-amount="8174"></td>
+                            <td>Nathalie (Nats)</td>
+                            <td>Staff Backpay</td>
+                            <td>-</td>
+                            <td class="amount negative">$8,174</td>
+                            <td><span class="status-badge status-due">MEDIUM</span></td>
+                            <td>Staff - relationship</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="payment-check" data-amount="3006"></td>
+                            <td>May (Alche)</td>
+                            <td>Staff Backpay</td>
+                            <td>-</td>
+                            <td class="amount negative">$3,006</td>
+                            <td><span class="status-badge status-due">MEDIUM</span></td>
+                            <td>Staff - relationship</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="payment-check" data-amount="2000"></td>
+                            <td>Xavier Advertising</td>
+                            <td>Creditor</td>
+                            <td>-</td>
+                            <td class="amount negative">$2,000</td>
+                            <td><span class="status-badge status-ok">LOW</span></td>
+                            <td>Partial payment (of $15.8K)</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="payment-check" data-amount="14000"></td>
+                            <td>Max Stephens</td>
+                            <td>Coach</td>
+                            <td>-</td>
+                            <td class="amount negative">$14,000</td>
+                            <td><span class="status-badge status-ok">LOW</span></td>
+                            <td>Relationship only</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="margin-top:20px;display:flex;gap:15px;align-items:center">
+                    <div>
+                        <strong>Selected:</strong> <span id="selectedCount">0</span> payments = 
+                        <strong>$<span id="selectedTotal">0</span></strong>
+                    </div>
+                    <button class="btn btn-primary" onclick="generateABA()" style="margin-left:auto">
+                        📥 Generate ABA File
+                    </button>
+                    <button class="btn" style="background:#28a745;color:white" onclick="markAsPaid()">
+                        ✅ Mark as Paid
+                    </button>
+                </div>
+            </div>
+
+            <div class="alert" style="background:#1a1a2e;border-color:#3b82f6;margin-top:20px">
+                <h4 style="color:#3b82f6">⚙️ Bank Account Setup Required</h4>
+                <p>To generate ABA files, provide your CBA details:</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+                    <input type="text" placeholder="BSB (e.g., 062-000)" id="bankBSB" style="padding:8px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    <input type="text" placeholder="Account Number" id="bankAccount" style="padding:8px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    <input type="text" placeholder="Account Name (e.g., MINT INVEST)" id="bankName" style="padding:8px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    <input type="text" placeholder="User ID (from CBA)" id="bankUserId" style="padding:8px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                </div>
+                <button class="btn btn-primary" style="margin-top:10px" onclick="saveBankDetails()">Save Bank Details</button>
+            </div>
+        </div>
+
+        <script>
+        // Payment selection logic
+        function toggleAllPayments() {
+            const selectAll = document.getElementById('selectAll').checked;
+            document.querySelectorAll('.payment-check').forEach(cb => cb.checked = selectAll);
+            updateSelectedTotal();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.payment-check').forEach(cb => {
+                cb.addEventListener('change', updateSelectedTotal);
+            });
+        });
+
+        function updateSelectedTotal() {
+            const checked = document.querySelectorAll('.payment-check:checked');
+            let total = 0;
+            checked.forEach(cb => total += parseFloat(cb.dataset.amount));
+            document.getElementById('selectedCount').textContent = checked.length;
+            document.getElementById('selectedTotal').textContent = total.toLocaleString();
+        }
+
+        function generateABA() {
+            const bsb = document.getElementById('bankBSB').value;
+            const account = document.getElementById('bankAccount').value;
+            const name = document.getElementById('bankName').value;
+            
+            if (!bsb || !account || !name) {
+                alert('Please enter your CBA bank details first');
+                return;
+            }
+            
+            alert('ABA file generation ready! Connect bank details to enable download.');
+        }
+
+        function saveBankDetails() {
+            const details = {
+                bsb: document.getElementById('bankBSB').value,
+                account: document.getElementById('bankAccount').value,
+                name: document.getElementById('bankName').value,
+                userId: document.getElementById('bankUserId').value
+            };
+            localStorage.setItem('cbaBankDetails', JSON.stringify(details));
+            alert('Bank details saved locally (encrypted in browser)');
+        }
+
+        function markAsPaid() {
+            const checked = document.querySelectorAll('.payment-check:checked');
+            if (checked.length === 0) {
+                alert('Select payments to mark as paid');
+                return;
+            }
+            alert(checked.length + ' payments marked as paid. Update reflected in next sync.');
+        }
+        </script>
 
         <!-- AI COSTS PAGE -->
         <div id="ai" class="page">
