@@ -2009,8 +2009,67 @@
             w.totalOutflow = w.mint.outflow + w.jsl.outflow + w.household.outflow;
         });
         
+        
+        // Merge pipeline deals into weekly forecast data
+        function getEnhancedWeeklyData() {
+            const deals = typeof getDeals === 'function' ? getDeals() : [];
+            const revenue = typeof getOtherRevenue === 'function' ? getOtherRevenue() : [];
+            
+            // Deep clone the base weeklyData
+            const enhanced = JSON.parse(JSON.stringify(weeklyData));
+            
+            // Add pipeline tranches to appropriate weeks
+            deals.forEach(deal => {
+                deal.tranches.forEach(tranche => {
+                    if (tranche.paid) return;
+                    
+                    const trancheDate = new Date(tranche.date);
+                    const weekNum = getWeekNumberFromDate(trancheDate);
+                    
+                    // Find the matching week
+                    const weekData = enhanced.find(w => w.week === weekNum);
+                    if (weekData) {
+                        const entity = deal.entity || 'mint';
+                        if (weekData[entity]) {
+                            weekData[entity].inflow += tranche.amount;
+                            weekData[entity].inflowItems.push(deal.client + ' - T' + tranche.number + ': $' + tranche.amount.toLocaleString());
+                        }
+                    } else {
+                        // Week not in range, check if we need to add it
+                        console.log('Deal tranche for week ' + weekNum + ' outside forecast range');
+                    }
+                });
+            });
+            
+            // Add other revenue items
+            revenue.forEach(rev => {
+                if (rev.cadence === 'once' && rev.date) {
+                    const revDate = new Date(rev.date);
+                    const weekNum = getWeekNumberFromDate(revDate);
+                    const weekData = enhanced.find(w => w.week === weekNum);
+                    if (weekData) {
+                        const entity = rev.entity || 'mint';
+                        if (weekData[entity]) {
+                            weekData[entity].inflow += rev.amountIncGST;
+                            weekData[entity].inflowItems.push(rev.description + ': $' + rev.amountIncGST.toLocaleString());
+                        }
+                    }
+                }
+            });
+            
+            return enhanced;
+        }
+        
+        function getWeekNumberFromDate(date) {
+            const startOfYear = new Date(date.getFullYear(), 0, 1);
+            const days = Math.floor((date - startOfYear) / (24 * 60 * 60 * 1000));
+            return Math.ceil((days + startOfYear.getDay() + 1) / 7);
+        }
+
+
         function getFilteredData() {
-            return weeklyData.map(w => {
+            const enhancedData = getEnhancedWeeklyData();
+            return enhancedData.map(w => {
                 let inflow, outflow, inflowItems, outflowItems;
                 
                 if (currentEntity === 'all') {
