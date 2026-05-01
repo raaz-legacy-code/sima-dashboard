@@ -299,6 +299,7 @@
         </div>
         <div class="nav-tabs">
             <button class="nav-tab active" onclick="showPage('forecast')">📈 6-Month Forecast</button>
+            <button class="nav-tab" onclick="showPage('pipeline')">🎯 Pipeline</button>
             <button class="nav-tab" onclick="showPage('ar')">💰 AR Aging</button>
             <button class="nav-tab" onclick="showPage('ap')">💸 AP Aging</button>
             <button class="nav-tab" onclick="showPage('unreconciled')">⚠️ Unreconciled</button>
@@ -424,6 +425,222 @@
                 </table>
             </div>
         </div>
+
+        <!-- PIPELINE & REVENUE PAGE -->
+        <div id="pipeline" class="page">
+            <div class="alert" style="background:linear-gradient(135deg,#1a2e1a,#1a1f2e);border-color:#28a745">
+                <h4 style="color:#28a745">💰 Pipeline & Revenue Forecasting</h4>
+                <p>Track deals, tranches, and expected revenue. All inputs flow into the time series forecast.</p>
+            </div>
+            
+            <div class="summary-grid" style="margin-bottom:25px">
+                <div class="summary-card">
+                    <div class="label">Active Deals</div>
+                    <div class="value" id="activeDealCount">0</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Total Pipeline</div>
+                    <div class="value positive" id="totalPipeline">$0</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Expected This Month</div>
+                    <div class="value positive" id="expectedThisMonth">$0</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Recurring Revenue</div>
+                    <div class="value" id="recurringRevenue">$0</div>
+                </div>
+            </div>
+            
+            <!-- ADD NEW DEAL -->
+            <div class="table-section" style="background:#1a2e1a;border:1px solid #28a745;padding:20px;border-radius:12px">
+                <h3 style="color:#28a745">➕ Add New Deal</h3>
+                <p style="color:#888;margin-bottom:15px">Enter deal details with tranche payment schedule</p>
+                
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:15px">
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Client Name *</label>
+                        <input type="text" id="dealClient" placeholder="e.g., John Smith" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Property/Deal *</label>
+                        <input type="text" id="dealProperty" placeholder="e.g., Lot 123 Sunrise Estate" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Builder/Supplier</label>
+                        <select id="dealBuilder" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                            <option value="">Select Builder</option>
+                            <option value="ARG">ARG</option>
+                            <option value="Bramwell">Bramwell</option>
+                            <option value="Eternal">Eternal Homes</option>
+                            <option value="EHP">EHP</option>
+                            <option value="Tribeca">Tribeca</option>
+                            <option value="Avanti">Avanti</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Entity *</label>
+                        <select id="dealEntity" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                            <option value="mint">Mint Invest</option>
+                            <option value="jsl">JS Law Group</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Total Commission (ex GST) *</label>
+                        <input type="number" id="dealTotal" placeholder="50000" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">GST</label>
+                        <select id="dealGST" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                            <option value="yes">Yes (10%)</option>
+                            <option value="no">No GST</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- TRANCHES -->
+                <div style="margin-top:20px;padding:15px;background:#0a0a0a;border-radius:8px">
+                    <h4 style="margin-bottom:10px">Payment Tranches</h4>
+                    <p style="color:#666;font-size:12px;margin-bottom:15px">Split the commission into payment tranches (e.g., 50% on exchange, 50% on settlement)</p>
+                    
+                    <div id="trancheInputs">
+                        <div class="tranche-row" style="display:grid;grid-template-columns:1fr 2fr 2fr 1fr auto;gap:10px;margin-bottom:10px;align-items:center">
+                            <span style="color:#888">T1</span>
+                            <input type="number" class="tranche-pct" placeholder="% (e.g., 50)" style="padding:8px;background:#1a1a1a;border:1px solid #333;border-radius:4px;color:#fff">
+                            <input type="date" class="tranche-date" style="padding:8px;background:#1a1a1a;border:1px solid #333;border-radius:4px;color:#fff">
+                            <span class="tranche-amount" style="color:#28a745">$0</span>
+                        </div>
+                        <div class="tranche-row" style="display:grid;grid-template-columns:1fr 2fr 2fr 1fr auto;gap:10px;margin-bottom:10px;align-items:center">
+                            <span style="color:#888">T2</span>
+                            <input type="number" class="tranche-pct" placeholder="% (e.g., 50)" style="padding:8px;background:#1a1a1a;border:1px solid #333;border-radius:4px;color:#fff">
+                            <input type="date" class="tranche-date" style="padding:8px;background:#1a1a1a;border:1px solid #333;border-radius:4px;color:#fff">
+                            <span class="tranche-amount" style="color:#28a745">$0</span>
+                        </div>
+                        <div class="tranche-row" style="display:grid;grid-template-columns:1fr 2fr 2fr 1fr auto;gap:10px;margin-bottom:10px;align-items:center">
+                            <span style="color:#888">T3</span>
+                            <input type="number" class="tranche-pct" placeholder="% (optional)" style="padding:8px;background:#1a1a1a;border:1px solid #333;border-radius:4px;color:#fff">
+                            <input type="date" class="tranche-date" style="padding:8px;background:#1a1a1a;border:1px solid #333;border-radius:4px;color:#fff">
+                            <span class="tranche-amount" style="color:#28a745">$0</span>
+                        </div>
+                    </div>
+                    <p style="color:#666;font-size:11px;margin-top:10px">Tip: Builder payment timelines vary. ARG typically pays 50/50, Bramwell pays 35/35/30.</p>
+                </div>
+                
+                <div style="margin-top:15px">
+                    <button class="btn btn-primary" onclick="addDeal()">➕ Add Deal to Pipeline</button>
+                </div>
+            </div>
+            
+            <!-- ADD OTHER REVENUE -->
+            <div class="table-section" style="margin-top:20px;background:#1a1a2e;border:1px solid #3b82f6;padding:20px;border-radius:12px">
+                <h3 style="color:#3b82f6">➕ Add Other Revenue</h3>
+                <p style="color:#888;margin-bottom:15px">Add non-deal revenue (referrals, consulting, recurring income)</p>
+                
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:15px">
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Description *</label>
+                        <input type="text" id="revDesc" placeholder="e.g., Broker referral fee" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Amount (ex GST) *</label>
+                        <input type="number" id="revAmount" placeholder="5000" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Cadence</label>
+                        <select id="revCadence" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                            <option value="once">One-time</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="estimated">Estimated/Uncertain</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Expected Date</label>
+                        <input type="date" id="revDate" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Entity</label>
+                        <select id="revEntity" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                            <option value="mint">Mint Invest</option>
+                            <option value="jsl">JS Law Group</option>
+                            <option value="household">Household</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">GST</label>
+                        <select id="revGST" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                            <option value="yes">Yes (10%)</option>
+                            <option value="no">No GST</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div style="margin-top:15px">
+                    <button class="btn" style="background:#3b82f6;color:white" onclick="addRevenue()">➕ Add Revenue</button>
+                </div>
+            </div>
+            
+            <!-- ACTIVE DEALS TABLE -->
+            <div class="table-section" style="margin-top:20px">
+                <h3>📋 Active Deal Pipeline</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Property</th>
+                            <th>Builder</th>
+                            <th>Entity</th>
+                            <th class="amount">Total</th>
+                            <th>Tranches</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pipelineBody"></tbody>
+                </table>
+            </div>
+            
+            <!-- OTHER REVENUE TABLE -->
+            <div class="table-section" style="margin-top:20px">
+                <h3>📋 Other Expected Revenue</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Entity</th>
+                            <th class="amount">Amount</th>
+                            <th>GST</th>
+                            <th>Cadence</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="revenueBody"></tbody>
+                </table>
+            </div>
+            
+            <!-- BUILDER PAYMENT REFERENCE -->
+            <div class="table-section" style="margin-top:20px;background:#1f1f1f">
+                <h3>📖 Builder Payment Timeline Reference</h3>
+                <p style="color:#888;margin-bottom:15px">Typical payment structures by builder</p>
+                <table>
+                    <thead>
+                        <tr><th>Builder</th><th>T1 (%)</th><th>T1 Trigger</th><th>T2 (%)</th><th>T2 Trigger</th><th>T3 (%)</th><th>T3 Trigger</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>ARG</td><td>50%</td><td>Unconditional</td><td>50%</td><td>Settlement</td><td>-</td><td>-</td></tr>
+                        <tr><td>Bramwell</td><td>35%</td><td>Exchange</td><td>35%</td><td>Slab</td><td>30%</td><td>Settlement</td></tr>
+                        <tr><td>Eternal</td><td>50%</td><td>Unconditional</td><td>50%</td><td>Settlement</td><td>-</td><td>-</td></tr>
+                        <tr><td>EHP</td><td>40%</td><td>Exchange</td><td>30%</td><td>Frame</td><td>30%</td><td>Settlement</td></tr>
+                        <tr><td>Tribeca</td><td>50%</td><td>Exchange</td><td>50%</td><td>Settlement</td><td>-</td><td>-</td></tr>
+                        <tr><td>Avanti</td><td>50%</td><td>Unconditional</td><td>50%</td><td>Settlement</td><td>-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
 
         <!-- AR AGING PAGE -->
         <div id="ar" class="page">
@@ -1731,6 +1948,7 @@
         // Initialize
         function init() {
             renderDebts();
+            renderPipeline();
             document.getElementById('lastUpdate').textContent = new Date().toLocaleString('en-AU', {
                 timeZone: 'Australia/Sydney', dateStyle: 'medium', timeStyle: 'short'
             });
@@ -2112,6 +2330,314 @@
 
 
         
+                // PIPELINE & REVENUE MANAGEMENT
+        function getDeals() {
+            return JSON.parse(localStorage.getItem('dealPipeline') || '[]');
+        }
+        
+        function saveDeals(deals) {
+            localStorage.setItem('dealPipeline', JSON.stringify(deals));
+        }
+        
+        function getOtherRevenue() {
+            return JSON.parse(localStorage.getItem('otherRevenue') || '[]');
+        }
+        
+        function saveOtherRevenue(revenue) {
+            localStorage.setItem('otherRevenue', JSON.stringify(revenue));
+        }
+        
+        // Update tranche amounts when total changes
+        document.addEventListener('DOMContentLoaded', function() {
+            const totalInput = document.getElementById('dealTotal');
+            if (totalInput) {
+                totalInput.addEventListener('input', updateTrancheAmounts);
+                document.querySelectorAll('.tranche-pct').forEach(input => {
+                    input.addEventListener('input', updateTrancheAmounts);
+                });
+            }
+        });
+        
+        function updateTrancheAmounts() {
+            const total = parseFloat(document.getElementById('dealTotal')?.value) || 0;
+            const gst = document.getElementById('dealGST')?.value === 'yes' ? 1.1 : 1;
+            const totalWithGST = total * gst;
+            
+            document.querySelectorAll('.tranche-row').forEach(row => {
+                const pctInput = row.querySelector('.tranche-pct');
+                const amountSpan = row.querySelector('.tranche-amount');
+                const pct = parseFloat(pctInput?.value) || 0;
+                const amount = (totalWithGST * pct / 100);
+                if (amountSpan) amountSpan.textContent = '$' + amount.toLocaleString(undefined, {maximumFractionDigits: 0});
+            });
+        }
+        
+        function addDeal() {
+            const client = document.getElementById('dealClient').value;
+            const property = document.getElementById('dealProperty').value;
+            const builder = document.getElementById('dealBuilder').value;
+            const entity = document.getElementById('dealEntity').value;
+            const total = parseFloat(document.getElementById('dealTotal').value);
+            const gst = document.getElementById('dealGST').value;
+            
+            if (!client || !property || !total) {
+                alert('Please fill in Client, Property, and Total Commission');
+                return;
+            }
+            
+            // Get tranches
+            const tranches = [];
+            document.querySelectorAll('.tranche-row').forEach((row, i) => {
+                const pct = parseFloat(row.querySelector('.tranche-pct')?.value) || 0;
+                const date = row.querySelector('.tranche-date')?.value;
+                if (pct > 0 && date) {
+                    const amount = total * (gst === 'yes' ? 1.1 : 1) * pct / 100;
+                    tranches.push({
+                        number: i + 1,
+                        percentage: pct,
+                        date: date,
+                        amount: amount,
+                        paid: false
+                    });
+                }
+            });
+            
+            if (tranches.length === 0) {
+                alert('Please add at least one tranche with percentage and date');
+                return;
+            }
+            
+            const deals = getDeals();
+            deals.push({
+                id: Date.now(),
+                client: client,
+                property: property,
+                builder: builder,
+                entity: entity,
+                totalExGST: total,
+                gst: gst,
+                totalIncGST: total * (gst === 'yes' ? 1.1 : 1),
+                tranches: tranches,
+                status: 'active',
+                createdAt: new Date().toISOString()
+            });
+            
+            saveDeals(deals);
+            renderPipeline();
+            
+            // Clear form
+            document.getElementById('dealClient').value = '';
+            document.getElementById('dealProperty').value = '';
+            document.getElementById('dealTotal').value = '';
+            document.querySelectorAll('.tranche-pct').forEach(i => i.value = '');
+            document.querySelectorAll('.tranche-date').forEach(i => i.value = '');
+            document.querySelectorAll('.tranche-amount').forEach(s => s.textContent = '$0');
+            
+            alert('Deal added to pipeline!');
+        }
+        
+        function addRevenue() {
+            const desc = document.getElementById('revDesc').value;
+            const amount = parseFloat(document.getElementById('revAmount').value);
+            const cadence = document.getElementById('revCadence').value;
+            const date = document.getElementById('revDate').value;
+            const entity = document.getElementById('revEntity').value;
+            const gst = document.getElementById('revGST').value;
+            
+            if (!desc || !amount) {
+                alert('Please fill in Description and Amount');
+                return;
+            }
+            
+            const revenue = getOtherRevenue();
+            revenue.push({
+                id: Date.now(),
+                description: desc,
+                amount: amount,
+                amountIncGST: amount * (gst === 'yes' ? 1.1 : 1),
+                cadence: cadence,
+                date: date,
+                entity: entity,
+                gst: gst
+            });
+            
+            saveOtherRevenue(revenue);
+            renderPipeline();
+            
+            // Clear form
+            document.getElementById('revDesc').value = '';
+            document.getElementById('revAmount').value = '';
+            document.getElementById('revDate').value = '';
+            
+            alert('Revenue added!');
+        }
+        
+        function renderPipeline() {
+            const deals = getDeals();
+            const revenue = getOtherRevenue();
+            
+            // Update summary cards
+            document.getElementById('activeDealCount').textContent = deals.filter(d => d.status === 'active').length;
+            
+            const totalPipeline = deals.reduce((sum, d) => sum + d.totalIncGST, 0);
+            document.getElementById('totalPipeline').textContent = '$' + totalPipeline.toLocaleString(undefined, {maximumFractionDigits: 0});
+            
+            // Calculate expected this month
+            const now = new Date();
+            const thisMonth = now.getMonth();
+            const thisYear = now.getFullYear();
+            let expectedThisMonth = 0;
+            
+            deals.forEach(d => {
+                d.tranches.forEach(t => {
+                    if (!t.paid) {
+                        const tDate = new Date(t.date);
+                        if (tDate.getMonth() === thisMonth && tDate.getFullYear() === thisYear) {
+                            expectedThisMonth += t.amount;
+                        }
+                    }
+                });
+            });
+            
+            revenue.forEach(r => {
+                if (r.date) {
+                    const rDate = new Date(r.date);
+                    if (rDate.getMonth() === thisMonth && rDate.getFullYear() === thisYear) {
+                        expectedThisMonth += r.amountIncGST;
+                    }
+                }
+            });
+            
+            document.getElementById('expectedThisMonth').textContent = '$' + expectedThisMonth.toLocaleString(undefined, {maximumFractionDigits: 0});
+            
+            // Recurring revenue
+            const recurringRev = revenue.filter(r => ['weekly', 'monthly', 'quarterly'].includes(r.cadence))
+                .reduce((sum, r) => sum + r.amountIncGST, 0);
+            document.getElementById('recurringRevenue').textContent = '$' + recurringRev.toLocaleString(undefined, {maximumFractionDigits: 0}) + '/mo';
+            
+            // Render deals table
+            const tbody = document.getElementById('pipelineBody');
+            if (tbody) {
+                tbody.innerHTML = '';
+                deals.forEach(deal => {
+                    const trancheInfo = deal.tranches.map(t => 
+                        'T' + t.number + ': $' + t.amount.toLocaleString(undefined, {maximumFractionDigits: 0}) + ' (' + t.date + ')' + (t.paid ? ' ✅' : '')
+                    ).join('<br>');
+                    
+                    const statusBadge = deal.status === 'active' 
+                        ? '<span class="status-badge status-ok">Active</span>'
+                        : '<span class="status-badge status-due">Completed</span>';
+                    
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = '<td><strong>' + deal.client + '</strong></td>' +
+                        '<td style="font-size:12px">' + deal.property + '</td>' +
+                        '<td>' + (deal.builder || '-') + '</td>' +
+                        '<td>' + deal.entity.toUpperCase() + '</td>' +
+                        '<td class="amount positive">$' + deal.totalIncGST.toLocaleString(undefined, {maximumFractionDigits: 0}) + '</td>' +
+                        '<td style="font-size:11px">' + trancheInfo + '</td>' +
+                        '<td>' + statusBadge + '</td>' +
+                        '<td><button onclick="deleteDeal(' + deal.id + ')" style="background:#dc3545;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:11px">Delete</button></td>';
+                    tbody.appendChild(tr);
+                });
+                
+                if (deals.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#666">No deals in pipeline. Add your first deal above.</td></tr>';
+                }
+            }
+            
+            // Render other revenue table
+            const revBody = document.getElementById('revenueBody');
+            if (revBody) {
+                revBody.innerHTML = '';
+                revenue.forEach(rev => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = '<td>' + rev.description + '</td>' +
+                        '<td>' + rev.entity.toUpperCase() + '</td>' +
+                        '<td class="amount positive">$' + rev.amountIncGST.toLocaleString(undefined, {maximumFractionDigits: 0}) + '</td>' +
+                        '<td>' + (rev.gst === 'yes' ? 'Yes' : 'No') + '</td>' +
+                        '<td>' + rev.cadence + '</td>' +
+                        '<td>' + (rev.date || '-') + '</td>' +
+                        '<td><button onclick="deleteRevenue(' + rev.id + ')" style="background:#dc3545;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:11px">Delete</button></td>';
+                    revBody.appendChild(tr);
+                });
+                
+                if (revenue.length === 0) {
+                    revBody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#666">No other revenue added.</td></tr>';
+                }
+            }
+        }
+        
+        function deleteDeal(id) {
+            if (!confirm('Delete this deal?')) return;
+            const deals = getDeals().filter(d => d.id !== id);
+            saveDeals(deals);
+            renderPipeline();
+        }
+        
+        function deleteRevenue(id) {
+            if (!confirm('Delete this revenue item?')) return;
+            const revenue = getOtherRevenue().filter(r => r.id !== id);
+            saveOtherRevenue(revenue);
+            renderPipeline();
+        }
+        
+        function markTranchePaid(dealId, trancheNum) {
+            const deals = getDeals();
+            const deal = deals.find(d => d.id === dealId);
+            if (deal) {
+                const tranche = deal.tranches.find(t => t.number === trancheNum);
+                if (tranche) tranche.paid = true;
+                saveDeals(deals);
+                renderPipeline();
+            }
+        }
+        
+        // Get pipeline revenue for a specific week (for time series integration)
+        function getPipelineRevenueForWeek(weekStart, entity) {
+            const deals = getDeals();
+            const revenue = getOtherRevenue();
+            let total = 0;
+            
+            const weekStartDate = new Date(weekStart);
+            const weekEndDate = new Date(weekStart);
+            weekEndDate.setDate(weekEndDate.getDate() + 7);
+            
+            // Check deal tranches
+            deals.forEach(deal => {
+                if (entity !== 'all' && deal.entity !== entity) return;
+                
+                deal.tranches.forEach(tranche => {
+                    if (tranche.paid) return;
+                    const trancheDate = new Date(tranche.date);
+                    if (trancheDate >= weekStartDate && trancheDate < weekEndDate) {
+                        total += tranche.amount;
+                    }
+                });
+            });
+            
+            // Check other revenue
+            revenue.forEach(rev => {
+                if (entity !== 'all' && rev.entity !== entity) return;
+                
+                if (rev.cadence === 'once' && rev.date) {
+                    const revDate = new Date(rev.date);
+                    if (revDate >= weekStartDate && revDate < weekEndDate) {
+                        total += rev.amountIncGST;
+                    }
+                } else if (rev.cadence === 'weekly') {
+                    total += rev.amountIncGST;
+                } else if (rev.cadence === 'monthly') {
+                    // Add if first week of month
+                    if (weekStartDate.getDate() <= 7) {
+                        total += rev.amountIncGST;
+                    }
+                }
+            });
+            
+            return total;
+        }
+
+
         // DEBT MANAGEMENT
         const defaultDebts = [
             {id: 1, creditor: 'ATO', original: 45000, outstanding: 45000, priority: 'high', notes: 'Payment plan needed'},
@@ -2202,6 +2728,7 @@
                 debt.outstanding = amount;
                 saveDebts(debts);
                 renderDebts();
+            renderPipeline();
             }
         }
         
@@ -2237,6 +2764,7 @@
             saveDebts(debts);
             hideAddDebtForm();
             renderDebts();
+            renderPipeline();
             
             document.getElementById('debtCreditor').value = '';
             document.getElementById('debtAmount').value = '';
@@ -2248,6 +2776,7 @@
             const debts = getDebts().filter(d => d.id !== id);
             saveDebts(debts);
             renderDebts();
+            renderPipeline();
         }
         
         function showPaymentForm() {
@@ -2297,6 +2826,7 @@
             
             hidePaymentForm();
             renderDebts();
+            renderPipeline();
             
             document.getElementById('paymentAmount').value = '';
             alert('Payment recorded! ' + debt.creditor + ' balance now: $' + debt.outstanding.toLocaleString());
@@ -2318,6 +2848,7 @@
         // Initialize debts on page load
         document.addEventListener('DOMContentLoaded', function() {
             renderDebts();
+            renderPipeline();
         });
 
 
