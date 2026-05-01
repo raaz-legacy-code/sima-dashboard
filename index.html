@@ -1596,6 +1596,136 @@
             }
         }
 
+        
+        // Recurring expenses management
+        function getSavedExpenses() {
+            return JSON.parse(localStorage.getItem('recurringExpenses') || '[]');
+        }
+        
+        function saveExpenses(expenses) {
+            localStorage.setItem('recurringExpenses', JSON.stringify(expenses));
+        }
+        
+        function addRecurringExpense() {
+            const desc = document.getElementById('expDesc').value;
+            const entity = document.getElementById('expEntity').value;
+            const amount = parseFloat(document.getElementById('expAmount').value);
+            const cadence = document.getElementById('expCadence').value;
+            const startDate = document.getElementById('expStartDate').value;
+            const category = document.getElementById('expCategory').value;
+            
+            if (!desc || !amount || !startDate) {
+                alert('Please fill in Description, Amount, and Start Date');
+                return;
+            }
+            
+            const expenses = getSavedExpenses();
+            expenses.push({
+                id: Date.now(),
+                desc: desc,
+                entity: entity,
+                amount: amount,
+                cadence: cadence,
+                startDate: startDate,
+                category: category
+            });
+            
+            saveExpenses(expenses);
+            
+            // Clear form
+            document.getElementById('expDesc').value = '';
+            document.getElementById('expAmount').value = '';
+            document.getElementById('expStartDate').value = '';
+            
+            alert('Expense added! It will appear in the forecast.');
+            renderAll();
+        }
+        
+        function showSavedExpenses() {
+            const list = document.getElementById('savedExpensesList');
+            const tbody = document.getElementById('expensesBody');
+            
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                const expenses = getSavedExpenses();
+                
+                tbody.innerHTML = '';
+                expenses.forEach(exp => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = '<td>' + exp.desc + '</td>' +
+                        '<td>' + exp.entity.toUpperCase() + '</td>' +
+                        '<td class="amount negative">$' + exp.amount.toLocaleString() + '</td>' +
+                        '<td>' + exp.cadence + '</td>' +
+                        '<td>' + exp.startDate + '</td>' +
+                        '<td><button onclick="deleteExpense(' + exp.id + ')" style="background:#dc3545;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer">Delete</button></td>';
+                    tbody.appendChild(tr);
+                });
+                
+                if (expenses.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#666">No saved expenses</td></tr>';
+                }
+            } else {
+                list.style.display = 'none';
+            }
+        }
+        
+        function deleteExpense(id) {
+            if (!confirm('Delete this expense?')) return;
+            const expenses = getSavedExpenses().filter(e => e.id !== id);
+            saveExpenses(expenses);
+            showSavedExpenses();
+            showSavedExpenses(); // Toggle to refresh
+            renderAll();
+        }
+        
+        function clearAllExpenses() {
+            if (!confirm('Clear ALL saved expenses?')) return;
+            saveExpenses([]);
+            renderAll();
+            alert('All expenses cleared');
+        }
+        
+        // Modify weekly calculation to include saved expenses
+        function getExpenseForWeek(weekStart, entity) {
+            const expenses = getSavedExpenses();
+            let total = 0;
+            
+            const weekDate = new Date(weekStart);
+            
+            expenses.forEach(exp => {
+                if (entity !== 'all' && exp.entity !== entity) return;
+                
+                const startDate = new Date(exp.startDate);
+                if (startDate > weekDate) return; // Not started yet
+                
+                const daysDiff = Math.floor((weekDate - startDate) / (1000 * 60 * 60 * 24));
+                
+                let applies = false;
+                switch(exp.cadence) {
+                    case 'weekly':
+                        applies = true;
+                        break;
+                    case 'fortnightly':
+                        applies = Math.floor(daysDiff / 7) % 2 === 0;
+                        break;
+                    case 'monthly':
+                        applies = weekDate.getDate() <= 7 && startDate.getDate() <= weekDate.getDate() + 7;
+                        break;
+                    case 'quarterly':
+                        applies = [0, 3, 6, 9].includes(weekDate.getMonth()) && weekDate.getDate() <= 7;
+                        break;
+                    case 'once':
+                        applies = daysDiff >= 0 && daysDiff < 7;
+                        break;
+                }
+                
+                if (applies) total += exp.amount;
+            });
+            
+            return total;
+        }
+
+
         window.onload = function() { console.log("Window loaded"); if (typeof Chart === "undefined") { console.error("Chart.js not loaded"); return; } init(); };
     </script>
 </body>
