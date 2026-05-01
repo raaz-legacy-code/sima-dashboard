@@ -1043,7 +1043,7 @@
         function renderChart() {
             console.log("Rendering chart with data:", weeklyData.length);
             const ctx = document.getElementById('mainChart').getContext('2d');
-            if (window.mainChart) window.mainChart.destroy();
+            if (window.mainChart && typeof window.mainChart.destroy === "function") { try { window.mainChart.destroy(); } catch(e) { console.log("Chart cleanup:", e); } }
 
             window.mainChart = new Chart(ctx, {
                 type: 'bar',
@@ -1179,7 +1179,7 @@
             }
         }
 
-        window.onload = function() { console.log("Window loaded"); init(); };
+        window.onload = function() { console.log("Window loaded"); if (typeof Chart === "undefined") { console.error("Chart.js not loaded"); return; } init(); };
     </script>
 </body>
 </html>
