@@ -1,0 +1,209 @@
+[
+  {
+    "name": "Aircall",
+    "category": "cancel",
+    "categoryLabel": "🔴 CANCEL IMMEDIATELY",
+    "monthlyAmount": "673",
+    "action": "CANCEL NOW",
+    "occurrences": 2,
+    "canCancel": true
+  },
+  {
+    "name": "MessageMedia",
+    "category": "cancel",
+    "categoryLabel": "🔴 CANCEL IMMEDIATELY",
+    "monthlyAmount": "877",
+    "action": "CANCEL NOW",
+    "occurrences": 1,
+    "canCancel": true
+  },
+  {
+    "name": "The Star Casino",
+    "category": "cut",
+    "categoryLabel": "🟠 CUT/REDUCE",
+    "monthlyAmount": "45",
+    "action": "Cut completely",
+    "occurrences": 4,
+    "canCancel": true
+  },
+  {
+    "name": "Uber Eats",
+    "category": "cut",
+    "categoryLabel": "🟠 CUT/REDUCE",
+    "monthlyAmount": "47",
+    "action": "Reduce",
+    "occurrences": 14,
+    "canCancel": true
+  },
+  {
+    "name": "DoorDash",
+    "category": "cut",
+    "categoryLabel": "🟠 CUT/REDUCE",
+    "monthlyAmount": "133",
+    "action": "Reduce",
+    "occurrences": 6,
+    "canCancel": true
+  },
+  {
+    "name": "Claude/Anthropic",
+    "category": "ai",
+    "categoryLabel": "🟡 AI TOOLS - CONSOLIDATE",
+    "monthlyAmount": "17",
+    "action": "Consolidate AI tools",
+    "occurrences": 12,
+    "canCancel": true
+  },
+  {
+    "name": "ChatGPT/OpenAI",
+    "category": "ai",
+    "categoryLabel": "🟡 AI TOOLS - CONSOLIDATE",
+    "monthlyAmount": "55",
+    "action": "Consolidate AI tools",
+    "occurrences": 6,
+    "canCancel": true
+  },
+  {
+    "name": "AI.Fyxer",
+    "category": "ai",
+    "categoryLabel": "🟡 AI TOOLS - CONSOLIDATE",
+    "monthlyAmount": "198",
+    "action": "Cancel - redundant",
+    "occurrences": 3,
+    "canCancel": true
+  },
+  {
+    "name": "Manus AI",
+    "category": "ai",
+    "categoryLabel": "🟡 AI TOOLS - CONSOLIDATE",
+    "monthlyAmount": "45",
+    "action": "Consolidate AI tools",
+    "occurrences": 13,
+    "canCancel": true
+  },
+  {
+    "name": "Bubble.io",
+    "category": "dev",
+    "categoryLabel": "🔵 DEV TOOLS - REVIEW",
+    "monthlyAmount": "200",
+    "action": "Review usage",
+    "occurrences": 3,
+    "canCancel": true
+  },
+  {
+    "name": "Base44",
+    "category": "dev",
+    "categoryLabel": "🔵 DEV TOOLS - REVIEW",
+    "monthlyAmount": "29",
+    "action": "Review",
+    "occurrences": 2,
+    "canCancel": true
+  },
+  {
+    "name": "ClickUp",
+    "category": "dev",
+    "categoryLabel": "🔵 DEV TOOLS - REVIEW",
+    "monthlyAmount": "102",
+    "action": "Review",
+    "occurrences": 4,
+    "canCancel": true
+  },
+  {
+    "name": "Canva",
+    "category": "marketing",
+    "categoryLabel": "🟣 MARKETING - PAUSE?",
+    "monthlyAmount": "41",
+    "action": "Review",
+    "occurrences": 3,
+    "canCancel": true
+  },
+  {
+    "name": "Facebook/Meta Ads",
+    "category": "marketing",
+    "categoryLabel": "🟣 MARKETING - PAUSE?",
+    "monthlyAmount": "211",
+    "action": "Pause if no leads",
+    "occurrences": 62,
+    "canCancel": true
+  },
+  {
+    "name": "Outback Accounting",
+    "category": "review",
+    "categoryLabel": "⚪ REVIEW NEED",
+    "monthlyAmount": "358",
+    "action": "Already have Connect",
+    "occurrences": 20,
+    "canCancel": true
+  },
+  {
+    "name": "Google Workspace (Lighthaus)",
+    "category": "review",
+    "categoryLabel": "⚪ REVIEW NEED",
+    "monthlyAmount": "30",
+    "action": "Review if needed",
+    "occurrences": 3,
+    "canCancel": true
+  },
+  {
+    "name": "AFI Loan",
+    "category": "debt",
+    "categoryLabel": "⬛ DEBT/PAYMENT PLAN",
+    "monthlyAmount": "1543",
+    "action": "Payment plan",
+    "occurrences": 3,
+    "canCancel": false
+  },
+  {
+    "name": "Max Stephens (Coach)",
+    "category": "debt",
+    "categoryLabel": "⬛ DEBT/PAYMENT PLAN",
+    "monthlyAmount": "2026",
+    "action": "Defer payment",
+    "occurrences": 3,
+    "canCancel": false
+  },
+  {
+    "name": "Prospa Loan",
+    "category": "debt",
+    "categoryLabel": "⬛ DEBT/PAYMENT PLAN",
+    "monthlyAmount": "3376",
+    "action": "Payment plan",
+    "occurrences": 3,
+    "canCancel": false
+  },
+  {
+    "name": "Zoom",
+    "category": "essential",
+    "categoryLabel": "🟢 ESSENTIAL - KEEP",
+    "monthlyAmount": "70",
+    "action": "Keep",
+    "occurrences": 9,
+    "canCancel": false
+  },
+  {
+    "name": "Google Workspace (Mint)",
+    "category": "essential",
+    "categoryLabel": "🟢 ESSENTIAL - KEEP",
+    "monthlyAmount": "542",
+    "action": "Keep",
+    "occurrences": 1,
+    "canCancel": false
+  },
+  {
+    "name": "iCare Insurance",
+    "category": "essential",
+    "categoryLabel": "🟢 ESSENTIAL - KEEP",
+    "monthlyAmount": "164",
+    "action": "Keep - required",
+    "occurrences": 1,
+    "canCancel": false
+  },
+  {
+    "name": "Connect Advisors",
+    "category": "essential",
+    "categoryLabel": "🟢 ESSENTIAL - KEEP",
+    "monthlyAmount": "2573",
+    "action": "Keep - accountant",
+    "occurrences": 3,
+    "canCancel": false
+  }
+]

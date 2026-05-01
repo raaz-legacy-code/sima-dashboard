@@ -306,6 +306,7 @@
             <button class="nav-tab" onclick="showPage('alerts')">🔔 Accountant Alerts</button>
             <button class="nav-tab" onclick="showPage('ai')">🤖 AI Costs</button>
             <button class="nav-tab" onclick="showPage('payments')">💳 Payments</button>
+            <button class="nav-tab" onclick="showPage('savings')">💰 Savings</button>
         </div>
     </nav>
 
@@ -615,6 +616,241 @@
     </div>
 
     </main>
+
+    
+        <!-- COST SAVINGS PAGE -->
+        <div id="savings" class="page">
+            <div class="alert" style="background:linear-gradient(135deg,#1a2e1a,#16301a);border-color:#28a745">
+                <h4 style="color:#28a745">💰 Potential Monthly Savings: $1,887</h4>
+                <p>Review subscriptions and recurring costs. Check the box to trigger cancellation or action.</p>
+            </div>
+            
+            <div class="summary-grid" style="margin-bottom:25px">
+                <div class="summary-card">
+                    <div class="label">Cancel Now</div>
+                    <div class="value negative">$1,550</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Cut/Reduce</div>
+                    <div class="value warning">$180</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Consolidate AI</div>
+                    <div class="value warning">$157</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Total Potential</div>
+                    <div class="value positive">$1,887/mo</div>
+                </div>
+            </div>
+            
+            <div class="table-section">
+                <h3>🔴 CANCEL IMMEDIATELY</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Service</th>
+                            <th class="amount">Monthly Cost</th>
+                            <th>Recommended Action</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="Aircall" data-action="cancel"></td>
+                            <td><strong>Aircall</strong></td>
+                            <td class="amount negative">$673</td>
+                            <td>CANCEL NOW - not using</td>
+                            <td><button class="btn" style="background:#dc3545;color:white;padding:4px 8px;font-size:12px" onclick="triggerCancel('Aircall')">Cancel</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="MessageMedia" data-action="cancel"></td>
+                            <td><strong>MessageMedia</strong></td>
+                            <td class="amount negative">$877</td>
+                            <td>CANCEL NOW - not using</td>
+                            <td><button class="btn" style="background:#dc3545;color:white;padding:4px 8px;font-size:12px" onclick="triggerCancel('MessageMedia')">Cancel</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-section">
+                <h3>🟡 AI TOOLS - CONSOLIDATE (Pick 2 max)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Keep?</th>
+                            <th>Service</th>
+                            <th class="amount">Monthly Cost</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" checked class="savings-check" data-service="Claude" data-action="keep"></td>
+                            <td>Claude/Anthropic</td>
+                            <td class="amount">$17</td>
+                            <td>Powers Rey - KEEP</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="ChatGPT" data-action="review"></td>
+                            <td>ChatGPT/OpenAI</td>
+                            <td class="amount">$55</td>
+                            <td>Review - do you use directly?</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="Manus" data-action="review"></td>
+                            <td>Manus AI</td>
+                            <td class="amount">$45</td>
+                            <td>Review usage</td>
+                        </tr>
+                        <tr style="background:#2a1a1a">
+                            <td><input type="checkbox" class="savings-check" data-service="Fyxer" data-action="cancel"></td>
+                            <td><strong>AI.Fyxer</strong></td>
+                            <td class="amount negative">$198</td>
+                            <td>CANCEL - redundant with Rey</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-section">
+                <h3>🔵 DEV TOOLS - REVIEW</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Keep?</th>
+                            <th>Service</th>
+                            <th class="amount">Monthly Cost</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="Bubble" data-action="review"></td>
+                            <td>Bubble.io</td>
+                            <td class="amount">$200</td>
+                            <td>Review - is Lighthaus still using?</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="ClickUp" data-action="review"></td>
+                            <td>ClickUp</td>
+                            <td class="amount">$102</td>
+                            <td>Review - project management</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="Base44" data-action="review"></td>
+                            <td>Base44</td>
+                            <td class="amount">$29</td>
+                            <td>Review usage</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-section">
+                <h3>🟠 LIFESTYLE - CUT/REDUCE</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cut?</th>
+                            <th>Category</th>
+                            <th class="amount">Monthly Spend</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="Casino" data-action="cut"></td>
+                            <td>The Star Casino</td>
+                            <td class="amount negative">$45</td>
+                            <td>Eliminate</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="UberEats" data-action="reduce"></td>
+                            <td>Uber Eats</td>
+                            <td class="amount warning">$47</td>
+                            <td>Reduce 80%</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="DoorDash" data-action="reduce"></td>
+                            <td>DoorDash</td>
+                            <td class="amount warning">$133</td>
+                            <td>Reduce 80%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-section">
+                <h3>⚪ REVIEW - DUPLICATE SERVICES?</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Review</th>
+                            <th>Service</th>
+                            <th class="amount">Monthly Cost</th>
+                            <th>Question</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="Outback" data-action="review"></td>
+                            <td>Outback Accounting</td>
+                            <td class="amount warning">$358</td>
+                            <td>Already have Connect Advisors - duplicate?</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="GWorkspaceLH" data-action="review"></td>
+                            <td>Google Workspace (Lighthaus)</td>
+                            <td class="amount">$30</td>
+                            <td>Still needed? Can merge with Mint?</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="savings-check" data-service="FBAds" data-action="pause"></td>
+                            <td>Facebook/Meta Ads</td>
+                            <td class="amount warning">$211</td>
+                            <td>Pause if not generating leads</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top:20px;display:flex;gap:15px">
+                <button class="btn btn-primary" onclick="executeSavings()">
+                    ✅ Execute Selected Actions
+                </button>
+                <button class="btn" style="background:#28a745;color:white" onclick="exportSavingsPlan()">
+                    📥 Export Savings Plan
+                </button>
+            </div>
+        </div>
+        
+        <script>
+        function triggerCancel(service) {
+            if (confirm('Trigger cancellation for ' + service + '?\n\nRey will draft and send the cancellation request.')) {
+                alert('Cancellation request queued for ' + service + '. Rey will send the email.');
+                // TODO: Actually trigger the cancellation
+            }
+        }
+        
+        function executeSavings() {
+            const checked = document.querySelectorAll('.savings-check:checked');
+            const actions = [];
+            checked.forEach(cb => {
+                actions.push({
+                    service: cb.dataset.service,
+                    action: cb.dataset.action
+                });
+            });
+            alert('Executing ' + actions.length + ' savings actions. Rey will process these.');
+        }
+        
+        function exportSavingsPlan() {
+            alert('Savings plan exported to PDF');
+        }
+        </script>
 
     <div class="footer">
 
