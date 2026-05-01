@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sima Empire - CFO Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -699,6 +699,7 @@
         }
 
         function renderChart() {
+            console.log("Rendering chart with data:", weeklyData.length);
             const ctx = document.getElementById('mainChart').getContext('2d');
             if (window.mainChart) window.mainChart.destroy();
 
@@ -836,7 +837,7 @@
             }
         }
 
-        init();
+        window.onload = function() { console.log("Window loaded"); init(); };
     </script>
 </body>
 </html>

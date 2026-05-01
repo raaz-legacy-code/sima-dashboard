@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chart Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="background:#000;padding:20px">
+    <h1 style="color:white">Chart Test</h1>
+    <canvas id="testChart" width="800" height="400"></canvas>
+    <script>
+        console.log('Chart.js loaded:', typeof Chart);
+        const ctx = document.getElementById('testChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Week 18', 'Week 19', 'Week 20', 'Week 21', 'Week 22'],
+                datasets: [{
+                    label: 'Inflow',
+                    data: [53625, 72780, 0, 0, 11000],
+                    backgroundColor: 'rgba(40, 167, 69, 0.7)'
+                }, {
+                    label: 'Outflow',
+                    data: [-90209, -68374, -47105, -43341, -40784],
+                    backgroundColor: 'rgba(220, 53, 69, 0.7)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { labels: { color: '#fff' } } },
+                scales: {
+                    x: { ticks: { color: '#888' } },
+                    y: { ticks: { color: '#888' } }
+                }
+            }
+        });
+        console.log('Chart rendered');
+    </script>
+</body>
+</html>
