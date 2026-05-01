@@ -632,6 +632,10 @@
                             <option value="no">No GST</option>
                         </select>
                     </div>
+                    <div>
+                        <label style="display:block;color:#888;font-size:12px;margin-bottom:5px">Rep Commission %</label>
+                        <input type="number" id="dealRepComm" placeholder="50" value="50" style="width:100%;padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    </div>
                 </div>
                 
                 <!-- TRANCHES -->
@@ -2010,8 +2014,173 @@
         });
         
         
+                // ========================================
+        // REAL FORECAST ENGINE - NO DUMMY DATA
+        // ========================================
+        
+        // Fixed Expenses Registry (editable)
+        const defaultFixedExpenses = [
+            // MINT INVEST
+            { id: 1, entity: 'mint', description: 'Staff wages (CJ etc)', amount: 8000, cadence: 'monthly', weekOfMonth: 1 },
+            { id: 2, entity: 'mint', description: 'CoreLogic License', amount: 7425, cadence: 'quarterly', monthOfQuarter: 1 },
+            { id: 3, entity: 'mint', description: 'Office Rent', amount: 3942, cadence: 'monthly', weekOfMonth: 1 },
+            { id: 4, entity: 'mint', description: 'Prospa Loan', amount: 2000, cadence: 'weekly' },
+            { id: 5, entity: 'mint', description: 'Software/CRM', amount: 1500, cadence: 'monthly', weekOfMonth: 1 },
+            { id: 6, entity: 'mint', description: 'Insurance', amount: 500, cadence: 'monthly', weekOfMonth: 1 },
+            // JS LAW GROUP
+            { id: 10, entity: 'jsl', description: 'Nikita wages', amount: 5000, cadence: 'monthly', weekOfMonth: 2 },
+            { id: 11, entity: 'jsl', description: 'Nabeela wages', amount: 4500, cadence: 'monthly', weekOfMonth: 2 },
+            { id: 12, entity: 'jsl', description: 'Office License', amount: 1639, cadence: 'monthly', weekOfMonth: 1 },
+            { id: 13, entity: 'jsl', description: 'PI Insurance', amount: 800, cadence: 'monthly', weekOfMonth: 1 },
+            { id: 14, entity: 'jsl', description: 'Smokeball', amount: 500, cadence: 'monthly', weekOfMonth: 1 },
+            // HOUSEHOLD
+            { id: 20, entity: 'household', description: 'Mortgage - Dee Why', amount: 4000, cadence: 'weekly' },
+            { id: 21, entity: 'household', description: 'Mortgage - Collaroy', amount: 2200, cadence: 'weekly' },
+            { id: 22, entity: 'household', description: 'Daycare', amount: 2500, cadence: 'monthly', weekOfMonth: 1 },
+            { id: 23, entity: 'household', description: 'Utilities', amount: 800, cadence: 'monthly', weekOfMonth: 2 },
+            { id: 24, entity: 'household', description: 'Groceries/Living', amount: 500, cadence: 'weekly' },
+            { id: 25, entity: 'household', description: 'Insurance', amount: 500, cadence: 'monthly', weekOfMonth: 1 },
+        ];
+        
+        function getFixedExpenses() {
+            const saved = localStorage.getItem('fixedExpenses');
+            return saved ? JSON.parse(saved) : defaultFixedExpenses;
+        }
+        
+        function saveFixedExpenses(expenses) {
+            localStorage.setItem('fixedExpenses', JSON.stringify(expenses));
+        }
+        
+        // Generate 16 weeks of forecast from REAL data
+        function generateRealForecast() {
+            const weeks = [];
+            const today = new Date();
+            const startOfWeek = new Date(today);
+            startOfWeek.setDate(today.getDate() - today.getDay()); // Start of current week
+            
+            const fixedExpenses = getFixedExpenses();
+            const deals = typeof getDeals === 'function' ? getDeals() : [];
+            const otherRevenue = typeof getOtherRevenue === 'function' ? getOtherRevenue() : [];
+            const manualExpenses = JSON.parse(localStorage.getItem('manualExpenses') || '[]');
+            
+            for (let i = 0; i < 16; i++) {
+                const weekStart = new Date(startOfWeek);
+                weekStart.setDate(weekStart.getDate() + (i * 7));
+                const weekEnd = new Date(weekStart);
+                weekEnd.setDate(weekEnd.getDate() + 6);
+                
+                const weekNum = getWeekNumberFromDate(weekStart);
+                const monthName = weekStart.toLocaleString('en-AU', { month: 'short' });
+                
+                const week = {
+                    week: weekNum,
+                    month: monthName,
+                    from: weekStart.toISOString().split('T')[0],
+                    current: i === 0,
+                    mint: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] },
+                    jsl: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] },
+                    household: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] }
+                };
+                
+                // Add fixed expenses
+                fixedExpenses.forEach(exp => {
+                    let applies = false;
+                    const weekOfMonth = Math.ceil(weekStart.getDate() / 7);
+                    
+                    if (exp.cadence === 'weekly') {
+                        applies = true;
+                    } else if (exp.cadence === 'fortnightly' && i % 2 === 0) {
+                        applies = true;
+                    } else if (exp.cadence === 'monthly' && weekOfMonth === (exp.weekOfMonth || 1)) {
+                        applies = true;
+                    } else if (exp.cadence === 'quarterly' && weekOfMonth === 1 && [0, 3, 6, 9].includes(weekStart.getMonth() % 3 === 0 ? weekStart.getMonth() : -1)) {
+                        // Rough quarterly check
+                        if (weekStart.getMonth() % 3 === (exp.monthOfQuarter - 1 || 0)) applies = true;
+                    }
+                    
+                    if (applies && week[exp.entity]) {
+                        week[exp.entity].outflow += exp.amount;
+                        week[exp.entity].outflowItems.push(exp.description + ': $' + exp.amount.toLocaleString());
+                    }
+                });
+                
+                // Add deal tranches (INCOME) and rep commissions (EXPENSE)
+                deals.forEach(deal => {
+                    deal.tranches.forEach(tranche => {
+                        if (tranche.paid) return;
+                        
+                        const trancheDate = new Date(tranche.date);
+                        if (trancheDate >= weekStart && trancheDate <= weekEnd) {
+                            const entity = deal.entity || 'mint';
+                            if (week[entity]) {
+                                // Add inflow
+                                week[entity].inflow += tranche.amount;
+                                week[entity].inflowItems.push(deal.client + ' T' + tranche.number + ': $' + tranche.amount.toLocaleString());
+                                
+                                // Calculate rep commission (default 50% if not specified)
+                                const repPct = deal.repCommission || 50;
+                                const repComm = tranche.amount * (repPct / 100);
+                                if (repComm > 0) {
+                                    week[entity].outflow += repComm;
+                                    week[entity].outflowItems.push('Rep comm (' + deal.client + '): $' + repComm.toLocaleString());
+                                }
+                            }
+                        }
+                    });
+                });
+                
+                // Add other revenue
+                otherRevenue.forEach(rev => {
+                    if (rev.cadence === 'once' && rev.date) {
+                        const revDate = new Date(rev.date);
+                        if (revDate >= weekStart && revDate <= weekEnd) {
+                            const entity = rev.entity || 'mint';
+                            if (week[entity]) {
+                                week[entity].inflow += rev.amountIncGST;
+                                week[entity].inflowItems.push(rev.description + ': $' + rev.amountIncGST.toLocaleString());
+                            }
+                        }
+                    } else if (rev.cadence === 'weekly') {
+                        const entity = rev.entity || 'mint';
+                        if (week[entity]) {
+                            week[entity].inflow += rev.amountIncGST;
+                            week[entity].inflowItems.push(rev.description + ': $' + rev.amountIncGST.toLocaleString());
+                        }
+                    } else if (rev.cadence === 'monthly' && Math.ceil(weekStart.getDate() / 7) === 1) {
+                        const entity = rev.entity || 'mint';
+                        if (week[entity]) {
+                            week[entity].inflow += rev.amountIncGST;
+                            week[entity].inflowItems.push(rev.description + ': $' + rev.amountIncGST.toLocaleString());
+                        }
+                    }
+                });
+                
+                // Add manual one-off expenses
+                manualExpenses.forEach(exp => {
+                    const expDate = new Date(exp.firstDate);
+                    if (exp.cadence === 'one-time' && expDate >= weekStart && expDate <= weekEnd) {
+                        const entity = exp.entity || 'mint';
+                        if (week[entity]) {
+                            week[entity].outflow += exp.amount;
+                            week[entity].outflowItems.push(exp.description + ': $' + exp.amount.toLocaleString());
+                        }
+                    }
+                });
+                
+                weeks.push(week);
+            }
+            
+            return weeks;
+        }
+
+
         // Merge pipeline deals into weekly forecast data
         function getEnhancedWeeklyData() {
+            // Use REAL data-driven forecast instead of dummy data
+            return generateRealForecast();
+        }
+        
+        function getEnhancedWeeklyData_OLD() {
             const deals = typeof getDeals === 'function' ? getDeals() : [];
             const revenue = typeof getOtherRevenue === 'function' ? getOtherRevenue() : [];
             
@@ -2885,6 +3054,8 @@
                 return;
             }
             
+            const repComm = parseFloat(document.getElementById('dealRepComm').value) || 50;
+            
             const deals = getDeals();
             deals.push({
                 id: Date.now(),
@@ -2895,6 +3066,7 @@
                 totalExGST: total,
                 gst: gst,
                 totalIncGST: total * (gst === 'yes' ? 1.1 : 1),
+                repCommission: repComm,
                 tranches: tranches,
                 status: 'active',
                 createdAt: new Date().toISOString()
