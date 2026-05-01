@@ -307,6 +307,9 @@
             <button class="nav-tab" onclick="showPage('ai')">🤖 AI Costs</button>
             <button class="nav-tab" onclick="showPage('payments')">💳 Payments</button>
             <button class="nav-tab" onclick="showPage('savings')">💰 Savings</button>
+            <button class="nav-tab" onclick="showPage('profit')">📈 P&L</button>
+            <button class="nav-tab" onclick="showPage('debts')">💳 Debts</button>
+            <button class="nav-tab" onclick="showPage('wisdom')">🧠 AI Wisdom</button>
         </div>
     </nav>
 
@@ -852,6 +855,387 @@
         }
         </script>
 
+        <!-- PROFITABILITY PAGE -->
+        <div id="profit" class="page">
+            <div class="alert">
+                <h4>📈 Profitability Analysis</h4>
+                <p>Real-time P&L by entity — Are we making money?</p>
+            </div>
+            
+            <div class="summary-grid" style="margin-bottom:25px">
+                <div class="summary-card" style="border-left:4px solid #3b82f6">
+                    <div class="label">Mint Monthly</div>
+                    <div class="value" id="mintProfit">-$12,400</div>
+                    <div style="font-size:11px;color:#888">After tax estimate</div>
+                </div>
+                <div class="summary-card" style="border-left:4px solid #10b981">
+                    <div class="label">JSL Monthly</div>
+                    <div class="value" id="jslProfit">$8,200</div>
+                    <div style="font-size:11px;color:#888">After tax estimate</div>
+                </div>
+                <div class="summary-card" style="border-left:4px solid #f59e0b">
+                    <div class="label">Household Need</div>
+                    <div class="value negative">-$14,250</div>
+                    <div style="font-size:11px;color:#888">Monthly fixed costs</div>
+                </div>
+                <div class="summary-card" style="border-left:4px solid #ef4444">
+                    <div class="label">Net Position</div>
+                    <div class="value negative" id="netPosition">-$18,450</div>
+                    <div style="font-size:11px;color:#888">Shortfall/surplus</div>
+                </div>
+            </div>
+            
+            <!-- MINT INVEST P&L -->
+            <div class="table-section">
+                <h3>🏢 Mint Invest - Monthly P&L</h3>
+                <table>
+                    <thead><tr><th colspan="2">Revenue</th><th class="amount">Amount</th><th>Notes</th></tr></thead>
+                    <tbody id="mintRevenueBody">
+                        <tr><td colspan="2">Pipeline Income (avg)</td><td class="amount positive" contenteditable="true" data-field="mint-revenue">$23,400</td><td style="color:#888">From deal flow</td></tr>
+                        <tr><td colspan="2">Referral Commissions</td><td class="amount positive" contenteditable="true">$2,000</td><td style="color:#888">Broker referrals</td></tr>
+                        <tr style="font-weight:bold;background:#1a2e1a"><td colspan="2">Total Revenue</td><td class="amount positive">$25,400</td><td></td></tr>
+                    </tbody>
+                </table>
+                <table style="margin-top:10px">
+                    <thead><tr><th colspan="2">Expenses</th><th class="amount">Amount</th><th>Editable</th></tr></thead>
+                    <tbody id="mintExpenseBody">
+                        <tr><td colspan="2">Office Rent (Urban Collective)</td><td class="amount negative" contenteditable="true">$3,942</td><td>📝</td></tr>
+                        <tr><td colspan="2">Staff (CJ, contractors)</td><td class="amount negative" contenteditable="true">$8,000</td><td>📝</td></tr>
+                        <tr><td colspan="2">CoreLogic License</td><td class="amount negative" contenteditable="true">$7,425</td><td>📝</td></tr>
+                        <tr><td colspan="2">Software (CRM, tools)</td><td class="amount negative" contenteditable="true">$2,500</td><td>📝</td></tr>
+                        <tr><td colspan="2">Marketing</td><td class="amount negative" contenteditable="true">$3,000</td><td>📝</td></tr>
+                        <tr><td colspan="2">Insurance</td><td class="amount negative" contenteditable="true">$500</td><td>📝</td></tr>
+                        <tr><td colspan="2">Accounting</td><td class="amount negative" contenteditable="true">$1,500</td><td>📝</td></tr>
+                        <tr><td colspan="2">Loan Repayments</td><td class="amount negative" contenteditable="true">$8,000</td><td>📝</td></tr>
+                        <tr style="font-weight:bold;background:#2a1a1a"><td colspan="2">Total Expenses</td><td class="amount negative">$34,867</td><td></td></tr>
+                    </tbody>
+                </table>
+                <table style="margin-top:10px">
+                    <tbody>
+                        <tr style="font-weight:bold"><td>Pre-Tax Profit</td><td></td><td class="amount negative">-$9,467</td><td style="color:#dc3545">⚠️ LOSS</td></tr>
+                        <tr><td>Est. Tax Provision (25%)</td><td></td><td class="amount">$0</td><td style="color:#888">No tax on loss</td></tr>
+                        <tr style="font-weight:bold;font-size:18px;background:#1f1f1f"><td>After-Tax Profit</td><td></td><td class="amount negative">-$9,467</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- JS LAW GROUP P&L -->
+            <div class="table-section">
+                <h3>⚖️ JS Law Group - Monthly P&L</h3>
+                <table>
+                    <thead><tr><th colspan="2">Revenue</th><th class="amount">Amount</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td colspan="2">Legal Fees (Roshni billings)</td><td class="amount positive" contenteditable="true">$35,000</td><td style="color:#888">Avg monthly</td></tr>
+                        <tr><td colspan="2">Other Income</td><td class="amount positive" contenteditable="true">$0</td><td></td></tr>
+                        <tr style="font-weight:bold;background:#1a2e1a"><td colspan="2">Total Revenue</td><td class="amount positive">$35,000</td><td></td></tr>
+                    </tbody>
+                </table>
+                <table style="margin-top:10px">
+                    <thead><tr><th colspan="2">Expenses</th><th class="amount">Amount</th><th>Editable</th></tr></thead>
+                    <tbody>
+                        <tr><td colspan="2">Wages (Nikita, Nabeela)</td><td class="amount negative" contenteditable="true">$21,635</td><td>📝</td></tr>
+                        <tr><td colspan="2">Office/License Fees</td><td class="amount negative" contenteditable="true">$1,639</td><td>📝</td></tr>
+                        <tr><td colspan="2">Software (Smokeball, etc)</td><td class="amount negative" contenteditable="true">$500</td><td>📝</td></tr>
+                        <tr><td colspan="2">Insurance (PI)</td><td class="amount negative" contenteditable="true">$800</td><td>📝</td></tr>
+                        <tr><td colspan="2">Accounting</td><td class="amount negative" contenteditable="true">$500</td><td>📝</td></tr>
+                        <tr style="font-weight:bold;background:#2a1a1a"><td colspan="2">Total Expenses</td><td class="amount negative">$25,074</td><td></td></tr>
+                    </tbody>
+                </table>
+                <table style="margin-top:10px">
+                    <tbody>
+                        <tr style="font-weight:bold"><td>Pre-Tax Profit</td><td></td><td class="amount positive">$9,926</td><td style="color:#28a745">✅ PROFIT</td></tr>
+                        <tr><td>Est. Tax Provision (25%)</td><td></td><td class="amount negative">-$2,482</td><td style="color:#888">Set aside</td></tr>
+                        <tr style="font-weight:bold;font-size:18px;background:#1f1f1f"><td>After-Tax Profit</td><td></td><td class="amount positive">$7,444</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- HOUSEHOLD COSTS -->
+            <div class="table-section">
+                <h3>🏠 Household - Monthly Requirements</h3>
+                <table>
+                    <thead><tr><th>Category</th><th class="amount">Amount</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Mortgage (Dee Why + Collaroy)</td><td class="amount negative" contenteditable="true">$8,000</td><td>📝</td></tr>
+                        <tr><td>Daycare</td><td class="amount negative" contenteditable="true">$2,500</td><td>📝</td></tr>
+                        <tr><td>Utilities</td><td class="amount negative" contenteditable="true">$800</td><td>📝</td></tr>
+                        <tr><td>Groceries</td><td class="amount negative" contenteditable="true">$1,500</td><td>📝</td></tr>
+                        <tr><td>Insurance</td><td class="amount negative" contenteditable="true">$500</td><td>📝</td></tr>
+                        <tr><td>Transport</td><td class="amount negative" contenteditable="true">$450</td><td>📝</td></tr>
+                        <tr><td>Other Living</td><td class="amount negative" contenteditable="true">$500</td><td>📝</td></tr>
+                        <tr style="font-weight:bold;background:#2a1a1a"><td>Total Household Need</td><td class="amount negative">$14,250</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- BOTTOM LINE -->
+            <div class="alert" style="background:linear-gradient(135deg,#2a1a1a,#1a1a1a);border-color:#dc3545;margin-top:20px">
+                <h4 style="color:#dc3545">📊 Bottom Line: Can We Survive?</h4>
+                <table style="width:100%;margin-top:10px">
+                    <tr><td>Mint After-Tax</td><td class="amount negative">-$9,467</td></tr>
+                    <tr><td>JSL After-Tax</td><td class="amount positive">+$7,444</td></tr>
+                    <tr><td>Household Need</td><td class="amount negative">-$14,250</td></tr>
+                    <tr style="font-weight:bold;font-size:18px;border-top:2px solid #333"><td>NET MONTHLY GAP</td><td class="amount negative">-$16,273</td></tr>
+                </table>
+                <p style="margin-top:15px;color:#f87171">⚠️ <strong>Current state:</strong> Losing ~$16K/month. Need either more revenue or significant cost cuts.</p>
+            </div>
+        </div>
+
+
+        <!-- DEBTS MANAGEMENT PAGE -->
+        <div id="debts" class="page">
+            <div class="alert">
+                <h4>💳 Debt Tracker</h4>
+                <p>Track all debts and record payments. Balances update automatically.</p>
+            </div>
+            
+            <div class="summary-grid" style="margin-bottom:25px">
+                <div class="summary-card">
+                    <div class="label">Total Debt</div>
+                    <div class="value negative" id="totalDebt">$214,657</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">High Priority</div>
+                    <div class="value negative">$86,000</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Paid This Month</div>
+                    <div class="value positive" id="paidThisMonth">$0</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Monthly Target</div>
+                    <div class="value warning">$15,000</div>
+                </div>
+            </div>
+            
+            <div class="table-section">
+                <h3>📋 Debt Register (Click to edit)</h3>
+                <table id="debtTable">
+                    <thead>
+                        <tr>
+                            <th>Creditor</th>
+                            <th>Original</th>
+                            <th class="amount">Outstanding</th>
+                            <th>Priority</th>
+                            <th>Notes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="debtBody"></tbody>
+                </table>
+                
+                <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+                    <button class="btn btn-primary" onclick="showAddDebtForm()">➕ Add Debt</button>
+                    <button class="btn" style="background:#28a745;color:white" onclick="showPaymentForm()">💰 Record Payment</button>
+                    <button class="btn" style="background:#333" onclick="exportDebts()">📥 Export</button>
+                </div>
+            </div>
+            
+            <!-- Add Debt Form -->
+            <div id="addDebtForm" style="display:none;margin-top:20px;padding:20px;background:#1a1a2e;border:1px solid #3b82f6;border-radius:12px">
+                <h4>➕ Add New Debt</h4>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:15px;margin-top:15px">
+                    <input type="text" id="debtCreditor" placeholder="Creditor Name" style="padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    <input type="number" id="debtAmount" placeholder="Amount Owed" style="padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    <select id="debtPriority" style="padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                        <option value="high">🔴 High Priority</option>
+                        <option value="medium">🟡 Medium</option>
+                        <option value="low">🟢 Low</option>
+                    </select>
+                    <input type="text" id="debtNotes" placeholder="Notes" style="padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                </div>
+                <button class="btn btn-primary" style="margin-top:15px" onclick="addDebt()">Add Debt</button>
+                <button class="btn" style="margin-top:15px;background:#333" onclick="hideAddDebtForm()">Cancel</button>
+            </div>
+            
+            <!-- Record Payment Form -->
+            <div id="paymentForm" style="display:none;margin-top:20px;padding:20px;background:#1a2e1a;border:1px solid #28a745;border-radius:12px">
+                <h4>💰 Record Payment</h4>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:15px;margin-top:15px">
+                    <select id="paymentCreditor" style="padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff"></select>
+                    <input type="number" id="paymentAmount" placeholder="Payment Amount" style="padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                    <input type="date" id="paymentDate" style="padding:10px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#fff">
+                </div>
+                <button class="btn" style="margin-top:15px;background:#28a745;color:white" onclick="recordPayment()">Record Payment</button>
+                <button class="btn" style="margin-top:15px;background:#333" onclick="hidePaymentForm()">Cancel</button>
+            </div>
+            
+            <!-- Payment History -->
+            <div class="table-section" style="margin-top:20px">
+                <h3>📜 Payment History</h3>
+                <table>
+                    <thead>
+                        <tr><th>Date</th><th>Creditor</th><th class="amount">Amount</th><th>Running Balance</th></tr>
+                    </thead>
+                    <tbody id="paymentHistory"></tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- AI SUGGESTIONS PAGE -->
+        <div id="wisdom" class="page">
+            <div class="alert" style="background:linear-gradient(135deg,#1a1a2e,#2e1a2e);border-color:#8b5cf6">
+                <h4 style="color:#8b5cf6">🧠 AI Strategic Suggestions</h4>
+                <p>Insights drawn from Mochary, Musk, Jobs, Buffett, Dalio & proven principles</p>
+            </div>
+            
+            <!-- CURRENT STATE ANALYSIS -->
+            <div class="table-section" style="border-left:4px solid #ef4444">
+                <h3>🚨 Current Reality Check</h3>
+                <div style="padding:15px;background:#1f1f1f;border-radius:8px">
+                    <p><strong>Cash Position:</strong> ~$29K combined (below $50K safety buffer)</p>
+                    <p><strong>Burn Rate:</strong> ~$16K/month gap</p>
+                    <p><strong>Runway:</strong> ~6-8 weeks at current rate</p>
+                    <p style="color:#f87171;margin-top:10px"><strong>⚠️ This is a survival situation, not a growth situation.</strong></p>
+                </div>
+            </div>
+            
+            <!-- MOCHARY - CEO COACHING -->
+            <div class="table-section" style="border-left:4px solid #3b82f6">
+                <h3>📘 Matt Mochary - "The Great CEO Within"</h3>
+                <div style="display:grid;gap:15px">
+                    <div style="padding:15px;background:#1a1a2e;border-radius:8px">
+                        <strong>🎯 Focus on ONE thing</strong>
+                        <p style="color:#888;margin-top:5px">"The most important task of a CEO is to decide what NOT to do."</p>
+                        <p style="color:#3b82f6;margin-top:10px"><strong>For You:</strong> Stop all expansion. Focus 100% on collecting AR ($588K outstanding) and cutting costs. Nothing else matters right now.</p>
+                    </div>
+                    <div style="padding:15px;background:#1a1a2e;border-radius:8px">
+                        <strong>⏰ Time Block Your Week</strong>
+                        <p style="color:#888;margin-top:5px">"Block 2 hours every morning for deep work on your #1 priority."</p>
+                        <p style="color:#3b82f6;margin-top:10px"><strong>For You:</strong> Block 8-10am daily for debt collection calls. No meetings, no emails. Just calls to debtors.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MUSK - FIRST PRINCIPLES -->
+            <div class="table-section" style="border-left:4px solid #10b981">
+                <h3>🚀 Elon Musk - First Principles Thinking</h3>
+                <div style="display:grid;gap:15px">
+                    <div style="padding:15px;background:#1a2e1a;border-radius:8px">
+                        <strong>🔪 "The best part is no part"</strong>
+                        <p style="color:#888;margin-top:5px">"Delete any process step, meeting, or cost you can. If you're not adding 10% back occasionally, you're not deleting enough."</p>
+                        <p style="color:#10b981;margin-top:10px"><strong>Actions:</strong></p>
+                        <ul style="margin-left:20px;color:#888">
+                            <li>Cancel Aircall ($673/mo) - using it? Delete.</li>
+                            <li>Cancel MessageMedia ($877/mo) - delete.</li>
+                            <li>Cancel AI.Fyxer ($198/mo) - Rey does this.</li>
+                            <li>Pause FB Ads ($211/mo) - generating leads?</li>
+                            <li>Review every subscription. Default = cancel.</li>
+                        </ul>
+                    </div>
+                    <div style="padding:15px;background:#1a2e1a;border-radius:8px">
+                        <strong>🏭 "Run lean until profitable"</strong>
+                        <p style="color:#888;margin-top:5px">"A company shouldn't spend money on nice things until it's profitable."</p>
+                        <p style="color:#10b981;margin-top:10px"><strong>For You:</strong> No new hires, no new tools, no new marketing until monthly profit > $20K.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- JOBS - SIMPLIFY -->
+            <div class="table-section" style="border-left:4px solid #f59e0b">
+                <h3>🍎 Steve Jobs - Radical Simplification</h3>
+                <div style="display:grid;gap:15px">
+                    <div style="padding:15px;background:#2e2a1a;border-radius:8px">
+                        <strong>🎯 "Deciding what not to do is as important as deciding what to do"</strong>
+                        <p style="color:#888;margin-top:5px">"Focus means saying no to the hundred other good ideas."</p>
+                        <p style="color:#f59e0b;margin-top:10px"><strong>For You:</strong> You have Mint, JSL, Lighthaus, RAAZ. That's 4 things. Pick 2 max for the next 90 days:</p>
+                        <ul style="margin-left:20px;color:#888">
+                            <li><strong>JSL</strong> - Profitable. Roshni running it. Leave alone.</li>
+                            <li><strong>Mint</strong> - Focus here. Collect AR. One service: buyers agency.</li>
+                            <li><strong>Lighthaus</strong> - Pause. No investment until Mint profitable.</li>
+                            <li><strong>RAAZ</strong> - Vision project. Pause active development.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BUFFETT - AVOID DEBT -->
+            <div class="table-section" style="border-left:4px solid #8b5cf6">
+                <h3>📈 Warren Buffett - Value & Avoiding Destruction</h3>
+                <div style="display:grid;gap:15px">
+                    <div style="padding:15px;background:#1f1a2e;border-radius:8px">
+                        <strong>💀 "Rule #1: Never lose money. Rule #2: Never forget Rule #1"</strong>
+                        <p style="color:#888;margin-top:5px">"Chains of habit are too light to be felt until they are too heavy to be broken."</p>
+                        <p style="color:#8b5cf6;margin-top:10px"><strong>For You:</strong></p>
+                        <ul style="margin-left:20px;color:#888">
+                            <li>Stop the bleeding FIRST. Every dollar saved is a dollar you don't need to earn.</li>
+                            <li>Pay off highest-interest debt first (Prospa).</li>
+                            <li>Never take on new debt until existing debt is manageable.</li>
+                            <li>Your best investment right now is paying off debt, not investing.</li>
+                        </ul>
+                    </div>
+                    <div style="padding:15px;background:#1f1a2e;border-radius:8px">
+                        <strong>🏰 "Build a moat"</strong>
+                        <p style="color:#888;margin-top:5px">"The best business is one where customers have to use you."</p>
+                        <p style="color:#8b5cf6;margin-top:10px"><strong>For You:</strong> Lighthaus data (1B+ CoreLogic data points) IS a moat. But moats are useless if you're dead. Survive first, then build the moat.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DALIO - PRINCIPLES -->
+            <div class="table-section" style="border-left:4px solid #ec4899">
+                <h3>📊 Ray Dalio - Radical Transparency & Principles</h3>
+                <div style="display:grid;gap:15px">
+                    <div style="padding:15px;background:#2e1a2a;border-radius:8px">
+                        <strong>🔍 "Pain + Reflection = Progress"</strong>
+                        <p style="color:#888;margin-top:5px">"Embrace your mistakes. They are your greatest teachers."</p>
+                        <p style="color:#ec4899;margin-top:10px"><strong>Reflection Questions:</strong></p>
+                        <ul style="margin-left:20px;color:#888">
+                            <li>How did we get to 20 staff and then to 3? What went wrong?</li>
+                            <li>Which hires/contractors extracted value vs created value?</li>
+                            <li>What would you do differently if starting over tomorrow?</li>
+                            <li>Document the lessons. Never repeat them.</li>
+                        </ul>
+                    </div>
+                    <div style="padding:15px;background:#2e1a2a;border-radius:8px">
+                        <strong>📐 "Create principles, then follow them"</strong>
+                        <p style="color:#888;margin-top:5px">"Write down what you believe works and stick to it."</p>
+                        <p style="color:#ec4899;margin-top:10px"><strong>Suggested Principles for Survival Mode:</strong></p>
+                        <ol style="margin-left:20px;color:#888">
+                            <li>No spend over $500 without 24h reflection</li>
+                            <li>No new hires until 3 months profitable</li>
+                            <li>Every week: collect AR, cut costs, review cash</li>
+                            <li>$20K minimum balance at all times</li>
+                            <li>Every new expense must be offset by a cut elsewhere</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- THIS WEEK'S ACTIONS -->
+            <div class="alert" style="background:linear-gradient(135deg,#1a2e1a,#1a1f1a);border-color:#28a745;margin-top:20px">
+                <h4 style="color:#28a745">✅ Rey's Recommended Actions This Week</h4>
+                <div style="display:grid;gap:10px;margin-top:15px">
+                    <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                        <input type="checkbox" style="width:20px;height:20px"> 
+                        <span><strong>Monday:</strong> Call HUNTERSCAP ($55K) - direct phone call</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                        <input type="checkbox" style="width:20px;height:20px"> 
+                        <span><strong>Monday:</strong> Cancel Aircall, MessageMedia, AI.Fyxer = $1,748/mo saved</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                        <input type="checkbox" style="width:20px;height:20px"> 
+                        <span><strong>Tuesday:</strong> Pay Connect Advisors $2K (committed)</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                        <input type="checkbox" style="width:20px;height:20px"> 
+                        <span><strong>Wednesday:</strong> Send follow-up to Avanti ($60.5K)</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                        <input type="checkbox" style="width:20px;height:20px"> 
+                        <span><strong>Thursday:</strong> Review all subscriptions with Roshni - default = cancel</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                        <input type="checkbox" style="width:20px;height:20px"> 
+                        <span><strong>Friday:</strong> Update cashflow with any payments received</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
     <div class="footer">
 
         <!-- PAYMENTS PAGE -->
@@ -1346,6 +1730,7 @@
 
         // Initialize
         function init() {
+            renderDebts();
             document.getElementById('lastUpdate').textContent = new Date().toLocaleString('en-AU', {
                 timeZone: 'Australia/Sydney', dateStyle: 'medium', timeStyle: 'short'
             });
@@ -1724,6 +2109,216 @@
             
             return total;
         }
+
+
+        
+        // DEBT MANAGEMENT
+        const defaultDebts = [
+            {id: 1, creditor: 'ATO', original: 45000, outstanding: 45000, priority: 'high', notes: 'Payment plan needed'},
+            {id: 2, creditor: 'Prospa', original: 33000, outstanding: 33000, priority: 'high', notes: 'High interest'},
+            {id: 3, creditor: 'Xavier Advertising', original: 26000, outstanding: 15892, priority: 'medium', notes: 'Offset potential'},
+            {id: 4, creditor: 'Ralph', original: 24000, outstanding: 24000, priority: 'medium', notes: 'Review offsets'},
+            {id: 5, creditor: 'Zaver Dad', original: 40000, outstanding: 40000, priority: 'low', notes: 'Family - flexible'},
+            {id: 6, creditor: 'Chris (Employee)', original: 13557, outstanding: 13557, priority: 'medium', notes: 'Payout owed'},
+            {id: 7, creditor: 'Frank Toner', original: 8800, outstanding: 0, priority: 'low', notes: 'Settled for $4,500'},
+            {id: 8, creditor: 'Fred', original: 10000, outstanding: 10000, priority: 'low', notes: ''},
+            {id: 9, creditor: 'Simar', original: 5500, outstanding: 5500, priority: 'low', notes: 'Lost sales'},
+            {id: 10, creditor: 'Client refund (Nivel)', original: 4950, outstanding: 0, priority: 'medium', notes: 'Paid Feb 2026'},
+            {id: 11, creditor: 'Keivan Shams', original: 8000, outstanding: 8000, priority: 'high', notes: 'Settlement - May 15'},
+            {id: 12, creditor: 'Max Stephens', original: 14000, outstanding: 14000, priority: 'low', notes: 'Coaching - defer'},
+            {id: 13, creditor: 'Bao Nguyen Super', original: 9824, outstanding: 9824, priority: 'high', notes: 'ATO director penalty'},
+        ];
+        
+        function getDebts() {
+            const saved = localStorage.getItem('debtRegister');
+            return saved ? JSON.parse(saved) : defaultDebts;
+        }
+        
+        function saveDebts(debts) {
+            localStorage.setItem('debtRegister', JSON.stringify(debts));
+        }
+        
+        function getPaymentHistory() {
+            return JSON.parse(localStorage.getItem('paymentHistory') || '[]');
+        }
+        
+        function savePaymentHistory(history) {
+            localStorage.setItem('paymentHistory', JSON.stringify(history));
+        }
+        
+        function renderDebts() {
+            const tbody = document.getElementById('debtBody');
+            if (!tbody) return;
+            
+            const debts = getDebts();
+            tbody.innerHTML = '';
+            
+            let total = 0;
+            
+            debts.sort((a, b) => {
+                const order = {high: 0, medium: 1, low: 2};
+                return order[a.priority] - order[b.priority];
+            }).forEach(debt => {
+                total += debt.outstanding;
+                
+                const priorityBadge = debt.priority === 'high' 
+                    ? '<span class="status-badge status-overdue">HIGH</span>'
+                    : debt.priority === 'medium'
+                    ? '<span class="status-badge status-due">MED</span>'
+                    : '<span class="status-badge status-ok">LOW</span>';
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = '<td><strong>' + debt.creditor + '</strong></td>' +
+                    '<td class="amount">$' + debt.original.toLocaleString() + '</td>' +
+                    '<td class="amount ' + (debt.outstanding > 0 ? 'negative' : 'positive') + '" contenteditable="true" onblur="updateDebtAmount(' + debt.id + ', this.innerText)">$' + debt.outstanding.toLocaleString() + '</td>' +
+                    '<td>' + priorityBadge + '</td>' +
+                    '<td style="color:#888;font-size:12px">' + (debt.notes || '') + '</td>' +
+                    '<td><button onclick="deleteDebt(' + debt.id + ')" style="background:#dc3545;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:11px">Delete</button></td>';
+                tbody.appendChild(tr);
+            });
+            
+            document.getElementById('totalDebt').textContent = '$' + total.toLocaleString();
+            
+            // Render payment history
+            const historyBody = document.getElementById('paymentHistory');
+            if (historyBody) {
+                const history = getPaymentHistory();
+                historyBody.innerHTML = '';
+                history.slice(-10).reverse().forEach(p => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = '<td>' + p.date + '</td><td>' + p.creditor + '</td><td class="amount positive">$' + p.amount.toLocaleString() + '</td><td class="amount">$' + p.runningTotal.toLocaleString() + '</td>';
+                    historyBody.appendChild(tr);
+                });
+            }
+        }
+        
+        function updateDebtAmount(id, newValue) {
+            const amount = parseFloat(newValue.replace(/[$,]/g, ''));
+            if (isNaN(amount)) return;
+            
+            const debts = getDebts();
+            const debt = debts.find(d => d.id === id);
+            if (debt) {
+                debt.outstanding = amount;
+                saveDebts(debts);
+                renderDebts();
+            }
+        }
+        
+        function showAddDebtForm() {
+            document.getElementById('addDebtForm').style.display = 'block';
+        }
+        
+        function hideAddDebtForm() {
+            document.getElementById('addDebtForm').style.display = 'none';
+        }
+        
+        function addDebt() {
+            const creditor = document.getElementById('debtCreditor').value;
+            const amount = parseFloat(document.getElementById('debtAmount').value);
+            const priority = document.getElementById('debtPriority').value;
+            const notes = document.getElementById('debtNotes').value;
+            
+            if (!creditor || !amount) {
+                alert('Please enter creditor and amount');
+                return;
+            }
+            
+            const debts = getDebts();
+            debts.push({
+                id: Date.now(),
+                creditor: creditor,
+                original: amount,
+                outstanding: amount,
+                priority: priority,
+                notes: notes
+            });
+            
+            saveDebts(debts);
+            hideAddDebtForm();
+            renderDebts();
+            
+            document.getElementById('debtCreditor').value = '';
+            document.getElementById('debtAmount').value = '';
+            document.getElementById('debtNotes').value = '';
+        }
+        
+        function deleteDebt(id) {
+            if (!confirm('Delete this debt?')) return;
+            const debts = getDebts().filter(d => d.id !== id);
+            saveDebts(debts);
+            renderDebts();
+        }
+        
+        function showPaymentForm() {
+            const select = document.getElementById('paymentCreditor');
+            select.innerHTML = '';
+            getDebts().filter(d => d.outstanding > 0).forEach(d => {
+                const opt = document.createElement('option');
+                opt.value = d.id;
+                opt.textContent = d.creditor + ' ($' + d.outstanding.toLocaleString() + ')';
+                select.appendChild(opt);
+            });
+            document.getElementById('paymentForm').style.display = 'block';
+            document.getElementById('paymentDate').value = new Date().toISOString().split('T')[0];
+        }
+        
+        function hidePaymentForm() {
+            document.getElementById('paymentForm').style.display = 'none';
+        }
+        
+        function recordPayment() {
+            const creditorId = parseInt(document.getElementById('paymentCreditor').value);
+            const amount = parseFloat(document.getElementById('paymentAmount').value);
+            const date = document.getElementById('paymentDate').value;
+            
+            if (!amount || !date) {
+                alert('Please enter amount and date');
+                return;
+            }
+            
+            const debts = getDebts();
+            const debt = debts.find(d => d.id === creditorId);
+            if (!debt) return;
+            
+            debt.outstanding = Math.max(0, debt.outstanding - amount);
+            saveDebts(debts);
+            
+            // Record in history
+            const history = getPaymentHistory();
+            const totalRemaining = debts.reduce((sum, d) => sum + d.outstanding, 0);
+            history.push({
+                date: date,
+                creditor: debt.creditor,
+                amount: amount,
+                runningTotal: totalRemaining
+            });
+            savePaymentHistory(history);
+            
+            hidePaymentForm();
+            renderDebts();
+            
+            document.getElementById('paymentAmount').value = '';
+            alert('Payment recorded! ' + debt.creditor + ' balance now: $' + debt.outstanding.toLocaleString());
+        }
+        
+        function exportDebts() {
+            const debts = getDebts();
+            const csv = 'Creditor,Original,Outstanding,Priority,Notes\n' + 
+                debts.map(d => d.creditor + ',' + d.original + ',' + d.outstanding + ',' + d.priority + ',"' + (d.notes || '') + '"').join('\n');
+            
+            const blob = new Blob([csv], {type: 'text/csv'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'debt-register-' + new Date().toISOString().split('T')[0] + '.csv';
+            a.click();
+        }
+        
+        // Initialize debts on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderDebts();
+        });
 
 
         window.onload = function() { console.log("Window loaded"); if (typeof Chart === "undefined") { console.error("Chart.js not loaded"); return; } init(); };
