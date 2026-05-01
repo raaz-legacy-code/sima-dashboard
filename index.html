@@ -243,6 +243,51 @@
         .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .detail-section h5 { color: #888; font-size: 11px; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
         .detail-item { display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px; }
+    
+        /* Modal for breakdown */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal h3 { margin-bottom: 15px; color: #fff; }
+        .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .modal-close:hover { color: #fff; }
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #222;
+        }
+        .breakdown-item:last-child { border-bottom: none; }
+        .clickable { cursor: pointer; text-decoration: underline; }
+        .clickable:hover { color: #3b82f6; }
+
     </style>
 </head>
 <body>
@@ -559,6 +604,16 @@
                 </table>
             </div>
         </div>
+    
+    <!-- Breakdown Modal -->
+    <div class="modal-overlay" id="breakdownModal" onclick="if(event.target===this)closeModal()">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 id="modalTitle">Breakdown</h3>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
     </main>
 
     <div class="footer">
@@ -908,40 +963,94 @@
 
     <script>
         // 6-month weekly data (26 weeks)
+                // Weekly data with entity breakdown
+        let currentEntity = 'all';
+        
         const weeklyData = [
-            // May 2026 (Weeks 18-22)
-            { week: 18, month: 'May', from: '2026-05-01', inflow: 53625, outflow: 90209, current: true },
-            { week: 19, month: 'May', from: '2026-05-08', inflow: 72780, outflow: 68374 },
-            { week: 20, month: 'May', from: '2026-05-15', inflow: 0, outflow: 47105 },
-            { week: 21, month: 'May', from: '2026-05-22', inflow: 0, outflow: 43341 },
-            // June 2026 (Weeks 23-26)
-            { week: 22, month: 'Jun', from: '2026-05-29', inflow: 11000, outflow: 40784 },
-            { week: 23, month: 'Jun', from: '2026-06-05', inflow: 0, outflow: 23104 },
-            { week: 24, month: 'Jun', from: '2026-06-12', inflow: 27500, outflow: 3330 },
-            { week: 25, month: 'Jun', from: '2026-06-19', inflow: 30000, outflow: 8841 },
-            { week: 26, month: 'Jun', from: '2026-06-26', inflow: 26700, outflow: 42784 },
-            // July 2026 (Weeks 27-30)
-            { week: 27, month: 'Jul', from: '2026-07-03', inflow: 2000, outflow: 36004 },
-            { week: 28, month: 'Jul', from: '2026-07-10', inflow: 0, outflow: 4330 },
-            { week: 29, month: 'Jul', from: '2026-07-17', inflow: 38500, outflow: 11841 },
-            { week: 30, month: 'Jul', from: '2026-07-24', inflow: 0, outflow: 25000 },
-            // August 2026 (Weeks 31-35)
-            { week: 31, month: 'Aug', from: '2026-07-31', inflow: 20000, outflow: 15000 },
-            { week: 32, month: 'Aug', from: '2026-08-07', inflow: 0, outflow: 20000 },
-            { week: 33, month: 'Aug', from: '2026-08-14', inflow: 50000, outflow: 25000 },
-            { week: 34, month: 'Aug', from: '2026-08-21', inflow: 0, outflow: 18000 },
-            { week: 35, month: 'Aug', from: '2026-08-28', inflow: 25000, outflow: 22000 },
-            // September 2026 (Weeks 36-39)
-            { week: 36, month: 'Sep', from: '2026-09-04', inflow: 0, outflow: 20000 },
-            { week: 37, month: 'Sep', from: '2026-09-11', inflow: 40000, outflow: 25000 },
-            { week: 38, month: 'Sep', from: '2026-09-18', inflow: 0, outflow: 18000 },
-            { week: 39, month: 'Sep', from: '2026-09-25', inflow: 30000, outflow: 22000 },
-            // October 2026 (Weeks 40-43)
-            { week: 40, month: 'Oct', from: '2026-10-02', inflow: 0, outflow: 20000 },
-            { week: 41, month: 'Oct', from: '2026-10-09', inflow: 35000, outflow: 25000 },
-            { week: 42, month: 'Oct', from: '2026-10-16', inflow: 0, outflow: 18000 },
-            { week: 43, month: 'Oct', from: '2026-10-23', inflow: 45000, outflow: 22000 },
+            { week: 18, month: 'May', from: '2026-05-01', current: true,
+                mint: { inflow: 53625, outflow: 42000, inflowItems: ['Avanti T2 expected: $53,625'], outflowItems: ['Staff wages: $15,000','Prospa: $8,000','ATO: $10,000','CoreLogic: $7,500','Other: $1,500'] },
+                jsl: { inflow: 0, outflow: 8209, inflowItems: [], outflowItems: ['Staff: $5,000','PI Insurance: $2,500','Software: $709'] },
+                household: { inflow: 0, outflow: 40000, inflowItems: [], outflowItems: ['Mortgage: $28,000','Daycare: $2,500','Utilities: $1,500','Living: $8,000'] }
+            },
+            { week: 19, month: 'May', from: '2026-05-08',
+                mint: { inflow: 72780, outflow: 35000, inflowItems: ['Refinance draw: $50,000','ARG commission: $22,780'], outflowItems: ['Keivan settlement: $8,000','Staff: $15,000','Creditors: $12,000'] },
+                jsl: { inflow: 0, outflow: 5374, inflowItems: [], outflowItems: ['Staff: $5,000','Other: $374'] },
+                household: { inflow: 0, outflow: 28000, inflowItems: [], outflowItems: ['Mortgage: $28,000'] }
+            },
+            { week: 20, month: 'May', from: '2026-05-15',
+                mint: { inflow: 0, outflow: 18000, inflowItems: [], outflowItems: ['Staff: $15,000','Software: $3,000'] },
+                jsl: { inflow: 0, outflow: 5105, inflowItems: [], outflowItems: ['Staff: $5,000','Other: $105'] },
+                household: { inflow: 0, outflow: 24000, inflowItems: [], outflowItems: ['Mortgage: $14,000','Living: $10,000'] }
+            },
+            { week: 21, month: 'May', from: '2026-05-22',
+                mint: { inflow: 0, outflow: 15000, inflowItems: [], outflowItems: ['Staff: $15,000'] },
+                jsl: { inflow: 0, outflow: 5341, inflowItems: [], outflowItems: ['Staff: $5,000','Other: $341'] },
+                household: { inflow: 0, outflow: 23000, inflowItems: [], outflowItems: ['Mortgage: $14,000','Living: $9,000'] }
+            },
+            { week: 22, month: 'Jun', from: '2026-05-29',
+                mint: { inflow: 11000, outflow: 18000, inflowItems: ['Pipeline TBD: $11,000'], outflowItems: ['Operations: $18,000'] },
+                jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] },
+                household: { inflow: 0, outflow: 17784, inflowItems: [], outflowItems: ['Fixed costs: $17,784'] }
+            },
+            { week: 23, month: 'Jun', from: '2026-06-05',
+                mint: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Operations: $5,000'] },
+                jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] },
+                household: { inflow: 0, outflow: 13104, inflowItems: [], outflowItems: ['Fixed costs: $13,104'] }
+            },
+            { week: 24, month: 'Jun', from: '2026-06-12',
+                mint: { inflow: 27500, outflow: 0, inflowItems: ['Bramwell T1: $27,500'], outflowItems: [] },
+                jsl: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] },
+                household: { inflow: 0, outflow: 3330, inflowItems: [], outflowItems: ['Utilities: $3,330'] }
+            },
+            { week: 25, month: 'Jun', from: '2026-06-19',
+                mint: { inflow: 30000, outflow: 5000, inflowItems: ['Pipeline: $30,000'], outflowItems: ['Ops: $5,000'] },
+                jsl: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] },
+                household: { inflow: 0, outflow: 3841, inflowItems: [], outflowItems: ['Living: $3,841'] }
+            },
+            { week: 26, month: 'Jun', from: '2026-06-26',
+                mint: { inflow: 26700, outflow: 20000, inflowItems: ['EOFY collections: $26,700'], outflowItems: ['BAS: $15,000','Ops: $5,000'] },
+                jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] },
+                household: { inflow: 0, outflow: 17784, inflowItems: [], outflowItems: ['Fixed: $17,784'] }
+            },
+            { week: 27, month: 'Jul', from: '2026-07-03', mint: { inflow: 2000, outflow: 18000, inflowItems: ['Small: $2,000'], outflowItems: ['Ops: $18,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 13004, inflowItems: [], outflowItems: ['Fixed: $13,004'] } },
+            { week: 28, month: 'Jul', from: '2026-07-10', mint: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] }, jsl: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] }, household: { inflow: 0, outflow: 4330, inflowItems: [], outflowItems: ['Utils: $4,330'] } },
+            { week: 29, month: 'Jul', from: '2026-07-17', mint: { inflow: 38500, outflow: 8000, inflowItems: ['Collections: $38,500'], outflowItems: ['Ops: $8,000'] }, jsl: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] }, household: { inflow: 0, outflow: 3841, inflowItems: [], outflowItems: ['Living: $3,841'] } },
+            { week: 30, month: 'Jul', from: '2026-07-24', mint: { inflow: 0, outflow: 8000, inflowItems: [], outflowItems: ['Ops: $8,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 12000, inflowItems: [], outflowItems: ['Fixed: $12,000'] } },
+            { week: 31, month: 'Aug', from: '2026-07-31', mint: { inflow: 20000, outflow: 10000, inflowItems: ['Pipeline: $20,000'], outflowItems: ['Ops: $10,000'] }, jsl: { inflow: 0, outflow: 0, inflowItems: [], outflowItems: [] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 32, month: 'Aug', from: '2026-08-07', mint: { inflow: 0, outflow: 10000, inflowItems: [], outflowItems: ['Ops: $10,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 33, month: 'Aug', from: '2026-08-14', mint: { inflow: 50000, outflow: 15000, inflowItems: ['Big deal: $50,000'], outflowItems: ['Ops: $15,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 34, month: 'Aug', from: '2026-08-21', mint: { inflow: 0, outflow: 8000, inflowItems: [], outflowItems: ['Ops: $8,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 35, month: 'Aug', from: '2026-08-28', mint: { inflow: 25000, outflow: 12000, inflowItems: ['Pipeline: $25,000'], outflowItems: ['Ops: $12,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 36, month: 'Sep', from: '2026-09-04', mint: { inflow: 0, outflow: 10000, inflowItems: [], outflowItems: ['Ops: $10,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 37, month: 'Sep', from: '2026-09-11', mint: { inflow: 40000, outflow: 15000, inflowItems: ['Collections: $40,000'], outflowItems: ['Ops: $15,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 38, month: 'Sep', from: '2026-09-18', mint: { inflow: 0, outflow: 8000, inflowItems: [], outflowItems: ['Ops: $8,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 39, month: 'Sep', from: '2026-09-25', mint: { inflow: 30000, outflow: 12000, inflowItems: ['Pipeline: $30,000'], outflowItems: ['Ops: $12,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 40, month: 'Oct', from: '2026-10-02', mint: { inflow: 0, outflow: 10000, inflowItems: [], outflowItems: ['Ops: $10,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 41, month: 'Oct', from: '2026-10-09', mint: { inflow: 35000, outflow: 15000, inflowItems: ['Collections: $35,000'], outflowItems: ['Ops: $15,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 42, month: 'Oct', from: '2026-10-16', mint: { inflow: 0, outflow: 8000, inflowItems: [], outflowItems: ['Ops: $8,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
+            { week: 43, month: 'Oct', from: '2026-10-23', mint: { inflow: 45000, outflow: 12000, inflowItems: ['Big Q4: $45,000'], outflowItems: ['Ops: $12,000'] }, jsl: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Staff: $5,000'] }, household: { inflow: 0, outflow: 5000, inflowItems: [], outflowItems: ['Living: $5,000'] } },
         ];
+        
+        // Calculate totals
+        weeklyData.forEach(w => {
+            w.totalInflow = w.mint.inflow + w.jsl.inflow + w.household.inflow;
+            w.totalOutflow = w.mint.outflow + w.jsl.outflow + w.household.outflow;
+        });
+        
+        function getFilteredData() {
+            return weeklyData.map(w => {
+                if (currentEntity === 'all') {
+                    return { ...w, inflow: w.totalInflow, outflow: w.totalOutflow, inflowItems: [...w.mint.inflowItems, ...w.jsl.inflowItems, ...w.household.inflowItems], outflowItems: [...w.mint.outflowItems, ...w.jsl.outflowItems, ...w.household.outflowItems] };
+                } else if (currentEntity === 'mint') {
+                    return { ...w, inflow: w.mint.inflow, outflow: w.mint.outflow, inflowItems: w.mint.inflowItems, outflowItems: w.mint.outflowItems };
+                } else if (currentEntity === 'jsl') {
+                    return { ...w, inflow: w.jsl.inflow, outflow: w.jsl.outflow, inflowItems: w.jsl.inflowItems, outflowItems: w.jsl.outflowItems };
+                } else if (currentEntity === 'household') {
+                    return { ...w, inflow: w.household.inflow, outflow: w.household.outflow, inflowItems: w.household.inflowItems, outflowItems: w.household.outflowItems };
+                }
+                return w;
+            });
+        }
 
         // AR data from Xero
         const arData = [
@@ -1070,11 +1179,11 @@
                 window.mainChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: weeklyData.map(w => w.month + ' W' + (w.week % 4 || 4)),
+                        labels: getFilteredData().map(w => w.month + ' W' + (w.week % 4 || 4)),
                         datasets: [
-                            { label: 'Inflow', data: weeklyData.map(w => w.totalInflow), backgroundColor: 'rgba(40, 167, 69, 0.7)' },
-                            { label: 'Outflow', data: weeklyData.map(w => -w.totalOutflow), backgroundColor: 'rgba(220, 53, 69, 0.7)' },
-                            { label: 'Closing', data: weeklyData.map(w => w.closing), type: 'line', borderColor: '#ffc107', borderWidth: 2, fill: false, yAxisID: 'y1' },
+                            { label: 'Inflow', data: getFilteredData().map(w => w.inflow), backgroundColor: 'rgba(40, 167, 69, 0.7)' },
+                            { label: 'Outflow', data: getFilteredData().map(w => -w.outflow), backgroundColor: 'rgba(220, 53, 69, 0.7)' },
+                            { label: 'Closing', data: getFilteredData().map((w,i) => { let bal = 29300; for(let j=0;j<=i;j++) bal += getFilteredData()[j].inflow - getFilteredData()[j].outflow; return bal; }), type: 'line', borderColor: '#ffc107', borderWidth: 2, fill: false, yAxisID: 'y1' },
                             { label: '$20K Min', data: weeklyData.map(function() { return 20000; }), type: 'line', borderColor: '#dc3545', borderWidth: 1, borderDash: [5, 5], pointRadius: 0, yAxisID: 'y1' }
                         ]
                     },
@@ -1096,6 +1205,33 @@
             }
         }
 
+        function showBreakdown(week, type) {
+            const data = getFilteredData().find(w => w.week === week);
+            if (!data) return;
+            
+            const items = type === 'inflow' ? data.inflowItems : data.outflowItems;
+            const title = type === 'inflow' ? 'Inflow Breakdown' : 'Outflow Breakdown';
+            
+            document.getElementById('modalTitle').textContent = title + ' - Week ' + week;
+            
+            let html = '<div style="margin-bottom:10px;color:#888">Entity: ' + (currentEntity === 'all' ? 'All Entities' : currentEntity.toUpperCase()) + '</div>';
+            
+            if (items.length === 0) {
+                html += '<p style="color:#666">No items</p>';
+            } else {
+                items.forEach(item => {
+                    html += '<div class="breakdown-item">' + item + '</div>';
+                });
+            }
+            
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('breakdownModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('breakdownModal').classList.remove('active');
+        }
+        
         function renderWeeklyTable() {
             const tbody = document.getElementById('weeklyBody');
             tbody.innerHTML = '';
@@ -1180,9 +1316,10 @@
         }
 
         function filterEntity(entity) {
+            currentEntity = entity;
             document.querySelectorAll('.entity-tab').forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
-            // TODO: Filter data by entity
+            renderAll();
         }
 
         function addEvent() {
