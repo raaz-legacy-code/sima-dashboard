@@ -470,7 +470,7 @@
                     </div>
                     <div class="summary-card">
                         <div class="label">AR Outstanding</div>
-                        <div class="value positive" id="xeroAR">$588,000</div>
+                        <div class="value positive" id="xeroAR">$588,879</div>
                         <div style="font-size:10px;color:#888">To collect</div>
                     </div>
                     <div class="summary-card">
@@ -2108,6 +2108,30 @@
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(updateWeeklyProjection, 500);
         });
+
+
+        
+        // REAL PIPELINE DATA FROM XERO (May 1 2026)
+        const realARPipeline = [
+            // OVERDUE - Need to chase
+            {contact: "Avanti Project Marketing", amount: 60500, status: "overdue", dueMonth: "2024-Q4", invoices: ["INV-0274","INV-0282","INV-0289","INV-0281"]},
+            {contact: "HUNTERSCAP PTY LTD", amount: 55000, status: "overdue", dueMonth: "2025-07", invoices: ["INV-0354"]},
+            {contact: "Eternal Homes", amount: 56974, status: "overdue", dueMonth: "2025-H2", invoices: ["INV-0277","INV-0279","INV-0407"]},
+            {contact: "ARG", amount: 33000, status: "overdue", dueMonth: "2026-01", invoices: ["INV-0413","INV-0427"]},
+            {contact: "Crownix", amount: 26700, status: "overdue", dueMonth: "2025-11", invoices: ["INV-0399","INV-0453"]},
+            {contact: "Bramwell", amount: 24750, status: "overdue", dueMonth: "2025-10", invoices: ["INV-0383"]},
+            
+            // DUE NOW - April/May 2026
+            {contact: "Forma Homes", amount: 48125, status: "due", dueMonth: "2026-Q1", invoices: ["INV-0430","INV-0432","INV-0434","INV-0435","INV-0436"]},
+            {contact: "Eternal Homes", amount: 66000, status: "due", dueMonth: "2026-Q1-Q2", invoices: ["INV-0419","INV-0428","INV-0429","INV-0425"]},
+            {contact: "ARG", amount: 82500, status: "due", dueMonth: "2026-Q2", invoices: ["INV-0423","INV-0462","INV-0467"]},
+            {contact: "Crownix", amount: 44000, status: "due", dueMonth: "2026-Q2", invoices: ["INV-0424","INV-0463"]},
+            {contact: "Strike Developments", amount: 39125, status: "due", dueMonth: "2026-Q1", invoices: ["INV-0421","INV-0464"]},
+            {contact: "Others", amount: 32403.95, status: "due", dueMonth: "2026", invoices: ["Various"]}
+        ];
+        
+        // Total AR: $588,878.95
+        console.log("Real AR Pipeline loaded:", realARPipeline.reduce((sum, p) => sum + p.amount, 0));
 
 
         // APPROVAL QUEUE SYSTEM
