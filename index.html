@@ -1235,36 +1235,33 @@
         function renderWeeklyTable() {
             const tbody = document.getElementById('weeklyBody');
             tbody.innerHTML = '';
+            
+            const filtered = getFilteredData();
+            let balance = startingCash;
 
-            weeklyData.forEach((w, i) => {
-                const isDanger = w.closing < 20000;
-                const isCurrent = w.current;
+            filtered.forEach((w, i) => {
+                const inflow = w.inflow;
+                const outflow = w.outflow;
+                const net = inflow - outflow;
+                balance += net;
+                const closing = balance;
+                
+                const isDanger = closing < 20000;
+                const isCurrent = weeklyData[i].current;
                 const statusBadge = isDanger ? '<span class="status-badge status-overdue">BELOW MIN</span>' :
                                    isCurrent ? '<span class="status-badge status-ok">CURRENT</span>' : '';
 
                 const tr = document.createElement('tr');
-                tr.className = `week-row ${isDanger ? 'danger' : ''} ${isCurrent ? 'current' : ''}`;
-                tr.onclick = () => toggleWeekDetail(i);
-                tr.innerHTML = `
-                    <td>Week ${w.week}</td>
-                    <td>${w.from} (${w.month})</td>
-                    <td class="amount positive">$${w.totalInflow.toLocaleString()}</td>
-                    <td class="amount negative">$${w.totalOutflow.toLocaleString()}</td>
-                    <td class="amount ${w.net >= 0 ? 'positive' : 'negative'}">$${w.net.toLocaleString()}</td>
-                    <td class="amount ${w.closing >= 20000 ? 'positive' : 'negative'}">$${w.closing.toLocaleString()}</td>
-                    <td>${statusBadge}</td>
-                `;
+                tr.className = 'week-row ' + (isDanger ? 'danger' : '') + ' ' + (isCurrent ? 'current' : '');
+                
+                tr.innerHTML = '<td>Week ' + w.week + '</td>' +
+                    '<td>' + w.from + ' (' + w.month + ')</td>' +
+                    '<td class="amount positive clickable" onclick="event.stopPropagation();showBreakdown(' + w.week + ',\'inflow\')">$' + inflow.toLocaleString() + '</td>' +
+                    '<td class="amount negative clickable" onclick="event.stopPropagation();showBreakdown(' + w.week + ',\'outflow\')">$' + outflow.toLocaleString() + '</td>' +
+                    '<td class="amount ' + (net >= 0 ? 'positive' : 'negative') + '">$' + net.toLocaleString() + '</td>' +
+                    '<td class="amount ' + (closing >= 20000 ? 'positive' : 'negative') + '">$' + closing.toLocaleString() + '</td>' +
+                    '<td>' + statusBadge + '</td>';
                 tbody.appendChild(tr);
-
-                // Detail row
-                const detailTr = document.createElement('tr');
-                detailTr.className = 'detail-row';
-                detailTr.id = `detail-${i}`;
-                detailTr.innerHTML = `<td colspan="7"><div class="detail-grid">
-                    <div class="detail-section"><h5>Income Sources</h5><div class="detail-item"><span>Base projection</span><span>$${w.inflow.toLocaleString()}</span></div></div>
-                    <div class="detail-section"><h5>Expense Categories</h5><div class="detail-item"><span>Base projection</span><span>$${w.outflow.toLocaleString()}</span></div></div>
-                </div></td>`;
-                tbody.appendChild(detailTr);
             });
         }
 
