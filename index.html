@@ -2108,6 +2108,32 @@
             }
         }
         
+        
+        // Pre-load approval queue with costs detected from Xero (May 1 2026 analysis)
+        function preloadApprovalQueue() {
+            const queue = getApprovalQueue();
+            if (queue.length > 0) return; // Already has items
+            
+            const detected = [
+                { description: 'Outback Accounting (bookkeeping)', entity: 'mint', amount: 357.50, cadence: 'weekly', source: 'Xero - recurring' },
+                { description: 'MessageMedia (SMS)', entity: 'mint', amount: 877, cadence: 'monthly', source: 'Xero - CANCEL?' },
+                { description: 'Aircall (phone)', entity: 'mint', amount: 500, cadence: 'monthly', source: 'Xero - CANCEL?' },
+                { description: 'Jims Mowing', entity: 'household', amount: 180, cadence: 'monthly', source: 'Xero - recurring' },
+                { description: 'Connect Advisors (accounting)', entity: 'mint', amount: 250, cadence: 'monthly', source: 'Xero - recurring' },
+                { description: 'Nathalie (COS contractor)', entity: 'mint', amount: 1500, cadence: 'fortnightly', source: 'Xero - contractor' },
+                { description: 'May (CSM contractor)', entity: 'mint', amount: 1200, cadence: 'fortnightly', source: 'Xero - contractor' },
+                { description: 'Madelaine (contractor)', entity: 'mint', amount: 740, cadence: 'fortnightly', source: 'Xero - contractor' },
+            ];
+            
+            detected.forEach(item => {
+                addToApprovalQueue(item);
+            });
+        }
+        
+        // Call on init
+        document.addEventListener('DOMContentLoaded', preloadApprovalQueue);
+
+
         function dismissQueueItem(id) {
             const queue = getApprovalQueue().filter(q => q.id !== id);
             saveApprovalQueue(queue);
