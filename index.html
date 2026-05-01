@@ -34,10 +34,29 @@
         }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         
+        /* Alert Banner */
+        .alert-banner {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .alert-banner.show { display: block; }
+        .alert-banner h3 { margin-bottom: 10px; }
+        .alert-banner .suggestion { 
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
         /* Summary Cards */
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
@@ -49,10 +68,61 @@
             border: 1px solid #333;
         }
         .summary-card .label { color: #888; font-size: 12px; text-transform: uppercase; }
-        .summary-card .value { font-size: 28px; font-weight: 700; margin-top: 8px; }
+        .summary-card .value { font-size: 24px; font-weight: 700; margin-top: 8px; }
         .summary-card .value.positive { color: #28a745; }
         .summary-card .value.negative { color: #dc3545; }
         .summary-card .value.warning { color: #ffc107; }
+        
+        /* Input Panel */
+        .input-panel {
+            background: #1a1a2e;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .input-panel h3 { color: #3b82f6; margin-bottom: 15px; }
+        .input-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .input-group label {
+            display: block;
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: #3b82f6;
+            outline: none;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .btn-primary { background: #3b82f6; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn:hover { opacity: 0.9; }
         
         /* Chart Container */
         .chart-container {
@@ -100,8 +170,7 @@
         .week-row { cursor: pointer; transition: background 0.2s; }
         .week-row:hover { background: #252525; }
         .week-row.current { background: #1e3a1e; }
-        .week-row.negative td { color: #ff6b6b; }
-        .week-row.positive td { color: #69db7c; }
+        .week-row.danger { background: #3a1e1e; }
         
         .expand-icon { 
             display: inline-block;
@@ -143,6 +212,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         .tab {
             padding: 10px 20px;
@@ -168,6 +238,7 @@
             background: #141414;
             border-radius: 8px;
             margin-bottom: 8px;
+            align-items: center;
         }
         .pipeline-item .client { font-weight: 500; }
         .pipeline-item .amount { color: #69db7c; }
@@ -179,6 +250,31 @@
         .status-paid { background: #28a745; color: white; }
         .status-invoiced { background: #ffc107; color: black; }
         .status-pending { background: #6c757d; color: white; }
+        .status-priority { background: #dc3545; color: white; }
+        
+        /* Episodic Events */
+        .event-list {
+            margin-top: 15px;
+        }
+        .event-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #0a0a0a;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .event-item.income { border-left: 3px solid #28a745; }
+        .event-item.expense { border-left: 3px solid #dc3545; }
+        .event-item .remove {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .event-item .remove:hover { color: #dc3545; }
         
         .footer {
             text-align: center;
@@ -186,14 +282,44 @@
             color: #555;
             font-size: 12px;
         }
+        
+        /* Payment Priority Panel */
+        .priority-panel {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .priority-panel h3 { color: #3b82f6; margin-bottom: 15px; }
+        .priority-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .priority-item .risk { font-size: 11px; padding: 2px 6px; border-radius: 4px; }
+        .risk-legal { background: #dc3545; color: white; }
+        .risk-credit { background: #ffc107; color: black; }
+        .risk-relationship { background: #17a2b8; color: white; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>💎 SIMA EMPIRE</h1>
         <div class="subtitle">Unified Cash Flow Dashboard</div>
-        <div class="mode-badge">🚨 SURVIVAL MODE</div>
+        <div class="mode-badge" id="modeBadge">🚨 SURVIVAL MODE</div>
         <div class="subtitle" style="margin-top:10px">Last Updated: <span id="lastUpdate"></span></div>
+    </div>
+
+    <!-- Alert Banner -->
+    <div class="alert-banner" id="alertBanner">
+        <h3>⚠️ Cash Below $20K Threshold</h3>
+        <p>Projected to drop below minimum in <span id="weeksToThreshold">X</span> weeks.</p>
+        <div class="suggestion" id="paymentSuggestion"></div>
     </div>
 
     <!-- Summary Cards -->
@@ -203,12 +329,12 @@
             <div class="value warning" id="totalCash">$29,300</div>
         </div>
         <div class="summary-card">
-            <div class="label">This Week Inflow</div>
-            <div class="value positive" id="weekInflow">$0</div>
+            <div class="label">16-Week Net</div>
+            <div class="value" id="netCashflow">$0</div>
         </div>
         <div class="summary-card">
-            <div class="label">This Week Outflow</div>
-            <div class="value negative" id="weekOutflow">$0</div>
+            <div class="label">Week 16 Balance</div>
+            <div class="value" id="endBalance">$0</div>
         </div>
         <div class="summary-card">
             <div class="label">AR Outstanding</div>
@@ -224,9 +350,40 @@
         </div>
     </div>
 
+    <!-- Input Panel for Episodic Events -->
+    <div class="input-panel">
+        <h3>➕ Add Episodic Revenue / Expense</h3>
+        <div class="input-row">
+            <div class="input-group">
+                <label>Type</label>
+                <select id="eventType">
+                    <option value="income">💰 Revenue / Inflow</option>
+                    <option value="expense">💸 Expense / Outflow</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Description</label>
+                <input type="text" id="eventDesc" placeholder="e.g., Refinance, Course Sales, Equipment">
+            </div>
+            <div class="input-group">
+                <label>Amount ($)</label>
+                <input type="number" id="eventAmount" placeholder="100000">
+            </div>
+            <div class="input-group">
+                <label>Week</label>
+                <select id="eventWeek"></select>
+            </div>
+        </div>
+        <div style="display:flex;gap:10px">
+            <button class="btn btn-primary" onclick="addEvent()">Add to Forecast</button>
+            <button class="btn btn-danger" onclick="clearEvents()">Clear All Custom</button>
+        </div>
+        <div class="event-list" id="eventList"></div>
+    </div>
+
     <!-- Chart -->
     <div class="chart-container">
-        <h2>📈 Cash Flow Over Time</h2>
+        <h2>📈 Cash Flow Over Time (16 Weeks)</h2>
         <canvas id="cashflowChart"></canvas>
     </div>
 
@@ -235,6 +392,7 @@
         <button class="tab active" onclick="showTab('weekly')">Weekly Breakdown</button>
         <button class="tab" onclick="showTab('pipeline')">Deal Pipeline</button>
         <button class="tab" onclick="showTab('debts')">Debts & AP</button>
+        <button class="tab" onclick="showTab('priority')">Payment Priority</button>
     </div>
 
     <!-- Weekly Tab -->
@@ -274,22 +432,27 @@
         </div>
     </div>
 
+    <!-- Payment Priority Tab -->
+    <div id="priority" class="tab-content">
+        <div class="priority-panel">
+            <h3>🎯 Payment Priority Guide</h3>
+            <p style="color:#888;margin-bottom:15px">When cash is tight, pay in this order to minimize legal/credit risk:</p>
+            <div id="priorityList"></div>
+        </div>
+    </div>
+
     <div class="footer">
         Built by Rey (RAAZ) | Sima Empire CFO Function<br>
-        Data: Xero + Mint Cashflow Model | Auto-updates daily
+        Data: Xero + Mint Cashflow Model | Interactive Mode Enabled
     </div>
 
     <script>
-        // Cash flow data from spreadsheet
-        const weeklyData = [
-            { week: 14, from: '2026-03-30', to: '2026-04-05', inflow: 90750, outflow: 51811, expenses: { 'Staff': 12000, 'Office': 1650, 'Marketing': 3000, 'Loans': 8500, 'Other': 26661 } },
-            { week: 15, from: '2026-04-06', to: '2026-04-12', inflow: 0, outflow: 33575, expenses: { 'Staff': 15000, 'Office': 1650, 'ATO': 5000, 'Loans': 8500, 'Other': 3425 } },
-            { week: 16, from: '2026-04-13', to: '2026-04-19', inflow: 0, outflow: 10288, expenses: { 'Staff': 4000, 'Utilities': 500, 'Subscriptions': 788, 'Other': 5000 } },
-            { week: 17, from: '2026-04-20', to: '2026-04-26', inflow: 60500, outflow: 69848, income: { 'T1 George': 33000, 'T2 Wayne': 27500 }, expenses: { 'Staff': 20000, 'Office': 1650, 'Marketing': 5000, 'Loans': 8500, 'Debts': 14698, 'Other': 20000 } },
+        // Base data from spreadsheet
+        let weeklyData = [
             { week: 18, from: '2026-04-27', to: '2026-05-03', inflow: 53625, outflow: 90209, income: { 'T1 Various': 53625 }, expenses: { 'Staff': 25000, 'Debts': 30000, 'ATO': 19300, 'Other': 15909 }, current: true },
             { week: 19, from: '2026-05-04', to: '2026-05-10', inflow: 72780, outflow: 68374, income: { 'T1 Nicole': 38500, 'T2 Curtis': 19250, 'Membership': 5030, 'Trail': 10000 }, expenses: { 'Staff': 20000, 'Office': 1650, 'Loans': 8500, 'Other': 38224 } },
             { week: 20, from: '2026-05-11', to: '2026-05-17', inflow: 0, outflow: 39105, expenses: { 'Staff': 15000, 'Office': 1650, 'Loans': 8500, 'Keivan': 8000, 'Other': 5955 } },
-            { week: 21, from: '2026-05-18', to: '2026-05-24', inflow: 0, outflow: 43341, expenses: { 'Staff': 15000, 'Office': 1650, 'Loans': 8500, 'Other': 18191 } },
+            { week: 21, from: '2026-05-18', to: '2026-05-24', inflow: 0, outflow: 43341, expenses: { 'Staff': 15000, 'Office': 1650, 'Loans': 8500, 'Bao Super': 9824, 'Other': 8367 } },
             { week: 22, from: '2026-05-25', to: '2026-05-31', inflow: 11000, outflow: 40784, income: { 'Referral': 11000 }, expenses: { 'Staff': 15000, 'Office': 1650, 'Loans': 8500, 'Other': 15634 } },
             { week: 23, from: '2026-06-01', to: '2026-06-07', inflow: 0, outflow: 23104, expenses: { 'Staff': 10000, 'Office': 1650, 'Loans': 8500, 'Other': 2954 } },
             { week: 24, from: '2026-06-08', to: '2026-06-14', inflow: 27500, outflow: 3330, income: { 'T1 Will/Crystal': 27500 }, expenses: { 'Subscriptions': 330, 'Other': 3000 } },
@@ -298,25 +461,51 @@
             { week: 27, from: '2026-06-29', to: '2026-07-05', inflow: 2000, outflow: 36004, expenses: { 'Staff': 15000, 'Loans': 8500, 'Other': 12504 } },
             { week: 28, from: '2026-07-06', to: '2026-07-12', inflow: 0, outflow: 4330, expenses: { 'Subscriptions': 330, 'Other': 4000 } },
             { week: 29, from: '2026-07-13', to: '2026-07-19', inflow: 38500, outflow: 11841, income: { 'T2 Expected': 38500 }, expenses: { 'Staff': 5000, 'Other': 6841 } },
+            { week: 30, from: '2026-07-20', to: '2026-07-26', inflow: 0, outflow: 25000, expenses: { 'Staff': 15000, 'Loans': 8500, 'Other': 1500 } },
+            { week: 31, from: '2026-07-27', to: '2026-08-02', inflow: 20000, outflow: 15000, income: { 'Membership': 20000 }, expenses: { 'Staff': 10000, 'Other': 5000 } },
+            { week: 32, from: '2026-08-03', to: '2026-08-09', inflow: 0, outflow: 20000, expenses: { 'Staff': 15000, 'Other': 5000 } },
+            { week: 33, from: '2026-08-10', to: '2026-08-16', inflow: 50000, outflow: 25000, income: { 'T1 Expected': 50000 }, expenses: { 'Staff': 15000, 'Loans': 8500, 'Other': 1500 } },
+        ];
+
+        // Custom events storage
+        let customEvents = JSON.parse(localStorage.getItem('simaCustomEvents') || '[]');
+        
+        // Starting cash
+        let startingCash = 29300;
+
+        // Payment priority (ordered by risk)
+        const paymentPriority = [
+            { name: 'ATO/Super (Bao)', amount: 9824, risk: 'legal', reason: 'Director penalty notice risk, garnishee orders' },
+            { name: 'Prospa Loan', amount: 10500, risk: 'credit', reason: 'Business loan default = credit damage' },
+            { name: 'Keivan Shams', amount: 8000, risk: 'legal', reason: 'Settlement agreement - breach risk' },
+            { name: 'Staff Backpay', amount: 15348, risk: 'legal', reason: 'Fair Work claims possible' },
+            { name: 'Amex (pay minimum)', amount: 500, risk: 'credit', reason: 'Keep cards active, protect credit score' },
+            { name: 'Max Stephens', amount: 14000, risk: 'relationship', reason: 'Coach fees - relationship risk only' },
+            { name: 'Chris Jones', amount: 15000, risk: 'relationship', reason: 'Contractor - relationship risk' },
+            { name: 'Xavier Advertising', amount: 12892, risk: 'relationship', reason: 'Slow pay agreed - low risk' },
+            { name: 'Phil', amount: 22000, risk: 'relationship', reason: 'Past contractor - relationship risk' },
+            { name: 'Bilal', amount: 7000, risk: 'relationship', reason: 'Client rebate - relationship risk' },
         ];
 
         // Pipeline deals
         const pipelineDeals = [
+            { client: 'Keivan Shams', amount: 8000, status: 'priority', eta: 'Pay May 15', note: 'SETTLEMENT - MUST PAY' },
+            { client: 'Bao Nguyen Super', amount: 9824, status: 'priority', eta: 'Pay ASAP', note: 'ATO RISK' },
             { client: 'Nicole and Joshua', amount: 38500, t1: 19250, t2: 19250, status: 'invoiced', eta: 'May 8' },
             { client: 'Curtis and Madison', amount: 38500, t1: 19250, t2: 19250, status: 'invoiced', eta: 'May 8' },
-            { client: 'George and Haroula', amount: 55000, t1: 22000, t2: 22000, t3: 11000, status: 'paid', eta: 'Apr 24' },
-            { client: 'Isabella Kim', amount: 44000, t1: 22000, t2: 22000, status: 'invoiced', eta: 'Need follow up' },
-            { client: 'Wayne', amount: 44000, t1: 17300, t2: 26700, status: 'invoiced', eta: 'Jun 26' },
-            { client: 'Tim & Rosie', amount: 44000, t1: 6900, t2: 22000, status: 'pending', eta: 'Jan 2026' },
-            { client: 'Will and Crystal', amount: 27500, t1: 27500, status: 'pending', eta: 'Week 24' },
-            { client: 'Mark Miguire', amount: 95000, t1: 27500, t2: 27500, t3: 27500, status: 'pending', eta: 'TBC' },
-            { client: 'James & Christine Armstrong', amount: 27500, t1: 13750, t2: 13750, status: 'pending', eta: 'Apr 17' },
+            { client: 'George and Haroula', amount: 55000, status: 'paid', eta: 'Completed' },
+            { client: 'Isabella Kim', amount: 44000, status: 'invoiced', eta: 'Need follow up' },
+            { client: 'Wayne', amount: 44000, status: 'invoiced', eta: 'Jun 26' },
+            { client: 'Will and Crystal', amount: 27500, status: 'pending', eta: 'Week 24' },
+            { client: 'Tim & Rosie', amount: 44000, status: 'pending', eta: 'Jan 2026' },
+            { client: 'Mark Miguire', amount: 95000, status: 'pending', eta: 'TBC' },
         ];
 
         // Debts
         const debts = [
-            { name: 'Prospa Loan', amount: 10500, risk: 'high', status: 'Active' },
-            { name: 'Keivan Shams', amount: 8000, risk: 'high', status: 'Due May 15' },
+            { name: 'Bao Nguyen SUPER', amount: 9824, risk: 'high', status: '⚠️ ATO RISK - PAY ASAP' },
+            { name: 'Keivan Shams', amount: 8000, risk: 'high', status: '⚠️ SETTLEMENT - Pay May 15' },
+            { name: 'Prospa Loan', amount: 10500, risk: 'high', status: 'Active loan' },
             { name: 'Max Stephens (Coach)', amount: 14000, risk: 'high', status: 'Owed' },
             { name: 'AZKYTECH (Lighthaus)', amount: 6000, risk: 'medium', status: '~$4K USD' },
             { name: 'Chris Jones', amount: 15000, risk: 'medium', status: '$10K paid Mar 31' },
@@ -324,197 +513,361 @@
             { name: 'Phil (Contractor)', amount: 22000, risk: 'medium', status: 'Tanya+Loan+Comms' },
             { name: 'Bilal (Client Rebate)', amount: 7000, risk: 'medium', status: 'Owed' },
             { name: 'Staff Backpay', amount: 15348, risk: 'medium', status: 'Nats/May/Madelaine' },
-            { name: 'ATO/Super', amount: 19300, risk: 'high', status: 'Due' },
             { name: 'Amex Platinum', amount: 7333, risk: 'credit', status: 'SUSPENDED' },
             { name: 'Amex Explorer', amount: 11478, risk: 'credit', status: 'SUSPENDED' },
         ];
 
         // Initialize
-        document.getElementById('lastUpdate').textContent = new Date().toLocaleString('en-AU', { 
-            timeZone: 'Australia/Sydney',
-            dateStyle: 'medium',
-            timeStyle: 'short'
-        });
+        function init() {
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleString('en-AU', { 
+                timeZone: 'Australia/Sydney',
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            });
 
-        // Calculate running balance
-        let runningBalance = 29300; // Current cash
-        weeklyData.forEach(w => {
-            w.net = w.inflow - w.outflow;
-            runningBalance += w.net;
-            w.closing = runningBalance;
-        });
+            // Populate week selector
+            const weekSelect = document.getElementById('eventWeek');
+            weeklyData.forEach(w => {
+                const opt = document.createElement('option');
+                opt.value = w.week;
+                opt.textContent = `Week ${w.week} (${w.from})`;
+                weekSelect.appendChild(opt);
+            });
 
-        // Find current week
-        const currentWeek = weeklyData.find(w => w.current);
-        if (currentWeek) {
-            document.getElementById('weekInflow').textContent = '$' + currentWeek.inflow.toLocaleString();
-            document.getElementById('weekOutflow').textContent = '$' + currentWeek.outflow.toLocaleString();
+            renderAll();
         }
 
-        // Chart
-        const ctx = document.getElementById('cashflowChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: weeklyData.map(w => `Wk ${w.week}`),
-                datasets: [
-                    {
-                        label: 'Inflow',
-                        data: weeklyData.map(w => w.inflow),
-                        backgroundColor: 'rgba(40, 167, 69, 0.7)',
-                        borderColor: '#28a745',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Outflow',
-                        data: weeklyData.map(w => -w.outflow),
-                        backgroundColor: 'rgba(220, 53, 69, 0.7)',
-                        borderColor: '#dc3545',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Closing Balance',
-                        data: weeklyData.map(w => w.closing),
-                        type: 'line',
-                        borderColor: '#ffc107',
-                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.3,
-                        yAxisID: 'y1'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
-                plugins: {
-                    legend: { labels: { color: '#888' } },
-                    tooltip: {
-                        callbacks: {
-                            label: ctx => {
-                                let val = ctx.raw;
-                                return ctx.dataset.label + ': $' + Math.abs(val).toLocaleString();
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: { 
-                        grid: { color: '#333' },
-                        ticks: { color: '#888' }
-                    },
-                    y: { 
-                        grid: { color: '#333' },
-                        ticks: { 
-                            color: '#888',
-                            callback: v => '$' + (v/1000) + 'K'
-                        }
-                    },
-                    y1: {
-                        position: 'right',
-                        grid: { display: false },
-                        ticks: { 
-                            color: '#ffc107',
-                            callback: v => '$' + (v/1000) + 'K'
-                        }
+        function renderAll() {
+            applyCustomEvents();
+            calculateBalances();
+            checkThreshold();
+            renderChart();
+            renderWeeklyTable();
+            renderPipeline();
+            renderDebts();
+            renderPriority();
+            renderEventList();
+        }
+
+        function applyCustomEvents() {
+            // Reset to base data
+            weeklyData.forEach(w => {
+                w.customInflow = 0;
+                w.customOutflow = 0;
+            });
+
+            // Apply custom events
+            customEvents.forEach(e => {
+                const week = weeklyData.find(w => w.week === e.week);
+                if (week) {
+                    if (e.type === 'income') {
+                        week.customInflow = (week.customInflow || 0) + e.amount;
+                        week.income = week.income || {};
+                        week.income[e.desc] = e.amount;
+                    } else {
+                        week.customOutflow = (week.customOutflow || 0) + e.amount;
+                        week.expenses = week.expenses || {};
+                        week.expenses[e.desc] = e.amount;
                     }
                 }
-            }
-        });
+            });
+        }
 
-        // Weekly table
-        const tbody = document.getElementById('weeklyBody');
-        weeklyData.forEach((w, i) => {
-            const isNegative = w.closing < 20000;
-            const isCurrent = w.current;
-            
-            // Main row
-            const tr = document.createElement('tr');
-            tr.className = `week-row ${isNegative ? 'negative' : 'positive'} ${isCurrent ? 'current' : ''}`;
-            tr.innerHTML = `
-                <td><span class="expand-icon">▶</span></td>
-                <td>Wk ${w.week}</td>
-                <td>${w.from}</td>
-                <td style="color:#69db7c">$${w.inflow.toLocaleString()}</td>
-                <td style="color:#ff6b6b">$${w.outflow.toLocaleString()}</td>
-                <td style="color:${w.net >= 0 ? '#69db7c' : '#ff6b6b'}">$${w.net.toLocaleString()}</td>
-                <td style="color:${w.closing >= 20000 ? '#69db7c' : '#ff6b6b'}">$${w.closing.toLocaleString()}</td>
-            `;
-            tr.onclick = () => toggleDetail(i);
-            tbody.appendChild(tr);
+        function calculateBalances() {
+            let balance = startingCash;
+            let totalNet = 0;
 
-            // Detail row
-            const detailTr = document.createElement('tr');
-            detailTr.className = 'detail-row';
-            detailTr.id = `detail-${i}`;
+            weeklyData.forEach(w => {
+                const inflow = w.inflow + (w.customInflow || 0);
+                const outflow = w.outflow + (w.customOutflow || 0);
+                w.totalInflow = inflow;
+                w.totalOutflow = outflow;
+                w.net = inflow - outflow;
+                balance += w.net;
+                w.closing = balance;
+                totalNet += w.net;
+            });
+
+            // Update summary cards
+            const endBalance = weeklyData[weeklyData.length - 1].closing;
+            document.getElementById('netCashflow').textContent = '$' + totalNet.toLocaleString();
+            document.getElementById('netCashflow').className = 'value ' + (totalNet >= 0 ? 'positive' : 'negative');
+            document.getElementById('endBalance').textContent = '$' + endBalance.toLocaleString();
+            document.getElementById('endBalance').className = 'value ' + (endBalance >= 20000 ? 'positive' : 'negative');
+        }
+
+        function checkThreshold() {
+            const banner = document.getElementById('alertBanner');
+            const dangerWeek = weeklyData.find(w => w.closing < 20000);
             
-            let incomeHtml = '';
-            if (w.income) {
-                Object.entries(w.income).forEach(([k, v]) => {
-                    incomeHtml += `<div class="detail-item"><span class="name">${k}</span><span class="amount in">+$${v.toLocaleString()}</span></div>`;
+            if (dangerWeek) {
+                banner.classList.add('show');
+                const weeksAway = dangerWeek.week - weeklyData[0].week;
+                document.getElementById('weeksToThreshold').textContent = weeksAway;
+                
+                // Generate payment suggestions
+                let suggestion = '<strong>Suggested payments to defer:</strong><br>';
+                let saved = 0;
+                paymentPriority.slice().reverse().forEach(p => {
+                    if (p.risk === 'relationship' && saved < Math.abs(dangerWeek.closing - 20000)) {
+                        suggestion += `• ${p.name} ($${p.amount.toLocaleString()}) - ${p.reason}<br>`;
+                        saved += p.amount;
+                    }
                 });
+                suggestion += `<br><strong>DO NOT DEFER:</strong> ATO/Super, Prospa, Keivan (legal/credit risk)`;
+                document.getElementById('paymentSuggestion').innerHTML = suggestion;
+            } else {
+                banner.classList.remove('show');
             }
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('cashflowChart').getContext('2d');
             
-            let expenseHtml = '';
-            if (w.expenses) {
-                Object.entries(w.expenses).forEach(([k, v]) => {
-                    expenseHtml += `<div class="detail-item"><span class="name">${k}</span><span class="amount out">-$${v.toLocaleString()}</span></div>`;
-                });
+            // Destroy existing chart if any
+            if (window.cashflowChart) {
+                window.cashflowChart.destroy();
             }
 
-            detailTr.innerHTML = `
-                <td colspan="7">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <h4>💰 Income Sources</h4>
-                            ${incomeHtml || '<div class="detail-item"><span class="name">No income this week</span></div>'}
-                        </div>
-                        <div class="detail-section">
-                            <h4>💸 Expenses</h4>
-                            ${expenseHtml || '<div class="detail-item"><span class="name">No detail available</span></div>'}
-                        </div>
-                    </div>
-                </td>
-            `;
-            tbody.appendChild(detailTr);
-        });
+            window.cashflowChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: weeklyData.map(w => `Wk ${w.week}`),
+                    datasets: [
+                        {
+                            label: 'Inflow',
+                            data: weeklyData.map(w => w.totalInflow),
+                            backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                            borderColor: '#28a745',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Outflow',
+                            data: weeklyData.map(w => -w.totalOutflow),
+                            backgroundColor: 'rgba(220, 53, 69, 0.7)',
+                            borderColor: '#dc3545',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Closing Balance',
+                            data: weeklyData.map(w => w.closing),
+                            type: 'line',
+                            borderColor: w => w.closing < 20000 ? '#dc3545' : '#ffc107',
+                            backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.3,
+                            yAxisID: 'y1'
+                        },
+                        {
+                            label: '$20K Threshold',
+                            data: weeklyData.map(() => 20000),
+                            type: 'line',
+                            borderColor: '#dc3545',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { labels: { color: '#888' } },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => {
+                                    let val = ctx.raw;
+                                    return ctx.dataset.label + ': $' + Math.abs(val).toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { color: '#333' }, ticks: { color: '#888' } },
+                        y: { grid: { color: '#333' }, ticks: { color: '#888', callback: v => '$' + (v/1000) + 'K' } },
+                        y1: { position: 'right', grid: { display: false }, ticks: { color: '#ffc107', callback: v => '$' + (v/1000) + 'K' } }
+                    }
+                }
+            });
+        }
 
-        // Pipeline list
-        const pipelineList = document.getElementById('pipelineList');
-        pipelineDeals.forEach(d => {
-            const statusClass = d.status === 'paid' ? 'status-paid' : d.status === 'invoiced' ? 'status-invoiced' : 'status-pending';
-            pipelineList.innerHTML += `
-                <div class="pipeline-item">
-                    <div>
-                        <div class="client">${d.client}</div>
-                        <div style="font-size:12px;color:#888">ETA: ${d.eta}</div>
-                    </div>
-                    <div style="text-align:right">
-                        <div class="amount">$${d.amount.toLocaleString()}</div>
-                        <span class="status ${statusClass}">${d.status.toUpperCase()}</span>
-                    </div>
-                </div>
-            `;
-        });
+        function renderWeeklyTable() {
+            const tbody = document.getElementById('weeklyBody');
+            tbody.innerHTML = '';
 
-        // Debts list
-        const debtsList = document.getElementById('debtsList');
-        debts.forEach(d => {
-            const riskColor = d.risk === 'high' ? '#dc3545' : d.risk === 'credit' ? '#6c757d' : '#ffc107';
-            debtsList.innerHTML += `
-                <div class="pipeline-item">
-                    <div>
-                        <div class="client" style="color:${riskColor}">${d.name}</div>
-                        <div style="font-size:12px;color:#888">${d.status}</div>
+            weeklyData.forEach((w, i) => {
+                const isDanger = w.closing < 20000;
+                const isCurrent = w.current;
+                
+                const tr = document.createElement('tr');
+                tr.className = `week-row ${isDanger ? 'danger' : ''} ${isCurrent ? 'current' : ''}`;
+                tr.innerHTML = `
+                    <td><span class="expand-icon">▶</span></td>
+                    <td>Wk ${w.week}</td>
+                    <td>${w.from}</td>
+                    <td style="color:#69db7c">$${w.totalInflow.toLocaleString()}</td>
+                    <td style="color:#ff6b6b">$${w.totalOutflow.toLocaleString()}</td>
+                    <td style="color:${w.net >= 0 ? '#69db7c' : '#ff6b6b'}">$${w.net.toLocaleString()}</td>
+                    <td style="color:${w.closing >= 20000 ? '#69db7c' : '#ff6b6b'}">$${w.closing.toLocaleString()}</td>
+                `;
+                tr.onclick = () => toggleDetail(i);
+                tbody.appendChild(tr);
+
+                // Detail row
+                const detailTr = document.createElement('tr');
+                detailTr.className = 'detail-row';
+                detailTr.id = `detail-${i}`;
+                
+                let incomeHtml = '';
+                if (w.income) {
+                    Object.entries(w.income).forEach(([k, v]) => {
+                        incomeHtml += `<div class="detail-item"><span class="name">${k}</span><span class="amount in">+$${v.toLocaleString()}</span></div>`;
+                    });
+                }
+                
+                let expenseHtml = '';
+                if (w.expenses) {
+                    Object.entries(w.expenses).forEach(([k, v]) => {
+                        expenseHtml += `<div class="detail-item"><span class="name">${k}</span><span class="amount out">-$${v.toLocaleString()}</span></div>`;
+                    });
+                }
+
+                detailTr.innerHTML = `
+                    <td colspan="7">
+                        <div class="detail-grid">
+                            <div class="detail-section">
+                                <h4>💰 Income Sources</h4>
+                                ${incomeHtml || '<div class="detail-item"><span class="name">No income this week</span></div>'}
+                            </div>
+                            <div class="detail-section">
+                                <h4>💸 Expenses</h4>
+                                ${expenseHtml || '<div class="detail-item"><span class="name">No detail available</span></div>'}
+                            </div>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(detailTr);
+            });
+        }
+
+        function renderPipeline() {
+            const list = document.getElementById('pipelineList');
+            list.innerHTML = '';
+            pipelineDeals.forEach(d => {
+                const statusClass = d.status === 'paid' ? 'status-paid' : d.status === 'invoiced' ? 'status-invoiced' : d.status === 'priority' ? 'status-priority' : 'status-pending';
+                list.innerHTML += `
+                    <div class="pipeline-item">
+                        <div>
+                            <div class="client">${d.client}</div>
+                            <div style="font-size:12px;color:#888">${d.note || 'ETA: ' + d.eta}</div>
+                        </div>
+                        <div style="text-align:right">
+                            <div class="amount" style="color:${d.status === 'priority' ? '#dc3545' : '#69db7c'}">$${d.amount.toLocaleString()}</div>
+                            <span class="status ${statusClass}">${d.status.toUpperCase()}</span>
+                        </div>
                     </div>
-                    <div style="text-align:right">
-                        <div class="amount" style="color:${riskColor}">$${d.amount.toLocaleString()}</div>
+                `;
+            });
+        }
+
+        function renderDebts() {
+            const list = document.getElementById('debtsList');
+            list.innerHTML = '';
+            debts.forEach(d => {
+                const riskColor = d.risk === 'high' ? '#dc3545' : d.risk === 'credit' ? '#6c757d' : '#ffc107';
+                list.innerHTML += `
+                    <div class="pipeline-item">
+                        <div>
+                            <div class="client" style="color:${riskColor}">${d.name}</div>
+                            <div style="font-size:12px;color:#888">${d.status}</div>
+                        </div>
+                        <div style="text-align:right">
+                            <div class="amount" style="color:${riskColor}">$${d.amount.toLocaleString()}</div>
+                        </div>
                     </div>
-                </div>
-            `;
-        });
+                `;
+            });
+        }
+
+        function renderPriority() {
+            const list = document.getElementById('priorityList');
+            list.innerHTML = '';
+            paymentPriority.forEach((p, i) => {
+                const riskClass = p.risk === 'legal' ? 'risk-legal' : p.risk === 'credit' ? 'risk-credit' : 'risk-relationship';
+                list.innerHTML += `
+                    <div class="priority-item">
+                        <div>
+                            <strong>${i + 1}. ${p.name}</strong>
+                            <div style="font-size:12px;color:#888">${p.reason}</div>
+                        </div>
+                        <div style="text-align:right">
+                            <div>$${p.amount.toLocaleString()}</div>
+                            <span class="risk ${riskClass}">${p.risk.toUpperCase()}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderEventList() {
+            const list = document.getElementById('eventList');
+            list.innerHTML = '';
+            customEvents.forEach((e, i) => {
+                list.innerHTML += `
+                    <div class="event-item ${e.type}">
+                        <div>
+                            <strong>${e.desc}</strong>
+                            <span style="color:#888"> - Week ${e.week}</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:10px">
+                            <span style="color:${e.type === 'income' ? '#69db7c' : '#ff6b6b'}">
+                                ${e.type === 'income' ? '+' : '-'}$${e.amount.toLocaleString()}
+                            </span>
+                            <button class="remove" onclick="removeEvent(${i})">×</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addEvent() {
+            const type = document.getElementById('eventType').value;
+            const desc = document.getElementById('eventDesc').value;
+            const amount = parseInt(document.getElementById('eventAmount').value);
+            const week = parseInt(document.getElementById('eventWeek').value);
+
+            if (!desc || !amount || !week) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            customEvents.push({ type, desc, amount, week });
+            localStorage.setItem('simaCustomEvents', JSON.stringify(customEvents));
+            
+            // Clear inputs
+            document.getElementById('eventDesc').value = '';
+            document.getElementById('eventAmount').value = '';
+            
+            renderAll();
+        }
+
+        function removeEvent(index) {
+            customEvents.splice(index, 1);
+            localStorage.setItem('simaCustomEvents', JSON.stringify(customEvents));
+            renderAll();
+        }
+
+        function clearEvents() {
+            if (confirm('Clear all custom events?')) {
+                customEvents = [];
+                localStorage.setItem('simaCustomEvents', JSON.stringify(customEvents));
+                renderAll();
+            }
+        }
 
         function toggleDetail(i) {
             const row = document.querySelectorAll('.week-row')[i];
@@ -529,6 +882,9 @@
             document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
             document.getElementById(tabId).classList.add('active');
         }
+
+        // Initialize on load
+        init();
     </script>
 </body>
 </html>
