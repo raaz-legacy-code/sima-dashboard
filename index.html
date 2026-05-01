@@ -453,6 +453,45 @@
         <!-- FORECAST PAGE -->
         <div id="forecast" class="page active">
 
+            
+            <!-- XERO ACTUALS - LIVE DATA -->
+            <div class="table-section" style="margin-bottom:20px;background:linear-gradient(135deg,#1a2e1a,#1a1f1a);border:1px solid #28a745">
+                <h3 style="color:#28a745">📊 Live Position (Xero Actuals)</h3>
+                <div class="summary-grid" style="margin-top:15px">
+                    <div class="summary-card">
+                        <div class="label">Mint Cash</div>
+                        <div class="value" id="xeroMintCash">$17,000</div>
+                        <div style="font-size:10px;color:#888">As of May 1</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="label">JSL Cash</div>
+                        <div class="value" id="xeroJslCash">$12,000</div>
+                        <div style="font-size:10px;color:#888">Estimate</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="label">AR Outstanding</div>
+                        <div class="value positive" id="xeroAR">$588,000</div>
+                        <div style="font-size:10px;color:#888">To collect</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="label">AP Outstanding</div>
+                        <div class="value negative" id="xeroAP">$162,000</div>
+                        <div style="font-size:10px;color:#888">Owed</div>
+                    </div>
+                </div>
+                <div style="margin-top:15px;padding:15px;background:#0a0a0a;border-radius:8px">
+                    <h4 style="margin-bottom:10px">This Week's Projection</h4>
+                    <table style="width:100%">
+                        <tr><td>Opening Cash (Mint)</td><td class="amount">$17,000</td></tr>
+                        <tr><td style="color:#28a745">+ Expected Inflows</td><td class="amount positive" id="weekInflows">$0</td></tr>
+                        <tr><td style="color:#dc3545">- Expected Outflows</td><td class="amount negative" id="weekOutflows">$0</td></tr>
+                        <tr style="font-weight:bold;border-top:1px solid #333"><td>Projected Week End</td><td class="amount" id="weekEnd">$17,000</td></tr>
+                    </table>
+                </div>
+                <button onclick="refreshXeroData()" style="margin-top:10px;padding:8px 16px;background:#28a745;color:white;border:none;border-radius:6px;cursor:pointer">🔄 Refresh from Xero</button>
+            </div>
+
+
             <!-- PENDING APPROVAL QUEUE -->
             <div id="approvalQueue" class="table-section" style="margin-bottom:20px;background:#2e1a1a;border:1px solid #f59e0b;display:none">
                 <h3 style="color:#f59e0b">⚠️ Items Pending Your Approval</h3>
@@ -2028,6 +2067,49 @@
         
         
                 
+        
+        // Calculate this week's projection
+        function updateWeeklyProjection() {
+            const data = generateRealForecast();
+            const currentWeek = data.find(w => w.current) || data[0];
+            
+            if (!currentWeek) return;
+            
+            const mintIn = currentWeek.mint?.inflow || 0;
+            const jslIn = currentWeek.jsl?.inflow || 0;
+            const householdIn = currentWeek.household?.inflow || 0;
+            const totalIn = mintIn + jslIn + householdIn;
+            
+            const mintOut = currentWeek.mint?.outflow || 0;
+            const jslOut = currentWeek.jsl?.outflow || 0;
+            const householdOut = currentWeek.household?.outflow || 0;
+            const totalOut = mintOut + jslOut + householdOut;
+            
+            const opening = 17000; // Mint cash
+            const weekEnd = opening + totalIn - totalOut;
+            
+            const inEl = document.getElementById('weekInflows');
+            const outEl = document.getElementById('weekOutflows');
+            const endEl = document.getElementById('weekEnd');
+            
+            if (inEl) inEl.textContent = '$' + totalIn.toLocaleString();
+            if (outEl) outEl.textContent = '$' + totalOut.toLocaleString();
+            if (endEl) {
+                endEl.textContent = '$' + weekEnd.toLocaleString();
+                endEl.className = 'amount ' + (weekEnd >= 20000 ? 'positive' : weekEnd >= 0 ? 'warning' : 'negative');
+            }
+        }
+        
+        function refreshXeroData() {
+            alert('Xero data refresh requires API call. For now, manually update the cash position when you have new figures.');
+        }
+        
+        // Call on init
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(updateWeeklyProjection, 500);
+        });
+
+
         // APPROVAL QUEUE SYSTEM
         function getApprovalQueue() {
             return JSON.parse(localStorage.getItem('approvalQueue') || '[]');
