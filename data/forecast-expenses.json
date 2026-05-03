@@ -1,0 +1,171 @@
+{
+  "extractedAt": "2026-05-03T03:21:00.000Z",
+  "source": "NEW ZS RS Cashflow Model 2025 (CF Model To Copy Comments tab) + Simar Commission Tracker",
+  "note": "Cashflow model has legacy data from 2018 with #REF! errors - using available expense categories",
+  "recurringExpenses": {
+    "personal": [
+      {
+        "category": "Collaroy Mortgage",
+        "amount": 1022,
+        "frequency": "weekly",
+        "monthlyEstimate": 4430,
+        "recurring": true
+      },
+      {
+        "category": "Groceries",
+        "amount": 150,
+        "frequency": "weekly",
+        "monthlyEstimate": 650,
+        "recurring": true
+      },
+      {
+        "category": "Car/Bike",
+        "amount": 150,
+        "frequency": "weekly",
+        "monthlyEstimate": 650,
+        "notes": "Occasional large payments ($1000-1700)",
+        "recurring": true
+      },
+      {
+        "category": "Phones",
+        "amount": 80,
+        "frequency": "weekly",
+        "monthlyEstimate": 347,
+        "recurring": true
+      },
+      {
+        "category": "Entertainment",
+        "amount": 100,
+        "frequency": "weekly",
+        "monthlyEstimate": 433,
+        "recurring": true
+      },
+      {
+        "category": "Gym",
+        "amount": 48.60,
+        "frequency": "weekly",
+        "monthlyEstimate": 211,
+        "notes": "Occasional large payments",
+        "recurring": true
+      },
+      {
+        "category": "Subscriptions",
+        "amount": 4.61,
+        "frequency": "weekly",
+        "monthlyEstimate": 20,
+        "recurring": true
+      },
+      {
+        "category": "Energy",
+        "amount": 600,
+        "frequency": "quarterly",
+        "monthlyEstimate": 200,
+        "recurring": true
+      }
+    ],
+    "jsLaw": [
+      {
+        "category": "GoDaddy/IT expenses",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Apple subscription",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Google GSuite",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Xero",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Smokeball subscription",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "North Sydney Virtual Office",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Neutral Bay Parking",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Virtual Assistant",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Law Cover Insurance",
+        "frequency": "annual",
+        "recurring": true
+      },
+      {
+        "category": "Practising Certificates",
+        "frequency": "annual",
+        "recurring": true
+      },
+      {
+        "category": "Super for Employees",
+        "frequency": "quarterly",
+        "recurring": true
+      },
+      {
+        "category": "WorkCover Insurances",
+        "frequency": "annual",
+        "recurring": true
+      }
+    ],
+    "mintInvest": [
+      {
+        "category": "GoDaddy/IT expenses",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Atlassian",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Google GSuite",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "GitHub",
+        "frequency": "monthly",
+        "recurring": true
+      },
+      {
+        "category": "Xero",
+        "frequency": "monthly",
+        "recurring": true
+      }
+    ]
+  },
+  "outgoingCommissions": {
+    "simarTotalPaid": 8432,
+    "simarTotalDue": 7813,
+    "simarDifference": -620,
+    "notes": "Sign up comms difference"
+  },
+  "estimatedMonthlyTotalPersonal": 6741,
+  "knownUpcomingExpenses": [
+    {
+      "category": "Simar Commissions Outstanding",
+      "amount": 7813,
+      "dueDate": "ongoing",
+      "notes": "Tied to deal settlements"
+    }
+  ]
+}

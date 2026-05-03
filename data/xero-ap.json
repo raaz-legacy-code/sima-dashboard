@@ -1,0 +1,400 @@
+{
+  "extractedAt": "2026-05-03T11:22:35+08:00",
+  "source": "Xero Invoices API - ACCPAY (Accounts Payable)",
+  "data": [
+    {
+      "invoiceId": "ac5411a6-f12f-4048-931e-acce8c23aa40",
+      "invoiceNumber": "Client Refund - Nivel",
+      "contact": "Nivel",
+      "amountDue": 4950.00,
+      "total": 4950.00,
+      "dueDate": "2025-09-05",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "98f359b7-f771-47b3-8de3-0d31ce75dd49",
+      "invoiceNumber": "15536",
+      "contact": "Xavier Advertising Pty Ltd",
+      "amountDue": 2365.00,
+      "total": 2365.00,
+      "dueDate": "2024-12-29",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "36ba85c1-33ce-47df-8bd5-ca0015118ad5",
+      "invoiceNumber": "15537",
+      "contact": "Xavier Advertising Pty Ltd",
+      "amountDue": 3740.00,
+      "total": 3740.00,
+      "dueDate": "2024-12-29",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "0b0555e8-933a-4162-a089-a439ec1a642a",
+      "invoiceNumber": "Peninsula services fee - Nov 2025",
+      "contact": "Peninsula Australia Pty Limited",
+      "amountDue": 658.35,
+      "total": 658.35,
+      "dueDate": "2025-11-10",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "267f4a1f-f25b-4242-9865-82161db9d161",
+      "invoiceNumber": "INV-5222",
+      "contact": "Strike Developments",
+      "amountDue": 4100.00,
+      "total": 22000.00,
+      "amountPaid": 17900.00,
+      "dueDate": "2025-08-27",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "e22df618-5831-49b8-91c6-34a617a25924",
+      "invoiceNumber": "3994166 (Nov INV)",
+      "contact": "CoreLogic",
+      "amountDue": 2475.00,
+      "total": 2475.00,
+      "dueDate": "2025-11-08",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "4b342962-1ddc-476d-8fbc-44340b5e411f",
+      "invoiceNumber": "INV-NB-1282",
+      "contact": "Urban Collective",
+      "amountDue": 2589.73,
+      "total": 2589.73,
+      "dueDate": "2025-11-03",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "160c88b0-857e-4179-8348-70d35262559e",
+      "invoiceNumber": "INV-NB-1346",
+      "contact": "Urban Collective",
+      "amountDue": 2200.00,
+      "total": 2200.00,
+      "dueDate": "2025-12-02",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "29753a43-ac02-4b1e-96a1-d5e3ea164ac4",
+      "invoiceNumber": "00000085",
+      "contact": "Frank Toner",
+      "amountDue": 4400.00,
+      "total": 4400.00,
+      "dueDate": "2025-11-03",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "666e47e6-e261-4394-afe8-21e1f12a6a6f",
+      "invoiceNumber": "INV-0627",
+      "contact": "Top NoCoders",
+      "amountDue": 4250.00,
+      "total": 4250.00,
+      "dueDate": "2025-12-02",
+      "status": "AUTHORISED",
+      "currency": "USD"
+    },
+    {
+      "invoiceId": "55f8348f-0003-4ba5-862f-843b7e1e3c10",
+      "invoiceNumber": "Pay Period : 3 - 7 November",
+      "contact": "Madelaine",
+      "amountDue": 103.00,
+      "total": 370.00,
+      "amountPaid": 267.00,
+      "dueDate": "2025-11-14",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "1556d851-12b7-482f-a6db-c9bb822525f4",
+      "invoiceNumber": "INV - 4013202 (Dec INV)",
+      "contact": "CoreLogic",
+      "amountDue": 2475.00,
+      "total": 2475.00,
+      "dueDate": "2025-12-08",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "c814f56d-fd63-4b22-9e8b-0fcce8434f8a",
+      "invoiceNumber": "15497",
+      "contact": "Xavier Advertising Pty Ltd",
+      "amountDue": 9787.25,
+      "total": 20099.75,
+      "amountPaid": 10312.50,
+      "dueDate": "2024-11-30",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "546dfb89-b6bf-498d-8000-d87b522bcbf8",
+      "invoiceNumber": "INV-NB-1203",
+      "contact": "Urban Collective",
+      "amountDue": 1878.25,
+      "total": 3188.53,
+      "amountPaid": 1310.28,
+      "dueDate": "2025-10-02",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "40b6fea2-963b-43e6-9eba-21202dc0da06",
+      "invoiceNumber": "INV-0129",
+      "contact": "Christopher Jones",
+      "amountDue": 8000.00,
+      "total": 8000.00,
+      "dueDate": "2026-06-26",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "cd90368a-7947-492e-bc1c-95a9a3707b52",
+      "invoiceNumber": "INV-0128",
+      "contact": "Christopher Jones",
+      "amountDue": 8000.00,
+      "total": 8000.00,
+      "dueDate": "2026-05-29",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "aad1ed06-45a7-4094-bd67-392301a257f1",
+      "invoiceNumber": "INV-0127",
+      "contact": "Christopher Jones",
+      "amountDue": 9000.00,
+      "total": 9000.00,
+      "dueDate": "2026-04-30",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "9405877b-246d-4419-8b91-263b061f676d",
+      "invoiceNumber": "Client Refund - Ariel",
+      "contact": "Ariel and George",
+      "amountDue": 4950.00,
+      "total": 4950.00,
+      "dueDate": "2026-01-01",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "7b512213-70ec-4c80-95c5-3d6c0f07d4e8",
+      "invoiceNumber": "INV-0393 Rebate",
+      "contact": "Rodger Holding Pty Ltd",
+      "amountDue": 1000.00,
+      "total": 1000.00,
+      "dueDate": "2026-01-01",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "b6608e31-73ea-4947-b08f-4beec7193bda",
+      "invoiceNumber": "030",
+      "contact": "Maryana",
+      "amountDue": 2500.00,
+      "total": 4950.00,
+      "amountPaid": 2450.00,
+      "dueDate": "2026-01-30",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "6b529bd2-a2aa-4860-957d-35283e1aa7f4",
+      "invoiceNumber": "Pay Period : March 2 - 13, 2026",
+      "contact": "Nathalie Therese Mag",
+      "amountDue": 1800.00,
+      "total": 1800.00,
+      "dueDate": "2026-03-13",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "efb2ef12-61cd-46e8-a879-5155e0d330ea",
+      "invoiceNumber": "Pay Period : 16 - 27 February, 2026",
+      "contact": "Nathalie Therese Mag",
+      "amountDue": 1230.00,
+      "total": 1230.00,
+      "dueDate": "2026-02-28",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "3de7a28a-fb81-470f-9594-ab297a9452f1",
+      "invoiceNumber": "Pay Period: February 2 to 13, 2026",
+      "contact": "Nathalie Therese Mag",
+      "amountDue": 1800.00,
+      "total": 1800.00,
+      "dueDate": "2026-02-13",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "a63b06a6-c584-4abe-a088-933f66fd8c77",
+      "invoiceNumber": "Pay Period: January 19 to 30, 2026",
+      "contact": "Nathalie Therese Mag",
+      "amountDue": 1830.00,
+      "total": 1830.00,
+      "dueDate": "2026-01-30",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "28def230-22ab-465e-8397-bca8fdae9609",
+      "invoiceNumber": "Pay period : January 5 to 16 , 2026",
+      "contact": "Nathalie Therese Mag",
+      "amountDue": 1904.40,
+      "total": 1904.40,
+      "dueDate": "2026-01-16",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "24f42df0-39da-4fb5-9709-0fd8801654fe",
+      "invoiceNumber": "Pay Period : March 2 - 13, 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "amountDue": 1200.00,
+      "total": 1200.00,
+      "dueDate": "2026-03-13",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "2c196b4a-8180-404d-a2b8-84b2c0d6fb38",
+      "invoiceNumber": "Pay Period : 16 - 27 February , 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "amountDue": 1020.00,
+      "total": 1020.00,
+      "dueDate": "2026-02-27",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "a0467d51-e844-4540-9bcd-73537a34f032",
+      "invoiceNumber": "Pay Period : 02 - 13 February , 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "amountDue": 600.00,
+      "total": 600.00,
+      "dueDate": "2026-02-13",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "dd0488cc-8284-4761-b3ee-ffd1ba9e6186",
+      "invoiceNumber": "Pay Period : 19 - 30 January , 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "amountDue": 540.00,
+      "total": 540.00,
+      "dueDate": "2026-02-06",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "67040b4c-ccab-47a6-9d2e-e34aa0fa767c",
+      "invoiceNumber": "Pay Period : January 5 - 16 , 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "amountDue": 846.15,
+      "total": 846.15,
+      "dueDate": "2026-01-16",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "1f67533e-a046-46ab-9275-39c25106fc8f",
+      "invoiceNumber": "INV-0438",
+      "contact": "Jims Mowing",
+      "amountDue": 495.00,
+      "total": 495.00,
+      "dueDate": "2026-01-14",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "0962f861-54ef-4e3b-9d73-277ee658d223",
+      "invoiceNumber": "031",
+      "contact": "Maryana",
+      "amountDue": 1650.00,
+      "total": 1650.00,
+      "dueDate": "2026-02-27",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "9a549825-e2db-4b88-87b6-fa3adce91aeb",
+      "invoiceNumber": "INV-24398",
+      "contact": "Connect Business Advisors Pty Ltd",
+      "amountDue": 2970.00,
+      "total": 2970.00,
+      "dueDate": "2026-01-12",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "980bec8b-2fd9-4e2c-b4da-da328531d7f0",
+      "invoiceNumber": "4032179 (Jan INV)",
+      "contact": "CoreLogic",
+      "amountDue": 2475.00,
+      "total": 2475.00,
+      "dueDate": "2026-01-08",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "27cde61c-b126-4e07-be01-e91d1f8101ae",
+      "invoiceNumber": "INV-0641",
+      "contact": "Top NoCoders",
+      "amountDue": 4250.00,
+      "total": 4250.00,
+      "dueDate": "2026-01-01",
+      "status": "AUTHORISED",
+      "currency": "USD"
+    },
+    {
+      "invoiceId": "e35275fb-b016-4ef9-8439-4a08e1dafba0",
+      "invoiceNumber": "Client Refund",
+      "contact": "Keivan Shams",
+      "amountDue": 8000.00,
+      "total": 8000.00,
+      "dueDate": "2026-03-06",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    },
+    {
+      "invoiceId": "f186ace4-72a7-471b-b576-5246e1314c8b",
+      "invoiceNumber": "Pay Period : Mar 28 - 10 April 2026",
+      "contact": "Nathalie Therese Mag",
+      "amountDue": 900.00,
+      "total": 900.00,
+      "dueDate": "2026-04-10",
+      "status": "AUTHORISED",
+      "currency": "AUD"
+    }
+  ],
+  "totals": {
+    "totalOutstandingAUD": 130932.13,
+    "totalOutstandingUSD": 8500.00,
+    "billCount": 75,
+    "topCreditors": [
+      {"name": "Christopher Jones", "amount": 25000.00, "bills": 3},
+      {"name": "Xavier Advertising Pty Ltd", "amount": 15892.25, "bills": 3},
+      {"name": "Top NoCoders", "amount": 8500.00, "currency": "USD", "bills": 2},
+      {"name": "Keivan Shams", "amount": 8000.00, "bills": 1},
+      {"name": "Nathalie Therese Mag", "amount": 8464.40, "bills": 6},
+      {"name": "CoreLogic", "amount": 7425.00, "bills": 3}
+    ],
+    "categories": {
+      "contractors": 41944.13,
+      "suppliers": 37503.00,
+      "clientRefunds": 18900.00,
+      "other": 32585.00
+    }
+  }
+}

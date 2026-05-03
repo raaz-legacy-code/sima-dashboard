@@ -1,0 +1,865 @@
+{
+  "ar": {
+    "Eternal": 22000,
+    "Avanti Project Marketing": 60500,
+    "Sauvik Banerjee": 2000,
+    "HUNTERSCAP PTY LTD": 55000,
+    "Eternal Homes": 122974,
+    "Nicole and Joshua Whiston": 7200,
+    "The Sampro SMSF Pty Ltd": 2475,
+    "Bramwell": 24750,
+    "Crownix": 70700,
+    "Aseem Goyal": 3950,
+    "AUSTRALIAN RESIDENTIAL GROUP PTY LTD": 115500,
+    "Forma Homes": 48125,
+    "Strike Developments": 39125,
+    "Roshni Sima": 50,
+    "K&G Retirement Fund": 2301,
+    "Prop Launch": 4700,
+    "Oliver Hume Asset Management (QLD) Pty. Ltd,": 7528.95
+  },
+  "ap": {
+    "Nivel": 4950,
+    "Xavier Advertising Pty Ltd": 15892.25,
+    "Peninsula Australia Pty Limited": 658.35,
+    "Strike Developments": 4100,
+    "CoreLogic": 7425,
+    "Urban Collective": 6667.98,
+    "Frank Toner": 8700,
+    "Top NoCoders": 8500,
+    "Madelaine": 4168,
+    "ASIC": 98,
+    "Maryana": 4150,
+    "Outback Accounting": 1430,
+    "Christopher Jones": 25000,
+    "Ariel and George": 4950,
+    "Rodger Holding Pty Ltd": 1000,
+    "MessageMedia": 3506.32,
+    "Nathalie Therese Mag": 9464.4,
+    "ALCHE MAY MASANCAY": 4206.15,
+    "Jims Mowing": 1705,
+    "Connect Business Advisors Pty Ltd": 3877.5,
+    "Aircall": 373.03,
+    "Keivan Shams": 8000
+  },
+  "arTotal": 588878.95,
+  "apTotal": 128821.98,
+  "allInvoices": [
+    {
+      "type": "ACCREC",
+      "number": "INV-0277",
+      "contact": "Eternal",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2025-04-25T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0281",
+      "contact": "Avanti Project Marketing",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2024-12-20T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0289",
+      "contact": "Avanti Project Marketing",
+      "total": 9625,
+      "due": 9625,
+      "dueDate": "2024-12-09T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0282",
+      "contact": "Avanti Project Marketing",
+      "total": 9625,
+      "due": 9625,
+      "dueDate": "2024-11-01T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0274",
+      "contact": "Avanti Project Marketing",
+      "total": 19250,
+      "due": 19250,
+      "dueDate": "2024-09-08T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0326",
+      "contact": "Sauvik Banerjee",
+      "total": 2500,
+      "due": 2000,
+      "dueDate": "2025-04-14T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0354",
+      "contact": "HUNTERSCAP PTY LTD",
+      "total": 55000,
+      "due": 55000,
+      "dueDate": "2025-07-18T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0279",
+      "contact": "Eternal Homes",
+      "total": 12974,
+      "due": 12974,
+      "dueDate": "2025-08-22T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Client Refund - Nivel",
+      "contact": "Nivel",
+      "total": 4950,
+      "due": 4950,
+      "dueDate": "2025-09-05T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0376",
+      "contact": "Nicole and Joshua Whiston",
+      "total": 7200,
+      "due": 7200,
+      "dueDate": "2025-09-15T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0382",
+      "contact": "The Sampro SMSF Pty Ltd",
+      "total": 2475,
+      "due": 2475,
+      "dueDate": "2025-07-18T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0383",
+      "contact": "Bramwell",
+      "total": 24750,
+      "due": 24750,
+      "dueDate": "2025-10-03T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "15536",
+      "contact": "Xavier Advertising Pty Ltd",
+      "total": 2365,
+      "due": 2365,
+      "dueDate": "2024-12-29T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "15537",
+      "contact": "Xavier Advertising Pty Ltd",
+      "total": 3740,
+      "due": 3740,
+      "dueDate": "2024-12-29T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Peninsula services fee - Nov 2025",
+      "contact": "Peninsula Australia Pty Limited",
+      "total": 658.35,
+      "due": 658.35,
+      "dueDate": "2025-11-10T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-5222",
+      "contact": "Strike Developments",
+      "total": 22000,
+      "due": 4100,
+      "dueDate": "2025-08-27T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0399",
+      "contact": "Crownix",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2025-11-28T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0403",
+      "contact": "Aseem Goyal",
+      "total": 4950,
+      "due": 3950,
+      "dueDate": "2025-11-17T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0413",
+      "contact": "AUSTRALIAN RESIDENTIAL GROUP PTY LTD",
+      "total": 16500,
+      "due": 16500,
+      "dueDate": "2026-01-02T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0425",
+      "contact": "Eternal Homes",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2026-06-05T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0428",
+      "contact": "Eternal Homes",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2026-05-01T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0423",
+      "contact": "AUSTRALIAN RESIDENTIAL GROUP PTY LTD",
+      "total": 27500,
+      "due": 27500,
+      "dueDate": "2026-04-06T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0419",
+      "contact": "Eternal Homes",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2026-03-13T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0432",
+      "contact": "Forma Homes",
+      "total": 9625,
+      "due": 9625,
+      "dueDate": "2026-03-06T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0421",
+      "contact": "Strike Developments",
+      "total": 17125,
+      "due": 17125,
+      "dueDate": "2026-02-21T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0436",
+      "contact": "Forma Homes",
+      "total": 9625,
+      "due": 9625,
+      "dueDate": "2026-02-06T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0435",
+      "contact": "Forma Homes",
+      "total": 9625,
+      "due": 9625,
+      "dueDate": "2026-02-06T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0434",
+      "contact": "Forma Homes",
+      "total": 9625,
+      "due": 9625,
+      "dueDate": "2026-02-06T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0427",
+      "contact": "AUSTRALIAN RESIDENTIAL GROUP PTY LTD",
+      "total": 16500,
+      "due": 16500,
+      "dueDate": "2026-01-16T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "3994166 (Nov INV)",
+      "contact": "CoreLogic",
+      "total": 2475,
+      "due": 2475,
+      "dueDate": "2025-11-08T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-NB-1282",
+      "contact": "Urban Collective",
+      "total": 2589.73,
+      "due": 2589.73,
+      "dueDate": "2025-11-03T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-NB-1346 ",
+      "contact": "Urban Collective",
+      "total": 2200,
+      "due": 2200,
+      "dueDate": "2025-12-02T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "00000085",
+      "contact": "Frank Toner",
+      "total": 4400,
+      "due": 4400,
+      "dueDate": "2025-11-03T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0627",
+      "contact": "Top NoCoders",
+      "total": 4250,
+      "due": 4250,
+      "dueDate": "2025-12-02T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 3 - 7 November ",
+      "contact": "Madelaine",
+      "total": 370,
+      "due": 103,
+      "dueDate": "2025-11-14T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV - 4013202 (Dec INV)",
+      "contact": "CoreLogic",
+      "total": 2475,
+      "due": 2475,
+      "dueDate": "2025-12-08T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : Jan 5 - 18, 2026",
+      "contact": "Madelaine",
+      "total": 740,
+      "due": 365,
+      "dueDate": "2026-01-18T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Annual Review Fee",
+      "contact": "ASIC",
+      "total": 427,
+      "due": 98,
+      "dueDate": "2026-01-07T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "030",
+      "contact": "Maryana",
+      "total": 4950,
+      "due": 2500,
+      "dueDate": "2026-01-30T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0426",
+      "contact": "AUSTRALIAN RESIDENTIAL GROUP PTY LTD",
+      "total": 16500,
+      "due": 16500,
+      "dueDate": "2026-02-06T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0455",
+      "contact": "Roshni Sima",
+      "total": 6050,
+      "due": 50,
+      "dueDate": "2026-02-20T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0458",
+      "contact": "K&G Retirement Fund",
+      "total": 2301,
+      "due": 2301,
+      "dueDate": "2026-03-05T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0407",
+      "contact": "Eternal Homes",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2025-11-24T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0462",
+      "contact": "AUSTRALIAN RESIDENTIAL GROUP PTY LTD",
+      "total": 11000,
+      "due": 11000,
+      "dueDate": "2026-03-19T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "15497",
+      "contact": "Xavier Advertising Pty Ltd",
+      "total": 20099.75,
+      "due": 9787.25,
+      "dueDate": "2024-11-30T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0429",
+      "contact": "Eternal Homes",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2026-03-26T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "VS15935",
+      "contact": "Outback Accounting",
+      "total": 357.5,
+      "due": 357.5,
+      "dueDate": "2026-03-25T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-NB-1203",
+      "contact": "Urban Collective",
+      "total": 3188.53,
+      "due": 1878.25,
+      "dueDate": "2025-10-02T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0129",
+      "contact": "Christopher Jones",
+      "total": 8000,
+      "due": 8000,
+      "dueDate": "2026-06-26T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0128",
+      "contact": "Christopher Jones",
+      "total": 8000,
+      "due": 8000,
+      "dueDate": "2026-05-29T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0127",
+      "contact": "Christopher Jones",
+      "total": 9000,
+      "due": 9000,
+      "dueDate": "2026-04-30T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Client Refund - Ariel ",
+      "contact": "Ariel and George",
+      "total": 4950,
+      "due": 4950,
+      "dueDate": "2026-01-01T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0393 Rebate",
+      "contact": "Rodger Holding Pty Ltd",
+      "total": 1000,
+      "due": 1000,
+      "dueDate": "2026-01-01T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV05830458",
+      "contact": "MessageMedia",
+      "total": 876.58,
+      "due": 876.58,
+      "dueDate": "2026-02-14T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : March 2 - 13, 2026",
+      "contact": "Nathalie Therese Mag",
+      "total": 1800,
+      "due": 1800,
+      "dueDate": "2026-03-13T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 16 - 27 February, 2026.",
+      "contact": "Nathalie Therese Mag",
+      "total": 1230,
+      "due": 1230,
+      "dueDate": "2026-02-28T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay  Period: February 2 to 13, 2026",
+      "contact": "Nathalie Therese Mag",
+      "total": 1800,
+      "due": 1800,
+      "dueDate": "2026-02-13T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay  Period: January 19 to 30, 2026",
+      "contact": "Nathalie Therese Mag",
+      "total": 1830,
+      "due": 1830,
+      "dueDate": "2026-01-30T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay period : January 5 to 16 , 2026",
+      "contact": "Nathalie Therese Mag",
+      "total": 1904.4,
+      "due": 1904.4,
+      "dueDate": "2026-01-16T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : March 2 - 13, 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "total": 1200,
+      "due": 1200,
+      "dueDate": "2026-03-13T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 16 - 27 February , 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "total": 1020,
+      "due": 1020,
+      "dueDate": "2026-02-27T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 02 - 13 February , 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "total": 600,
+      "due": 600,
+      "dueDate": "2026-02-13T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 19 - 30 Janyary , 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "total": 540,
+      "due": 540,
+      "dueDate": "2026-02-06T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : January 5 - 16 , 2026",
+      "contact": "ALCHE MAY MASANCAY",
+      "total": 846.15,
+      "due": 846.15,
+      "dueDate": "2026-01-16T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0393",
+      "contact": "Jims Mowing",
+      "total": 165,
+      "due": 165,
+      "dueDate": "2026-01-01T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0635",
+      "contact": "Jims Mowing",
+      "total": 165,
+      "due": 165,
+      "dueDate": "2026-03-11T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0582",
+      "contact": "Jims Mowing",
+      "total": 165,
+      "due": 165,
+      "dueDate": "2026-02-27T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0527",
+      "contact": "Jims Mowing",
+      "total": 165,
+      "due": 165,
+      "dueDate": "2026-02-11T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0482",
+      "contact": "Jims Mowing",
+      "total": 165,
+      "due": 165,
+      "dueDate": "2026-01-28T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0438",
+      "contact": "Jims Mowing",
+      "total": 495,
+      "due": 495,
+      "dueDate": "2026-01-14T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "031",
+      "contact": "Maryana",
+      "total": 1650,
+      "due": 1650,
+      "dueDate": "2026-02-27T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 02 - 13 March, 2026",
+      "contact": "Madelaine",
+      "total": 740,
+      "due": 740,
+      "dueDate": "2026-03-13T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 16 - 28 February , 2026",
+      "contact": "Madelaine",
+      "total": 740,
+      "due": 740,
+      "dueDate": "2026-02-27T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 2 - 15 February , 2026",
+      "contact": "Madelaine",
+      "total": 740,
+      "due": 740,
+      "dueDate": "2026-02-15T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : January 19 - 31 , 2026",
+      "contact": "Madelaine",
+      "total": 740,
+      "due": 740,
+      "dueDate": "2026-01-31T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-24709",
+      "contact": "Connect Business Advisors Pty Ltd",
+      "total": 275,
+      "due": 275,
+      "dueDate": "2026-03-10T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-24398",
+      "contact": "Connect Business Advisors Pty Ltd",
+      "total": 2970,
+      "due": 2970,
+      "dueDate": "2026-01-12T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "4032179 (Jan INV)",
+      "contact": "CoreLogic",
+      "total": 2475,
+      "due": 2475,
+      "dueDate": "2026-01-08T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0641",
+      "contact": "Top NoCoders",
+      "total": 4250,
+      "due": 4250,
+      "dueDate": "2026-01-01T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "VS15998",
+      "contact": "Outback Accounting",
+      "total": 357.5,
+      "due": 357.5,
+      "dueDate": "2026-04-01T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0678",
+      "contact": "Jims Mowing",
+      "total": 220,
+      "due": 220,
+      "dueDate": "2026-03-25T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV05909191",
+      "contact": "MessageMedia",
+      "total": 876.58,
+      "due": 876.58,
+      "dueDate": "2026-03-14T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV05745765",
+      "contact": "MessageMedia",
+      "total": 876.58,
+      "due": 876.58,
+      "dueDate": "2026-01-14T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : 16 - 27 March, 2026",
+      "contact": "Madelaine",
+      "total": 740,
+      "due": 740,
+      "dueDate": "2026-03-27T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INVAUS0076089",
+      "contact": "Aircall",
+      "total": 373.03,
+      "due": 373.03,
+      "dueDate": "2026-03-30T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-24172",
+      "contact": "Connect Business Advisors Pty Ltd",
+      "total": 2640,
+      "due": 412.5,
+      "dueDate": "2025-12-11T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV - 80",
+      "contact": "Frank Toner",
+      "total": 8800,
+      "due": 4300,
+      "dueDate": "2025-09-12T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "VS16016",
+      "contact": "Outback Accounting",
+      "total": 357.5,
+      "due": 357.5,
+      "dueDate": "2026-04-08T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV05992413",
+      "contact": "MessageMedia",
+      "total": 876.58,
+      "due": 876.58,
+      "dueDate": "2026-04-14T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0424",
+      "contact": "Crownix",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2026-02-18T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0453",
+      "contact": "Crownix",
+      "total": 26700,
+      "due": 4700,
+      "dueDate": "2026-02-11T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0430",
+      "contact": "Forma Homes",
+      "total": 9625,
+      "due": 9625,
+      "dueDate": "2026-04-14T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0464",
+      "contact": "Strike Developments",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2026-04-14T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0463",
+      "contact": "Crownix",
+      "total": 22000,
+      "due": 22000,
+      "dueDate": "2026-04-15T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-25032",
+      "contact": "Connect Business Advisors Pty Ltd",
+      "total": 220,
+      "due": 220,
+      "dueDate": "2026-04-21T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "VS16027",
+      "contact": "Outback Accounting",
+      "total": 357.5,
+      "due": 357.5,
+      "dueDate": "2026-04-15T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Client Refund",
+      "contact": "Keivan Shams",
+      "total": 8000,
+      "due": 8000,
+      "dueDate": "2026-03-06T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "INV-0742",
+      "contact": "Jims Mowing",
+      "total": 165,
+      "due": 165,
+      "dueDate": "2026-04-09T00:00:00"
+    },
+    {
+      "type": "ACCPAY",
+      "number": "Pay Period : Mar 28 - 10 April 2026",
+      "contact": "Nathalie Therese Mag",
+      "total": 900,
+      "due": 900,
+      "dueDate": "2026-04-10T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0466",
+      "contact": "Prop Launch",
+      "total": 4700,
+      "due": 4700,
+      "dueDate": "2026-04-10T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0467",
+      "contact": "AUSTRALIAN RESIDENTIAL GROUP PTY LTD",
+      "total": 27500,
+      "due": 27500,
+      "dueDate": "2026-04-17T00:00:00"
+    },
+    {
+      "type": "ACCREC",
+      "number": "INV-0469",
+      "contact": "Oliver Hume Asset Management (QLD) Pty. Ltd,",
+      "total": 7528.95,
+      "due": 7528.95,
+      "dueDate": "2026-04-24T00:00:00"
+    }
+  ]
+}

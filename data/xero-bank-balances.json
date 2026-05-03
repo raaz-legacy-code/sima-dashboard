@@ -1,0 +1,69 @@
+{
+  "extractedAt": "2026-05-03T11:22:35+08:00",
+  "source": "Xero Bank Summary Report",
+  "reportPeriod": "From 1 May 2026 to 31 May 2026",
+  "data": [
+    {
+      "accountId": "59c00d11-f04f-4790-a10a-114b8c542ebe",
+      "name": "AUD Paytron",
+      "balance": 51495.86,
+      "currency": "AUD",
+      "type": "BANK"
+    },
+    {
+      "accountId": "5800afa6-5d27-4858-a39b-03ca335f00af",
+      "name": "Mint Invest Company",
+      "balance": 25500.93,
+      "currency": "AUD",
+      "type": "BANK"
+    },
+    {
+      "accountId": "4886b5d3-45a8-40d2-bd18-7b3126b82b8d",
+      "name": "Mint Sole Trader Acct",
+      "balance": 3103.25,
+      "currency": "AUD",
+      "type": "BANK"
+    },
+    {
+      "accountId": "07d386dc-cfbb-4e9d-b9a4-74597c2267cf",
+      "name": "USD OFX",
+      "balance": 5898.39,
+      "currency": "USD",
+      "type": "BANK"
+    },
+    {
+      "accountId": "4715da2e-721a-407f-b117-882c8e357c2f",
+      "name": "American Express Platinum Business Card",
+      "balance": -7333.10,
+      "currency": "AUD",
+      "type": "CREDITCARD"
+    },
+    {
+      "accountId": "57067493-c15a-4fcf-b17c-6a10f6d419a6",
+      "name": "The American Express Business Explorer Credit Card",
+      "balance": -11478.19,
+      "currency": "AUD",
+      "type": "CREDITCARD"
+    }
+  ],
+  "totals": {
+    "totalCashAUD": 80100.04,
+    "totalCreditCardsAUD": -18811.29,
+    "netPositionAUD": 67187.14,
+    "usdPosition": 5898.39,
+    "breakdown": {
+      "bankAccounts": {
+        "paytron": 51495.86,
+        "mintInvestCompany": 25500.93,
+        "soleTrader": 3103.25
+      },
+      "foreignCurrency": {
+        "usdOFX": 5898.39
+      },
+      "creditCards": {
+        "amexPlatinum": -7333.10,
+        "amexExplorer": -11478.19
+      }
+    }
+  }
+}

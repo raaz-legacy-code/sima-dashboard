@@ -1,0 +1,266 @@
+{
+  "extractedAt": "2026-05-03T03:21:00.000Z",
+  "source": "Mint Deal Pipeline 2021/2022/2023/2024 (Property tab) + Invoice Tracking Sheet 2026",
+  "summary": {
+    "totalActiveDeals": 98,
+    "totalPipelineValue": 3425000,
+    "totalOutstandingBalance": 287750,
+    "dealsWithBalanceDue": 18
+  },
+  "pendingInflows": [
+    {
+      "client": "Rupa Florin",
+      "deal": "Lot 87 Byford Green Estate Byford",
+      "totalFee": 38500,
+      "balanceDue": 38500,
+      "expectedDate": "2026-06-06",
+      "stage": "Frame",
+      "probability": 0.85,
+      "supplier": "Avanti",
+      "notes": "Full balance due - exchange not yet completed"
+    },
+    {
+      "client": "Nitin Konge",
+      "deal": "Lot 2044 Flagstone Estate Flagstone",
+      "totalFee": 44000,
+      "balanceDue": 44000,
+      "expectedDate": "2026-04-25",
+      "stage": "Slab",
+      "probability": 0.80,
+      "supplier": "Eternal Homes",
+      "notes": "T1 due Nov 2024, T2 Apr 2025 - may be delayed"
+    },
+    {
+      "client": "Tarek Merheb",
+      "deal": "Lot 13 Farriers Creek Burpengary",
+      "totalFee": 44000,
+      "balanceDue": 22000,
+      "expectedDate": "2026-06-14",
+      "stage": "Slab",
+      "probability": 0.75,
+      "supplier": "Strike",
+      "notes": "T2 pending"
+    },
+    {
+      "client": "Padma Gadiyar",
+      "deal": "Lot 3 Charles Ave Logan Central",
+      "totalFee": 55000,
+      "balanceDue": 13750,
+      "expectedDate": "2026-12-20",
+      "stage": "Frame",
+      "probability": 0.85,
+      "supplier": "Eight20 Property",
+      "notes": "T3 pending"
+    },
+    {
+      "client": "Robert Sabato",
+      "deal": "Lot 58 Argyle Burswood",
+      "totalFee": 33000,
+      "balanceDue": 16500,
+      "expectedDate": "2026-10-01",
+      "stage": "Settlement",
+      "probability": 0.90,
+      "supplier": "ARG",
+      "notes": "T2 at settlement - not in CF model yet"
+    },
+    {
+      "client": "Saral Ghimire",
+      "deal": "Lot 58 Byford Green Estate Byford",
+      "totalFee": 33000,
+      "balanceDue": 8250,
+      "expectedDate": "2026-10-11",
+      "stage": "Frame",
+      "probability": 0.85,
+      "supplier": "Avanti",
+      "notes": "T3 pending"
+    },
+    {
+      "client": "Louise Stigwood Nambour",
+      "deal": "Lot 45 Milwood Rise Nambour",
+      "totalFee": 33000,
+      "balanceDue": 33000,
+      "expectedDate": "2026-07-03",
+      "stage": "Settlement",
+      "probability": 0.70,
+      "supplier": "ARG",
+      "notes": "Both tranches outstanding - check status"
+    },
+    {
+      "client": "Cilla and Marc TAKARANGI",
+      "deal": "Lot 1329 Covella Greenbank",
+      "totalFee": 33000,
+      "balanceDue": 16500,
+      "expectedDate": "2026-03-10",
+      "stage": "Pending",
+      "probability": 0.75,
+      "supplier": "Strike",
+      "notes": "T2 not yet paid"
+    },
+    {
+      "client": "Erkan Danis",
+      "deal": "49 Angelsea Street, Greenbank",
+      "totalFee": 16500,
+      "balanceDue": 2500,
+      "expectedDate": "2026-05-15",
+      "stage": "Settlement",
+      "probability": 0.85,
+      "supplier": "BA Fee",
+      "notes": "T1 not yet paid"
+    }
+  ],
+  "upcomingInvoicePayments2026": [
+    {
+      "deal": "Lot 919 Flourish South Maclean House and Land",
+      "tranche": 2,
+      "builder": "EHP",
+      "expectedDate": "2026-02-20",
+      "isPaid": false,
+      "status": "OVERDUE"
+    },
+    {
+      "deal": "Lot 29 / 26 Windermere Road Lochinvar Single Contract Dual Key",
+      "tranche": 1,
+      "builder": "ARG",
+      "expectedDate": "2026-03-13",
+      "isPaid": false,
+      "status": "DUE"
+    },
+    {
+      "deal": "Lot 361 The Gardens Lakelands",
+      "tranche": 1,
+      "builder": "Forma Homes",
+      "expectedDate": "2026-03-13",
+      "isPaid": true,
+      "status": "PAID"
+    },
+    {
+      "deal": "18 Manuka Road Logan Village Dualkey",
+      "tranche": 2,
+      "builder": "EHP",
+      "expectedDate": "2026-03-10",
+      "isPaid": true,
+      "status": "PAID"
+    },
+    {
+      "deal": "Lot 306 Elridge Estate Jimboomba",
+      "tranche": 2,
+      "builder": "ARG",
+      "expectedDate": "2026-03-11",
+      "isPaid": true,
+      "status": "PAID"
+    }
+  ],
+  "simarCommissionDeals": [
+    {
+      "client": "Curtis and Madison",
+      "deal": "Lot 361 The Gardens Lakelands",
+      "signUpFee": 2500,
+      "totalComms": 38500,
+      "rebates": 7000,
+      "netBuilderComms": 31500,
+      "t1Paid": false,
+      "t1ETA": "2026-03-13",
+      "t1Payment": 4725,
+      "t2Payment": 4725
+    },
+    {
+      "client": "Stephen Owen",
+      "deal": "306 Elridge Estate Jimboomba",
+      "signUpFee": 2500,
+      "totalComms": 27500,
+      "rebates": 7000,
+      "netBuilderComms": 20500,
+      "t1Paid": true,
+      "t1ETA": "2026-02-27",
+      "t1Payment": 3075,
+      "t2Payment": 3075
+    },
+    {
+      "client": "Charuj",
+      "deal": "Lot 18 Oaklands Drive Caboolture South Dualkey",
+      "signUpFee": 2500,
+      "totalComms": 34250,
+      "rebates": 5500,
+      "netBuilderComms": 28750,
+      "t1Paid": true,
+      "t1ETA": "2025-10-01",
+      "t1Payment": 4313,
+      "t2Payment": 4313,
+      "notes": "T2 due early March"
+    },
+    {
+      "client": "Ariel & George",
+      "deal": "Lot 29 / 26 Windermere Road Lochinvar Single Contract Dual Key",
+      "signUpFee": 2500,
+      "totalComms": 33000,
+      "rebates": 7000,
+      "netBuilderComms": 26000,
+      "t1Paid": false,
+      "t1ETA": "2026-02-20",
+      "t1Payment": 3900,
+      "t2Payment": 3900
+    }
+  ],
+  "recentlyPaidInflows2026": [
+    {
+      "deal": "Lot 22 Mallee Grove Jimboomba",
+      "tranche": 1,
+      "builder": "Strike",
+      "paidDate": "2026-01-16"
+    },
+    {
+      "deal": "Lot 3112 Giliston Heights Dual Key",
+      "tranche": 1,
+      "builder": "Matt Southwell",
+      "paidDate": "2026-01-23"
+    },
+    {
+      "deal": "Lot 721 Flourish South Maclean",
+      "tranche": 2,
+      "builder": "EHP",
+      "paidDate": "2026-01-23"
+    },
+    {
+      "deal": "Lot 310 The Gardens Lakelands",
+      "tranche": 1,
+      "builder": "Forma Homes",
+      "paidDate": "2026-01-19"
+    },
+    {
+      "deal": "170 Brooklands Henley Brook",
+      "tranche": 2,
+      "builder": "Forma Homes",
+      "paidDate": "2026-01-30"
+    },
+    {
+      "deal": "Lot 340 The Gardens Lakelands",
+      "tranche": 1,
+      "builder": "Forma Homes",
+      "paidDate": "2026-01-30"
+    },
+    {
+      "deal": "Lot 5 Handford Villas Taigum",
+      "tranche": 2,
+      "builder": "Avanti",
+      "paidDate": "2026-01-30"
+    },
+    {
+      "deal": "Lot 10 Camira Duplex",
+      "tranche": 1,
+      "builder": "FRD",
+      "paidDate": "2026-02-06"
+    },
+    {
+      "deal": "Lot 306 Elridge Estate Jimboomba",
+      "tranche": 1,
+      "builder": "ARG",
+      "paidDate": "2026-02-07"
+    },
+    {
+      "deal": "Lot 634 Lakelands Estate Lakelands Dualkey",
+      "tranche": 2,
+      "builder": "EHP",
+      "paidDate": "2026-02-20"
+    }
+  ]
+}

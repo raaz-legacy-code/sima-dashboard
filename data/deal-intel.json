@@ -1,0 +1,188 @@
+{
+  "extractedAt": "2026-05-03T11:21:00+08:00",
+  "emailUpdates": [
+    {
+      "date": "2026-04-23",
+      "from": "Rey (Zaver's AI Chief of Staff) via zaver@mintinvest.com.au",
+      "subject": "Quick update from Zaver",
+      "summary": "Cashflow status update: AR outstanding ~$635K (Avanti biggest debtor), AP outstanding ~$162K (ATO + Xavier main creditors), $500K refinance decision expected any day",
+      "expectedAmount": 635000,
+      "expectedDate": "Pending - ongoing AR tracking",
+      "client": "Avanti Project Marketing (Primary AR)"
+    },
+    {
+      "date": "2026-05-01",
+      "from": "Natasha Wilson via Docusign (natasha.wilson@tribeca.com.au)",
+      "subject": "Tribeca - Updated Marketing Agreement & Bonus Annexure",
+      "summary": "Tribeca increasing House & Land commissions to $44,000 (incl. GST) across QLD, NSW & VIC. Updated agreement requires signing within 14 days. Document pending review.",
+      "expectedAmount": 44000,
+      "expectedDate": "Upon agreement signing (14 day window from 2026-05-01)",
+      "client": "Tribeca Homes",
+      "actionRequired": "Review and sign updated Marketing Agreement"
+    },
+    {
+      "date": "2026-05-02",
+      "from": "Jo Gillies (jo@archisoul.com.au)",
+      "subject": "Archisoul scope of works and fee proposal - 17 Arthur st, Dee Why",
+      "summary": "Archisoul scope of works and fee proposal for 17 Arthur St property development project. Jo proposed meeting Monday 3-6pm, Tuesday 12-6pm or Thursday (Australian Eastern Time). Tuesday 12pm meeting booked.",
+      "expectedAmount": null,
+      "expectedDate": "Tuesday 2026-05-06 at 12:00 (meeting scheduled)",
+      "client": "Archisoul (17 Arthur Street Development)",
+      "actionRequired": "Confirm meeting, review fee proposal"
+    },
+    {
+      "date": "2026-05-02",
+      "from": "Roshni Sima (roshni@jslgroup.com.au)",
+      "subject": "Fwd: Contract for 9/4 Fielding Street, Collaroy NSW",
+      "summary": "Property contract forwarded for 9/4 Fielding Street, Collaroy. Details pending full email review.",
+      "expectedAmount": null,
+      "expectedDate": "TBD",
+      "client": "Property Contract (Fielding Street)",
+      "actionRequired": "Review contract details"
+    },
+    {
+      "date": "2026-04-30",
+      "from": "Amanda Bowes (a.bowes@oliverhume.com.au)",
+      "subject": "Re: Oliver Hume Management Share - Payment Confirmation",
+      "summary": "Oliver Hume Management bill has been PAID (confirmed by accounts team on 2026-04-30)",
+      "expectedAmount": null,
+      "expectedDate": "2026-04-30 (PAID)",
+      "client": "Oliver Hume Management",
+      "status": "SETTLED"
+    },
+    {
+      "date": "2026-05-01",
+      "from": "Robert Puzzolo (robert.puzzolo@mcmullanbird.com.au)",
+      "subject": "Exclusive One-Part Opportunities – Snapshot",
+      "summary": "Multiple exclusive property opportunities available - residential and commercial. Several near completion. Requires detailed review of opportunities.",
+      "expectedAmount": null,
+      "expectedDate": "Various (near completion)",
+      "client": "McMullan Bird - Property Deals",
+      "actionRequired": "Review opportunities, identify commission-generating deals"
+    }
+  ],
+  "slackUpdates": [
+    {
+      "date": "2026-05-03",
+      "timestamp": "1777771518",
+      "channel": "#sima-cashflow",
+      "user": "System (Rey Bot)",
+      "summary": "Sunday Morning Brief - Cash position: $67,187 (above $20K threshold). Week ahead (May 3-17): ~$38K outflows projected. Banks closed on Sunday.",
+      "expectedAmount": 67187,
+      "expectedDate": "Current as of 2026-05-03 11:22 AM Sydney"
+    },
+    {
+      "date": "2026-05-02",
+      "timestamp": "1777672967",
+      "channel": "#sima-cashflow",
+      "user": "System (Rey Bot)",
+      "summary": "Saturday Brief - Detailed cash position: Mint Net $67,185 ✅. Account breakdown provided. Watch zone: w/c May 10 has $29.5K outflows.",
+      "expectedAmount": 67185,
+      "expectedDate": "Current as of 2026-05-02",
+      "accounts": {
+        "paytron": 51496,
+        "mintInvest": 25501,
+        "soleTrader": 3103,
+        "usdOFX": 5896,
+        "amexPlat": -7333,
+        "amexExpl": -11478
+      }
+    },
+    {
+      "date": "2026-05-03",
+      "timestamp": "1777603158",
+      "channel": "DM with May (U0A1HTNP90T)",
+      "user": "Rey (AI Chief of Staff)",
+      "summary": "Cashflow survival mode check-in with May: (1) Any deals at invoicing trigger point? (2) Any clients ready to pay builders? (3) Any settlements coming this week?",
+      "expectedAmount": null,
+      "expectedDate": "Immediate response needed"
+    },
+    {
+      "date": "2026-05-03",
+      "timestamp": "1777601716",
+      "channel": "DM with Nats (U09RF13LQEB)",
+      "user": "Nats",
+      "summary": "CRITICAL: Deanna's SMSF purchase has gone UNCONDITIONAL - can now invoice T1. Awaiting confirmation from Chris via SMS.",
+      "expectedAmount": null,
+      "expectedDate": "T1 invoice ready to raise",
+      "actionRequired": "Generate T1 invoice for Deanna SMSF deal",
+      "status": "UNCONDITIONAL - READY TO INVOICE"
+    },
+    {
+      "date": "2026-05-01",
+      "timestamp": "1777618406",
+      "channel": "DM with Nats (U09RF13LQEB)",
+      "user": "Nats",
+      "summary": "Maryana enquiry: New client referral asking to source properties for her clients. Potential new deal pipeline.",
+      "expectedAmount": null,
+      "expectedDate": "TBD - new opportunity",
+      "client": "Maryana (new referral source)"
+    },
+    {
+      "date": "2026-04-27",
+      "timestamp": "1777276566",
+      "channel": "DM with May (U0A1HTNP90T)",
+      "user": "May",
+      "summary": "Nik's client holding off on any EOI (Expression of Interest) until May 2026. Expected to move after May.",
+      "expectedAmount": null,
+      "expectedDate": "Post-May 2026",
+      "client": "Nik's Client"
+    },
+    {
+      "date": "2026-04-27",
+      "timestamp": "1777276473",
+      "channel": "DM with May (U0A1HTNP90T)",
+      "user": "May",
+      "summary": "Leon property/deal - presentation being booked for next week or week after. Due diligence docs to be prepared for each property once Leon's stocks sorted.",
+      "expectedAmount": null,
+      "expectedDate": "Next week or week after May 03 (May 5-12 estimate)",
+      "client": "Leon"
+    }
+  ],
+  "summary": {
+    "criticalActions": [
+      {
+        "priority": "URGENT",
+        "action": "Generate T1 invoice for Deanna SMSF deal (now unconditional)",
+        "expectedValue": "TBD - T1 stage value",
+        "dueDate": "Immediate"
+      },
+      {
+        "priority": "HIGH",
+        "action": "Follow up with May on deals ready for invoicing + settlement status this week",
+        "expectedValue": "Potential $635K+ AR collection",
+        "dueDate": "2026-05-03"
+      },
+      {
+        "priority": "HIGH",
+        "action": "Review and sign Tribeca Marketing Agreement update",
+        "expectedValue": 44000,
+        "dueDate": "By 2026-05-15"
+      },
+      {
+        "priority": "MEDIUM",
+        "action": "Confirm Archisoul meeting (Tuesday 12pm) and negotiate fee proposal for 17 Arthur St",
+        "expectedValue": "TBD",
+        "dueDate": "2026-05-06"
+      }
+    ],
+    "cashflowStatus": {
+      "currentNet": 67187,
+      "threshold": 20000,
+      "status": "HEALTHY - Above threshold",
+      "weekAheadOutflows": 38000,
+      "watchZone": "w/c May 10 ($29.5K outflows)"
+    },
+    "arOutstanding": {
+      "total": 635000,
+      "largestDebtor": "Avanti Project Marketing"
+    },
+    "dealPipeline": [
+      "Deanna SMSF (T1 invoice ready)",
+      "Leon (presentation next week)",
+      "Maryana referral (new opportunity)",
+      "Nik's client (post-May EOI)",
+      "17 Arthur St Archisoul (development project)"
+    ]
+  }
+}

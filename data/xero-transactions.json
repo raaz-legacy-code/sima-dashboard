@@ -1,0 +1,188 @@
+{
+  "extractedAt": "2026-05-03T11:22:35+08:00",
+  "source": "Xero BankTransactions API",
+  "period": "Last 30 days (2026-04-03 to 2026-05-03)",
+  "data": [
+    {
+      "transactionId": "6445ef9c-1a1e-4bb4-b768-9bb60a1ef9f5",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND",
+      "contact": "FACEBOOK",
+      "date": "2026-04-03",
+      "total": 292.14,
+      "reference": "POS",
+      "isReconciled": true
+    },
+    {
+      "transactionId": "0a854e8b-e189-40f9-afff-ee2846d1aad2",
+      "bankAccount": "AUD Paytron",
+      "type": "RECEIVE-TRANSFER",
+      "date": "2026-04-06",
+      "total": 2500.00,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "b9430bd1-4fc3-4ea6-ba75-85fc73b2c0b5",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND-TRANSFER",
+      "date": "2026-04-06",
+      "total": 2500.00,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "d18147cd-9671-4d6d-b83a-23d5e1e3810a",
+      "bankAccount": "Mint Sole Trader Acct",
+      "type": "SPEND",
+      "contact": "International Transfer",
+      "date": "2026-04-03",
+      "total": 7.69,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "5528ff39-4d05-4d07-8faf-e1ac1565d841",
+      "bankAccount": "Mint Sole Trader Acct",
+      "type": "SPEND",
+      "contact": "Fyxer",
+      "date": "2026-04-03",
+      "total": 219.59,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "c5b33a27-8092-437f-9cdf-2d887d3b2dcd",
+      "bankAccount": "Mint Sole Trader Acct",
+      "type": "SPEND",
+      "contact": "The Star Club",
+      "date": "2026-04-03",
+      "total": 40.00,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "51a8a897-a309-4f4c-9ad3-ed6321be6f9e",
+      "bankAccount": "Mint Sole Trader Acct",
+      "type": "SPEND",
+      "contact": "Shaver Shop",
+      "date": "2026-04-06",
+      "total": 149.00,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "7ab99adc-cd52-46c0-832f-bd8bf4697743",
+      "bankAccount": "AUD Paytron",
+      "type": "SPEND",
+      "contact": "Paytron",
+      "date": "2026-04-07",
+      "total": 10.00,
+      "reference": "f6505790-c058-44e6-9e94-9bf0985b334a",
+      "isReconciled": true
+    },
+    {
+      "transactionId": "b467de3d-9a00-46a0-8e01-e81454a5030b",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND",
+      "contact": "AFI Loan",
+      "date": "2026-04-07",
+      "total": 1542.63,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "fc22fc27-7d21-44c0-97b0-c08a92f2128e",
+      "bankAccount": "Mint Invest Company",
+      "type": "RECEIVE",
+      "contact": "AFI Loan",
+      "date": "2026-04-07",
+      "total": 1542.63,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "16cf611b-809b-4661-b08f-1a5c546edd59",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND",
+      "contact": "Unpaid Payment Fee",
+      "date": "2026-04-07",
+      "total": 5.00,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "c252c9c4-64b8-4979-8416-9b320a7f8519",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND",
+      "contact": "Outback Accounting",
+      "date": "2026-04-08",
+      "total": 357.50,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "bbea96ad-d202-4886-9cdc-90add7558252",
+      "bankAccount": "Mint Invest Company",
+      "type": "RECEIVE",
+      "contact": "Outback Accounting",
+      "date": "2026-04-08",
+      "total": 357.50,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "f75eb60a-d207-4e37-af27-7908d80fe495",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND",
+      "contact": "Commonwealth Bank",
+      "date": "2026-04-08",
+      "total": 1.02,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "b62d0e4e-1c20-4da1-a2e6-e1567d8ce8cb",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND",
+      "contact": "Unpaid Payment Fee",
+      "date": "2026-04-08",
+      "total": 5.00,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "3b1eb85e-b651-4852-8f66-8dd3d3f50288",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND",
+      "contact": "Transport for NSW",
+      "date": "2026-04-08",
+      "total": 5.77,
+      "isReconciled": true
+    },
+    {
+      "transactionId": "d8957aaf-996b-4f91-b6dd-c917c6f0d5b7",
+      "bankAccount": "Mint Invest Company",
+      "type": "SPEND",
+      "contact": "Commonwealth Bank",
+      "date": "2026-04-08",
+      "total": 7.09,
+      "isReconciled": true
+    }
+  ],
+  "totals": {
+    "transactionCount": 17,
+    "totalReceived": 4400.13,
+    "totalSpent": 5142.43,
+    "netCashFlow": -742.30,
+    "byAccount": {
+      "mintInvestCompany": {
+        "received": 1900.13,
+        "spent": 3706.15,
+        "net": -1806.02
+      },
+      "audPaytron": {
+        "received": 2500.00,
+        "spent": 10.00,
+        "net": 2490.00
+      },
+      "mintSoleTrader": {
+        "received": 0,
+        "spent": 416.28,
+        "net": -416.28
+      }
+    },
+    "recurringExpenses": [
+      {"contact": "AFI Loan", "amount": 1542.63, "frequency": "monthly"},
+      {"contact": "Facebook Ads", "amount": 292.14, "frequency": "variable"},
+      {"contact": "Outback Accounting", "amount": 357.50, "frequency": "weekly"}
+    ]
+  }
+}

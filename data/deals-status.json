@@ -1,0 +1,115 @@
+{
+  "extractedAt": "2026-05-03T03:21:00.000Z",
+  "source": "Mint Deal Pipeline 2021/2022/2023/2024 + Invoice Tracking 2025/2026 + Simar Commission Tracker",
+  "summary": {
+    "totalDealsInPipeline": 98,
+    "activeDealsWithBalanceDue": 18,
+    "totalOutstandingBalance": 287750,
+    "averageDealValue": 35000,
+    "mostCommonSuppliers": ["ARG", "Glenvill", "Avanti", "Strike", "Tribeca", "Podium", "EHP"]
+  },
+  "dealStages": {
+    "settlement": {
+      "count": 5,
+      "description": "Ready for final payment on settlement"
+    },
+    "frame": {
+      "count": 8,
+      "description": "Construction at frame stage - T2/T3 payments due"
+    },
+    "slab": {
+      "count": 3,
+      "description": "Construction at slab stage"
+    },
+    "exchange": {
+      "count": 2,
+      "description": "Awaiting exchange completion"
+    }
+  },
+  "recentDeals2024-2026": [
+    {
+      "client": "Curtis and Madison",
+      "deal": "Lot 361 The Gardens Lakelands",
+      "status": "Active",
+      "totalFee": 38500,
+      "t1Paid": false,
+      "t1ETA": "2026-03-13",
+      "supplier": "Forma Homes"
+    },
+    {
+      "client": "Stephen Owen",
+      "deal": "306 Elridge Estate Jimboomba",
+      "status": "Active",
+      "totalFee": 27500,
+      "t1Paid": true,
+      "t1Date": "2026-02-27",
+      "supplier": "ARG"
+    },
+    {
+      "client": "Charuj",
+      "deal": "Lot 18 Oaklands Drive Caboolture South Dualkey",
+      "status": "Active",
+      "totalFee": 34250,
+      "t1Paid": true,
+      "t2Due": "early March 2026",
+      "supplier": "Strike"
+    },
+    {
+      "client": "Ariel & George",
+      "deal": "Lot 29 / 26 Windermere Road Lochinvar Single Contract Dual Key",
+      "status": "Active",
+      "totalFee": 33000,
+      "t1Paid": false,
+      "t1ETA": "2026-02-20",
+      "supplier": "ARG"
+    }
+  ],
+  "refundedClients": [
+    {
+      "client": "Jaswinder Singh",
+      "deal": "N/A",
+      "signUpFee": 2500,
+      "status": "Refunded"
+    },
+    {
+      "client": "Gemma & Jarrod",
+      "deal": "N/A",
+      "signUpFee": 2500,
+      "status": "Refunded",
+      "notes": "Asked for a refund"
+    }
+  ],
+  "lostDeals": [
+    {
+      "client": "MD Arman Hossain",
+      "deal": "Lot 249 Greanlea Estate Baldivis",
+      "supplier": "B1 Homes",
+      "reason": "Lost",
+      "netImpact": -13800
+    }
+  ],
+  "strategistPerformance": {
+    "ZS": "Primary strategist - handles key accounts",
+    "GB": "Active strategist",
+    "CJ": "Active strategist - high volume",
+    "MG": "Active strategist - high volume",
+    "Nik": "Active strategist",
+    "NP": "Active strategist",
+    "ZR": "Active strategist - newer deals"
+  },
+  "builderPaymentTerms": {
+    "ARG": "Standard 2 tranche",
+    "Glenvill": "Standard 2 tranche at slab",
+    "Avanti": "3 tranche - exchange, frame, settlement",
+    "Strike": "30 day payment terms",
+    "EHP": "2 tranche standard",
+    "Tribeca": "Standard with rebates",
+    "Podium": "Standard 2 tranche"
+  },
+  "keyMetrics": {
+    "avgRebatePerDeal": 3000,
+    "avgNetPerDeal": 25000,
+    "avgDaysToClose": 100,
+    "settlementSuccessRate": "98%"
+  }
+}
